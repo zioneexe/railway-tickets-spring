@@ -1,0 +1,20 @@
+package kpp.lab.railwaytickets.controllers;
+
+import kpp.lab.railwaytickets.services.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class OrderController {
+
+    private OrderService orderService;
+
+    @Autowired
+    public OrderController(OrderService orderService) {
+
+    }
+
+    public String showOrdersLog() {
+
+    }
+}
