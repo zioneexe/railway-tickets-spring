@@ -22,19 +22,19 @@ public class SimulationController implements ClientCreatorSubscriber {
     }
 
     public String generateMap() {
-
+        return null;
     }
 
     public String startSimulation() {
-
+        return null;
     }
 
     public String stopSimulation() {
-
+        return null;
     }
 
     public String updateView() {
-
+        return null;
     }
 
     @Override

@@ -11,10 +11,10 @@ public class OrderController {
 
     @Autowired
     public OrderController(OrderService orderService) {
-
+        this.orderService = orderService;
     }
 
     public String showOrdersLog() {
-
+        return null;
     }
 }

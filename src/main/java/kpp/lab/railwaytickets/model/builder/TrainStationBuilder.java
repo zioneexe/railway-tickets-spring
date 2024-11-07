@@ -31,6 +31,6 @@ public class TrainStationBuilder implements BaseBuilder {
     }
 
     public BaseTrainStation getResult() {
-
+        return null;
     }
 }

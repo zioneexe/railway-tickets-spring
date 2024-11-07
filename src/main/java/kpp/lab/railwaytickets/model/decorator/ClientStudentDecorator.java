@@ -13,7 +13,7 @@ public class ClientStudentDecorator extends ClientDecorator{
 
     @Override
     public int calculatePriority() {
-
+        return 0;
     }
 
     @Override

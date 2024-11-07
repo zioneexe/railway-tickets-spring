@@ -9,8 +9,8 @@ public interface BaseStartupProperties {
     int getCashDesksNumber();
     void setCashDesksNumber(int number);
 
-    List<Position> getDeskPositions();
-    void setDeskPositions(List<Position> positions);
+    List<BasePosition> getDeskPositions();
+    void setDeskPositions(List<BasePosition> positions);
 
     int getEntrancesNumber();
     void setEntrancesNumber(int number);

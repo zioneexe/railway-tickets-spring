@@ -19,9 +19,9 @@ public class ClientCreatorServiceImpl implements ClientCreatorService {
 
     @Override
     public BaseClient createClient() {
-        BaseClient client = clientGenerator.generateClients();
+        //BaseClient client = clientGenerator.generateClients();
         notifySubscribersClientCreated();
-        return client;
+        return null;
     }
 
     @Override
@@ -37,7 +37,7 @@ public class ClientCreatorServiceImpl implements ClientCreatorService {
     @Override
     public void notifySubscribersClientCreated() {
         for (ClientCreatorSubscriber sub : subscribers) {
-            sub.onClientCreated();
+            //sub.onClientCreated();
         }
     }
 }
