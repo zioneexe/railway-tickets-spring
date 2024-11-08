@@ -15,6 +15,9 @@ public class StartupProperties implements BaseStartupProperties {
     private int maxServiceTime;
     private BaseClientGenerator clientGenerator;
 
+    private int stationWidth;
+    private int stationHeight;
+
     private static StartupProperties instance;
 
     private StartupProperties() {}
@@ -25,6 +28,26 @@ public class StartupProperties implements BaseStartupProperties {
             instance = new StartupProperties();
         }
         return instance;
+    }
+
+    @Override
+    public int getStationWidth() {
+        return stationWidth;
+    }
+
+    @Override
+    public void setStationWidth(int width) {
+        this.stationWidth = width;
+    }
+
+    @Override
+    public int getStationHeight() {
+        return stationHeight;
+    }
+
+    @Override
+    public void setStationHeight(int height) {
+        this.stationHeight = height;
     }
 
     @Override

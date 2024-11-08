@@ -12,4 +12,11 @@ public interface BaseTrainStation {
 
      int getMaxPeopleCount();
 
+     void addCashDesk(BasePosition position);
+
+     void addBackUpCashDesk(BasePosition position);
+
+     void addEntrance(BasePosition position);
+
+     void setMaxClientNumber(int number);
 }

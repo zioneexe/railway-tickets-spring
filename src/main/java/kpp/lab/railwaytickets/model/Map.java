@@ -8,9 +8,9 @@ public class Map implements BaseMap {
 
     private int sizeY;
 
-    public Map(int sizeX, int sizeY) {
-        this.sizeX = sizeX;
-        this.sizeY = sizeY;
+    public Map() {
+        this.sizeX = StartupProperties.getInstance().getStationWidth();
+        this.sizeY = StartupProperties.getInstance().getStationHeight();
     }
 
     @Override
