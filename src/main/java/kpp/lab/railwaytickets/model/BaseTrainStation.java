@@ -19,4 +19,6 @@ public interface BaseTrainStation {
      void addEntrance(BasePosition position);
 
      void setMaxClientNumber(int number);
+
+     void addMap(int sizeX, int sizeY);
 }

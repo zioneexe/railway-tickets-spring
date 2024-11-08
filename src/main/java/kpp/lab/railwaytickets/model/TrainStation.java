@@ -13,8 +13,6 @@ public class TrainStation implements BaseTrainStation {
     public TrainStation() {
         cashDesks = new ArrayList<>();
         entrances = new ArrayList<>();
-        buildingMap = new Map();
-        maxPeopleCount = 0;
     }
 
     @Override
@@ -45,6 +43,13 @@ public class TrainStation implements BaseTrainStation {
     @Override
     public void addBackUpCashDesk(BasePosition position) {
         cashDesks.add(new CashDesk(position, true));
+    }
+
+    @Override
+    public void addMap(int sizeX, int sizeY) {
+        buildingMap = new Map();
+        buildingMap.setSizeX(sizeX);
+        buildingMap.setSizeY(sizeY);
     }
 
     public void addEntrance(BasePosition position) {

@@ -8,16 +8,18 @@ import java.util.List;
 @Service
 public class StartupProperties implements BaseStartupProperties {
 
-    private int cashDesksNumber;
     private List<BasePosition> deskPositions;
-    private int entrancesNumber;
+    private List<BasePosition> entrancePositions;
+    private BasePosition reserveDeskPosition;
     private int minServiceTime;
     private int maxServiceTime;
     private BaseClientGenerator clientGenerator;
+    private int maxClientNumber;
 
     private int stationWidth;
     private int stationHeight;
 
+    // Шось придумаєм і юсіді
     private static StartupProperties instance;
 
     private StartupProperties() {}
@@ -29,6 +31,7 @@ public class StartupProperties implements BaseStartupProperties {
         }
         return instance;
     }
+    // Шось придумаєм і юсіді
 
     @Override
     public int getStationWidth() {
@@ -51,16 +54,6 @@ public class StartupProperties implements BaseStartupProperties {
     }
 
     @Override
-    public int getCashDesksNumber() {
-        return cashDesksNumber;
-    }
-
-    @Override
-    public void setCashDesksNumber(int number) {
-        this.cashDesksNumber = number;
-    }
-
-    @Override
     public List<BasePosition> getDeskPositions() {
         return deskPositions;
     }
@@ -71,13 +64,23 @@ public class StartupProperties implements BaseStartupProperties {
     }
 
     @Override
-    public int getEntrancesNumber() {
-        return entrancesNumber;
+    public BasePosition getReserveDeskPosition() {
+        return reserveDeskPosition;
     }
 
     @Override
-    public void setEntrancesNumber(int number) {
-        this.entrancesNumber = number;
+    public void setReserveDeskPosition(BasePosition position) {
+        this.reserveDeskPosition = position;
+    }
+
+    @Override
+    public List<BasePosition> getEntrancePositions() {
+        return entrancePositions;
+    }
+
+    @Override
+    public void setEntrancePositions(List<BasePosition> positions) {
+        this.entrancePositions = positions;
     }
 
     @Override
@@ -108,5 +111,15 @@ public class StartupProperties implements BaseStartupProperties {
     @Override
     public void setClientGenerator(BaseClientGenerator generator) {
         this.clientGenerator = generator;
+    }
+
+    @Override
+    public int getMaxClientNumber() {
+        return maxClientNumber;
+    }
+
+    @Override
+    public void setMaxClientNumber(int maxClientNumber) {
+        this.maxClientNumber = maxClientNumber;
     }
 }

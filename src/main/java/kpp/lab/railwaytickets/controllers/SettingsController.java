@@ -33,10 +33,8 @@ public class SettingsController {
     @PostMapping
     public ResponseEntity<StartupPropertiesDto> setProperties(@RequestBody StartupPropertiesDto startupPropertiesDto) {
 
-        startupProperties.setCashDesksNumber(startupPropertiesDto.getCashDesksNumber());
         startupProperties.setMinServiceTime(startupPropertiesDto.getMinServiceTime());
         startupProperties.setMaxServiceTime(startupPropertiesDto.getMaxServiceTime());
-        startupProperties.setEntrancesNumber(startupPropertiesDto.getEntrancesNumber());
 
         var deskPositionsDto = startupPropertiesDto.getDeskPositions();
         List<BasePosition> deskPositions = new ArrayList<>();
@@ -45,6 +43,18 @@ public class SettingsController {
         }
 
         startupProperties.setDeskPositions(deskPositions);
+
+        var reserveDeskPositionDto = startupPropertiesDto.getReserveDeskPosition();
+        startupProperties.setReserveDeskPosition(new Position(reserveDeskPositionDto.getX(), reserveDeskPositionDto.getY()));
+
+        var entrancePositionsDto = startupPropertiesDto.getDeskPositions();
+        List<BasePosition> entrancePositions = new ArrayList<>();
+        for (StartupPropertiesDto.PositionDto positionDto : entrancePositionsDto) {
+            entrancePositions.add(new Position(positionDto.getX(), positionDto.getY()));
+        }
+
+        startupProperties.setEntrancePositions(entrancePositions);
+        startupProperties.setMaxClientNumber(startupPropertiesDto.getMaxClientNumber());
 
         if (Objects.equals(startupPropertiesDto.getClientGenerator().getGeneratorType(), "equal"))
         {

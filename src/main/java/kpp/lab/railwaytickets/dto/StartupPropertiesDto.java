@@ -8,20 +8,13 @@ import java.util.List;
 
 public class StartupPropertiesDto {
 
-    private int cashDesksNumber;
     private List<PositionDto> deskPositions;
-    private int entrancesNumber;
+    private List<PositionDto> entrancePositions;
+    private PositionDto reserveDeskPosition;
     private int minServiceTime;
     private int maxServiceTime;
     private ClientGeneratorDto clientGenerator;
-
-    public int getCashDesksNumber() {
-        return cashDesksNumber;
-    }
-
-    public void setCashDesksNumber(int number) {
-        this.cashDesksNumber = number;
-    }
+    private int maxClientNumber;
 
     public List<PositionDto> getDeskPositions() {
         return deskPositions;
@@ -31,12 +24,20 @@ public class StartupPropertiesDto {
         this.deskPositions = positions;
     }
 
-    public int getEntrancesNumber() {
-        return entrancesNumber;
+    public List<PositionDto> getEntrancePositions() {
+        return entrancePositions;
     }
 
-    public void setEntrancesNumber(int number) {
-        this.entrancesNumber = number;
+    public void setEntrancePositions(List<PositionDto> positions) {
+        this.entrancePositions = positions;
+    }
+
+    public PositionDto getReserveDeskPosition() {
+        return reserveDeskPosition;
+    }
+
+    public void setReserveDeskPosition(PositionDto position) {
+        this.reserveDeskPosition = position;
     }
 
     public int getMinServiceTime() {
@@ -60,6 +61,12 @@ public class StartupPropertiesDto {
     }
 
     public void setClientGenerator(ClientGeneratorDto generator) { this.clientGenerator = generator; }
+
+    public int getMaxClientNumber() {
+        return maxClientNumber;
+    }
+
+    public void setMaxClientNumber(int maxClientNumber) { this.maxClientNumber = maxClientNumber; }
 
     public static class PositionDto {
         private int x;

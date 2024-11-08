@@ -22,7 +22,7 @@ public class TrainStationBuilder implements BaseBuilder {
     }
 
     @Override
-    public void addBackUpCashDesk(BasePosition position){
+    public void addReserveCashDesk(BasePosition position){
         trainStation.addBackUpCashDesk(position);
     }
 
@@ -35,6 +35,9 @@ public class TrainStationBuilder implements BaseBuilder {
     public void addMaxClientNumber(int number) {
         trainStation.setMaxClientNumber(number);
     }
+
+    @Override
+    public void addMap(int sizeX, int sizeY) { trainStation.addMap(sizeX, sizeY); }
 
     public BaseTrainStation getResult() {
         return trainStation;
