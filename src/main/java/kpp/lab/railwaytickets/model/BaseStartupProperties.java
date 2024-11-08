@@ -6,6 +6,12 @@ import java.util.List;
 
 public interface BaseStartupProperties {
 
+    int getStationWidth();
+    void setStationWidth(int width);
+
+    int getStationHeight();
+    void setStationHeight(int height);
+
     int getCashDesksNumber();
     void setCashDesksNumber(int number);
 

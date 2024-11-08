@@ -15,9 +15,9 @@ public class CashDesk implements BaseCashDesk {
 
     private boolean isBroken = false;
 
-    public CashDesk(BasePosition position, PriorityQueue<BaseClient> clients, boolean isBackup) {
+    public CashDesk(BasePosition position, boolean isBackup) {
         this.position = position;
-        this.clients = clients;
+        this.clients = new PriorityQueue<BaseClient>();
         this.isBackup = isBackup;
     }
 

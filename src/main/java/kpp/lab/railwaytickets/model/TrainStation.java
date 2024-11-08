@@ -1,5 +1,6 @@
 package kpp.lab.railwaytickets.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TrainStation implements BaseTrainStation {
@@ -9,11 +10,11 @@ public class TrainStation implements BaseTrainStation {
     private BaseMap buildingMap;
     private int maxPeopleCount;
 
-    public TrainStation(List<BaseCashDesk> cashDesks, List<BaseEntrance> entrances, BaseMap map, int maxPeopleCount) {
-        this.cashDesks = cashDesks;
-        this.entrances = entrances;
-        this.buildingMap = map;
-        this.maxPeopleCount = maxPeopleCount;
+    public TrainStation() {
+        cashDesks = new ArrayList<>();
+        entrances = new ArrayList<>();
+        buildingMap = new Map();
+        maxPeopleCount = 0;
     }
 
     @Override
@@ -34,5 +35,23 @@ public class TrainStation implements BaseTrainStation {
     @Override
     public int getMaxPeopleCount() {
         return maxPeopleCount;
+    }
+
+    @Override
+    public void addCashDesk(BasePosition position) {
+        cashDesks.add(new CashDesk(position, false));
+    }
+
+    @Override
+    public void addBackUpCashDesk(BasePosition position) {
+        cashDesks.add(new CashDesk(position, true));
+    }
+
+    public void addEntrance(BasePosition position) {
+        entrances.add(new Entrance(position));
+    }
+
+    public void setMaxClientNumber(int number) {
+        maxPeopleCount = number;
     }
 }

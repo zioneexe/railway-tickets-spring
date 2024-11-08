@@ -6,13 +6,15 @@ import kpp.lab.railwaytickets.model.BaseTrainStation;
 public class Director implements BaseDirector {
 
     private BaseStartupProperties startupProperties;
+    private BaseBuilder builder;
 
     public Director(BaseStartupProperties startupProperties) {
         this.startupProperties = startupProperties;
+        builder = new TrainStationBuilder();
     }
 
     @Override
-    public BaseTrainStation createTrainStation(BaseBuilder builder) {
-        return null;
+    public void createTrainStation(BaseBuilder builder, String comand) {
+        builder.reset();
     }
 }
