@@ -2,6 +2,8 @@ package kpp.lab.railwaytickets.controllers;
 
 import kpp.lab.railwaytickets.dto.PositionDto;
 import kpp.lab.railwaytickets.dto.StartupPropertiesDto;
+import kpp.lab.railwaytickets.mappers.ClientGeneratorMapper;
+import kpp.lab.railwaytickets.mappers.PositionMapper;
 import kpp.lab.railwaytickets.model.BasePosition;
 import kpp.lab.railwaytickets.model.BaseStartupProperties;
 import kpp.lab.railwaytickets.model.Position;
@@ -36,11 +38,15 @@ public class SettingsController {
 
         startupProperties.setMinServiceTime(startupPropertiesDto.getMinServiceTime());
         startupProperties.setMaxServiceTime(startupPropertiesDto.getMaxServiceTime());
+        startupProperties.setMaxClientNumber(startupPropertiesDto.getMaxClientNumber());
+        startupProperties.setClientGenerator(ClientGeneratorMapper.clientGeneratorDtoToBaseClientGenerator(startupPropertiesDto.getClientGenerator()));
+        startupProperties.setStationWidth(startupPropertiesDto.getStationWidth());
+        startupProperties.setStationHeight(startupPropertiesDto.getStationHeight());
 
         var deskPositionsDto = startupPropertiesDto.getDeskPositions();
         List<BasePosition> deskPositions = new ArrayList<>();
         for (PositionDto positionDto : deskPositionsDto) {
-            deskPositions.add(new Position(positionDto.getX(), positionDto.getY()));
+            deskPositions.add(PositionMapper.positionDtoToBasePosition(positionDto));
         }
 
         startupProperties.setDeskPositions(deskPositions);
@@ -51,27 +57,10 @@ public class SettingsController {
         var entrancePositionsDto = startupPropertiesDto.getEntrancePositions();
         List<BasePosition> entrancePositions = new ArrayList<>();
         for (PositionDto positionDto : entrancePositionsDto) {
-            entrancePositions.add(new Position(positionDto.getX(), positionDto.getY()));
+            entrancePositions.add(PositionMapper.positionDtoToBasePosition(positionDto));
         }
 
         startupProperties.setEntrancePositions(entrancePositions);
-        startupProperties.setMaxClientNumber(startupPropertiesDto.getMaxClientNumber());
-
-        if (Objects.equals(startupPropertiesDto.getClientGenerator().getGeneratorType(), "equal"))
-        {
-            startupProperties.setClientGenerator(new EqualIntervalsCientGenerator());
-        }
-        if (Objects.equals(startupPropertiesDto.getClientGenerator().getGeneratorType(), "overwhelmed"))
-        {
-            startupProperties.setClientGenerator(new OverwhelmedClientGenerator());
-        }
-        if (Objects.equals(startupPropertiesDto.getClientGenerator().getGeneratorType(), "random"))
-        {
-            startupProperties.setClientGenerator(new RandomIntervalsClientGenerator());
-        }
-
-        startupProperties.setStationWidth(startupPropertiesDto.getStationWidth());
-        startupProperties.setStationHeight(startupPropertiesDto.getStationHeight());
 
         return ResponseEntity.status(HttpStatus.CREATED).body(startupPropertiesDto);
     }

@@ -81,17 +81,4 @@ public class StartupPropertiesDto {
     public void setStationHeight(int stationHeight) {
         this.stationHeight = stationHeight;
     }
-
-
-    public static class ClientGeneratorDto {
-        private String generatorType;
-
-        public String getGeneratorType() {
-            return generatorType;
-        }
-
-        public void setGeneratorType(String generatorType) {
-            this.generatorType = generatorType;
-        }
-    }
 }
