@@ -3,16 +3,19 @@ package kpp.lab.railwaytickets.model;
 import kpp.lab.railwaytickets.model.generator.BaseClientGenerator;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class StartupProperties implements BaseStartupProperties {
 
-    private List<BasePosition> deskPositions;
-    private List<BasePosition> entrancePositions;
+    private List<BasePosition> deskPositions = new ArrayList<>();
+    private List<BasePosition> entrancePositions = new ArrayList<>();
     private BasePosition reserveDeskPosition;
+
     private int minServiceTime;
     private int maxServiceTime;
+
     private BaseClientGenerator clientGenerator;
     private int maxClientNumber;
 

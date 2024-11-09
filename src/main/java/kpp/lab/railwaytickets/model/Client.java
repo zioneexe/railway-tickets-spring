@@ -4,7 +4,7 @@ import java.util.UUID;
 
 public class Client implements BaseClient {
 
-    private UUID id;
+    private int id;
 
     private BasePosition position;
 
@@ -21,7 +21,7 @@ public class Client implements BaseClient {
     }
 
     @Override
-    public UUID getId() {
+    public int getId() {
         return id;
     }
 
@@ -39,6 +39,4 @@ public class Client implements BaseClient {
     public void setPosition(BasePosition position) {
         this.position = position;
     }
-
-
 }

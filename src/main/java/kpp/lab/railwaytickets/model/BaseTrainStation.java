@@ -14,7 +14,7 @@ public interface BaseTrainStation {
 
      void addCashDesk(BasePosition position);
 
-     void addBackUpCashDesk(BasePosition position);
+     void addReserveCashDesk(BasePosition position);
 
      void addEntrance(BasePosition position);
 

@@ -15,14 +15,14 @@ public class StartupPropertiesDto {
     private int maxServiceTime;
     private ClientGeneratorDto clientGenerator;
     private int maxClientNumber;
+    private int stationWidth;
+    private int stationHeight;
 
     public List<PositionDto> getDeskPositions() {
         return deskPositions;
     }
 
-    public void setDeskPositions(List<PositionDto> positions) {
-        this.deskPositions = positions;
-    }
+    public void setDeskPositions(List<PositionDto> positions) { this.deskPositions = positions;}
 
     public List<PositionDto> getEntrancePositions() {
         return entrancePositions;
@@ -68,26 +68,20 @@ public class StartupPropertiesDto {
 
     public void setMaxClientNumber(int maxClientNumber) { this.maxClientNumber = maxClientNumber; }
 
-    public static class PositionDto {
-        private int x;
-        private int y;
-
-        public int getX() {
-            return x;
-        }
-
-        public void setX(int x) {
-            this.x = x;
-        }
-
-        public int getY() {
-            return y;
-        }
-
-        public void setY(int y) {
-            this.y = y;
-        }
+    public int getStationWidth() {
+        return stationWidth;
     }
+
+    public void setStationWidth(int stationWidth) { this.stationWidth = stationWidth; }
+
+    public int getStationHeight() {
+        return stationHeight;
+    }
+
+    public void setStationHeight(int stationHeight) {
+        this.stationHeight = stationHeight;
+    }
+
 
     public static class ClientGeneratorDto {
         private String generatorType;

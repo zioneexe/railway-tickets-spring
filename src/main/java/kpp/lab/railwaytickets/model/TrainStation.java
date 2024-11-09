@@ -41,7 +41,7 @@ public class TrainStation implements BaseTrainStation {
     }
 
     @Override
-    public void addBackUpCashDesk(BasePosition position) {
+    public void addReserveCashDesk(BasePosition position) {
         cashDesks.add(new CashDesk(position, true));
     }
 

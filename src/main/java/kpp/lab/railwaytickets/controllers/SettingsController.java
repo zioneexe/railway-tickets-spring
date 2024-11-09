@@ -1,5 +1,6 @@
 package kpp.lab.railwaytickets.controllers;
 
+import kpp.lab.railwaytickets.dto.PositionDto;
 import kpp.lab.railwaytickets.dto.StartupPropertiesDto;
 import kpp.lab.railwaytickets.model.BasePosition;
 import kpp.lab.railwaytickets.model.BaseStartupProperties;
@@ -38,7 +39,7 @@ public class SettingsController {
 
         var deskPositionsDto = startupPropertiesDto.getDeskPositions();
         List<BasePosition> deskPositions = new ArrayList<>();
-        for (StartupPropertiesDto.PositionDto positionDto : deskPositionsDto) {
+        for (PositionDto positionDto : deskPositionsDto) {
             deskPositions.add(new Position(positionDto.getX(), positionDto.getY()));
         }
 
@@ -47,9 +48,9 @@ public class SettingsController {
         var reserveDeskPositionDto = startupPropertiesDto.getReserveDeskPosition();
         startupProperties.setReserveDeskPosition(new Position(reserveDeskPositionDto.getX(), reserveDeskPositionDto.getY()));
 
-        var entrancePositionsDto = startupPropertiesDto.getDeskPositions();
+        var entrancePositionsDto = startupPropertiesDto.getEntrancePositions();
         List<BasePosition> entrancePositions = new ArrayList<>();
-        for (StartupPropertiesDto.PositionDto positionDto : entrancePositionsDto) {
+        for (PositionDto positionDto : entrancePositionsDto) {
             entrancePositions.add(new Position(positionDto.getX(), positionDto.getY()));
         }
 
@@ -68,6 +69,9 @@ public class SettingsController {
         {
             startupProperties.setClientGenerator(new RandomIntervalsClientGenerator());
         }
+
+        startupProperties.setStationWidth(startupPropertiesDto.getStationWidth());
+        startupProperties.setStationHeight(startupPropertiesDto.getStationHeight());
 
         return ResponseEntity.status(HttpStatus.CREATED).body(startupPropertiesDto);
     }
