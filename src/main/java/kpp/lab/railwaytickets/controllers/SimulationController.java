@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/simulation")
 public class SimulationController implements ClientCreatorSubscriber {
 
-    private SimulationService simulationService;
+    private final SimulationService simulationService;
 
     private ClientCashDeskService clientCashDeskService;
 

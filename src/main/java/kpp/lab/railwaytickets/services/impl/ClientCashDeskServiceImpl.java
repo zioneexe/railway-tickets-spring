@@ -10,8 +10,6 @@ import java.util.List;
 
 public class ClientCashDeskServiceImpl implements ClientCashDeskService {
 
-    private OrderService orderService;
-
     private int outOfOrderMaxNumberOfOrders;
 
     private List<BaseCashDesk> cashDesks;
@@ -22,8 +20,7 @@ public class ClientCashDeskServiceImpl implements ClientCashDeskService {
 
     private int MaxNumberOfClients = (int)(cashDesks.stream().mapToInt(e -> e.getPosition().getY()).sum() * MAX_NUMBER_OF_CLIENTS_MULTIPLIER);
 
-    public ClientCashDeskServiceImpl(OrderService orderService, List<BaseCashDesk> cashDesks, int minNum, int maxNum) {
-        this.orderService = orderService;
+    public ClientCashDeskServiceImpl(List<BaseCashDesk> cashDesks, int minNum, int maxNum) {
         this.outOfOrderMaxNumberOfOrders = maxNum;
         this.cashDesks = cashDesks;
 
