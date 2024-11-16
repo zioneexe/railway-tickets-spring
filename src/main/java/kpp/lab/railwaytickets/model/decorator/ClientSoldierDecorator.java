@@ -4,9 +4,10 @@ import kpp.lab.railwaytickets.model.abstractions.BaseClient;
 import kpp.lab.railwaytickets.model.abstractions.BasePosition;
 
 public class ClientSoldierDecorator extends ClientDecorator {
-    protected ClientSoldierDecorator(BaseClient client) {
+    public ClientSoldierDecorator(BaseClient client) {
         super(client);
     }
+
 
     @Override
     public int calculatePriority() {

@@ -6,9 +6,8 @@ import kpp.lab.railwaytickets.mappers.ResultMapper;
 import kpp.lab.railwaytickets.mappers.TrainStationMapper;
 import kpp.lab.railwaytickets.model.abstractions.BaseClient;
 import kpp.lab.railwaytickets.model.abstractions.ClientCreatorSubscriber;
-import kpp.lab.railwaytickets.services.ClientCashDeskService;
-import kpp.lab.railwaytickets.services.ClientCreatorService;
-import kpp.lab.railwaytickets.services.SimulationService;
+import kpp.lab.railwaytickets.services.Base.ClientCashDeskService;
+import kpp.lab.railwaytickets.services.Base.SimulationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -52,7 +51,7 @@ public class SimulationController implements ClientCreatorSubscriber {
         return ResponseEntity.status(HttpStatus.OK).body(ResultMapper.resultToDto(simulationService.getResult()));
     }
 
-    public String updateView() {
+    public ResponseEntity<String> updateView() {
         return null;
     }
 

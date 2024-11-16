@@ -1,4 +1,4 @@
-package kpp.lab.railwaytickets.services;
+package kpp.lab.railwaytickets.services.Base;
 
 import kpp.lab.railwaytickets.model.abstractions.BaseCashDesk;
 import kpp.lab.railwaytickets.model.generator.BaseClientGenerator;
