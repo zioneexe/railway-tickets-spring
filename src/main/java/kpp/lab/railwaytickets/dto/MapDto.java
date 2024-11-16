@@ -2,8 +2,8 @@ package kpp.lab.railwaytickets.dto;
 
 public class MapDto {
 
-    private int sizeX;
-    private int sizeY;
+    private final int sizeX;
+    private final int sizeY;
 
     public MapDto(int sizeX, int sizeY) {
         this.sizeX = sizeX;

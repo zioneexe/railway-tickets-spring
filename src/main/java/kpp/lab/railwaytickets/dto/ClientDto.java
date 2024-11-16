@@ -2,13 +2,13 @@ package kpp.lab.railwaytickets.dto;
 
 public class ClientDto {
 
-    private int id;
+    private final int id;
 
-    private PositionDto position;
+    private final PositionDto position;
 
-    private int ticketNumber;
+    private final int ticketNumber;
 
-    private int priority;
+    private final int priority;
 
     public ClientDto(int id, PositionDto position, int ticketNumber, int priority) {
         this.id = id;

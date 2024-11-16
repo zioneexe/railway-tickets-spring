@@ -1,9 +1,12 @@
-package kpp.lab.railwaytickets.services;
+package kpp.lab.railwaytickets.services.impl;
 
+import kpp.lab.railwaytickets.model.Result;
 import kpp.lab.railwaytickets.model.abstractions.BaseStartupProperties;
 import kpp.lab.railwaytickets.model.abstractions.BaseTrainStation;
 import kpp.lab.railwaytickets.model.builder.BaseBuilder;
 import kpp.lab.railwaytickets.model.builder.BaseDirector;
+import kpp.lab.railwaytickets.services.ClientCreatorService;
+import kpp.lab.railwaytickets.services.SimulationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +18,7 @@ public class SimulationServiceImpl implements SimulationService {
     private BaseTrainStation trainStation;
     private BaseBuilder builder;
     private BaseDirector director;
+    private ClientCreatorService clientCreatorService;
 
     private double renewGenerationCoeff = 0.7;
 
@@ -37,8 +41,18 @@ public class SimulationServiceImpl implements SimulationService {
     }
 
     @Override
-    public void startClientsGeneration() {
+    public Result getResult() {
+        return new Result(
+                startupProperties.getStationWidth(),
+                startupProperties.getStationHeight(),
+                0,
+                0
+        );
+    }
 
+    @Override
+    public void startClientsGeneration() {
+        clientCreatorService.createClient();
     }
 
     @Override

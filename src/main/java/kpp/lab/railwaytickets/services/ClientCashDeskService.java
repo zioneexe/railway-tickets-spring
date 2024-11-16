@@ -8,11 +8,9 @@ import java.util.List;
 
 public interface ClientCashDeskService {
 
-    BaseCashDesk chooseCashDesk(List<BaseCashDesk> baseCashDesks, BaseClient client);
+    BaseCashDesk chooseCashDesk(BaseClient client);
 
     void addClientToQueue(BaseCashDesk cashDesk, BaseClient client);
-
-    BaseOrder provideOrder(BaseCashDesk cashDesk);
 
     void moveClientsToBackupQueue(BaseCashDesk cashDesk);
 
@@ -21,4 +19,6 @@ public interface ClientCashDeskService {
     void setDeskWorking(BaseCashDesk cashDesk);
 
     boolean checkClientLoad();
+
+    int getClientsNumber();
 }
