@@ -11,7 +11,7 @@ public interface SimulationService {
 
     Result getResult();
 
-    public BaseTrainStation createTrainStation();
+    BaseTrainStation createTrainStation();
 
     BaseTrainStation getTrainStation();
 }

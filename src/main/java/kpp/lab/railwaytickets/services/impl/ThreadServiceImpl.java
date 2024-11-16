@@ -42,7 +42,7 @@ public class ThreadServiceImpl implements ThreadService {
     @Override
     public void startClientGenerator(BaseClientGenerator clientGenerator) {
         clientGeneratorExecutorService = Executors.newSingleThreadExecutor();
-        clientGeneratorExecutorService.submit(() -> {});
+        clientGeneratorExecutorService.submit(clientGenerator::generateClients);
     }
 
     @Override
