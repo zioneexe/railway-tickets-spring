@@ -1,9 +1,11 @@
 package kpp.lab.railwaytickets.controllers;
 
+import kpp.lab.railwaytickets.dto.ResultDto;
 import kpp.lab.railwaytickets.dto.TrainStationDto;
+import kpp.lab.railwaytickets.mappers.ResultMapper;
 import kpp.lab.railwaytickets.mappers.TrainStationMapper;
 import kpp.lab.railwaytickets.model.abstractions.BaseClient;
-import kpp.lab.railwaytickets.model.ClientCreatorSubscriber;
+import kpp.lab.railwaytickets.model.abstractions.ClientCreatorSubscriber;
 import kpp.lab.railwaytickets.services.ClientCashDeskService;
 import kpp.lab.railwaytickets.services.ClientCreatorService;
 import kpp.lab.railwaytickets.services.SimulationService;
@@ -22,8 +24,6 @@ public class SimulationController implements ClientCreatorSubscriber {
 
     private ClientCashDeskService clientCashDeskService;
 
-    private ClientCreatorService clientCreatorService;
-
     //private BaseStartupProperties startupProperties;
 
     @Autowired
@@ -31,7 +31,7 @@ public class SimulationController implements ClientCreatorSubscriber {
         this.simulationService = simulationService;
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<TrainStationDto> createTrainStation() {
 
         var trainStation = simulationService.createTrainStation();
@@ -39,12 +39,17 @@ public class SimulationController implements ClientCreatorSubscriber {
         return ResponseEntity.status(HttpStatus.CREATED).body(TrainStationMapper.baseTrainStationToTrainStationDto(trainStation));
     }
 
-    public String startSimulation() {
-        return null;
+    @PostMapping("/start")
+    public ResponseEntity<String> startSimulation() {
+        simulationService.startSimulation();
+        // Placeholder
+        return ResponseEntity.status(HttpStatus.CREATED).body("Simulation started");
     }
 
-    public String stopSimulation() {
-        return null;
+    @PostMapping("/stop")
+    public ResponseEntity<ResultDto> stopSimulation() {
+        simulationService.stopSimulation();
+        return ResponseEntity.status(HttpStatus.OK).body(ResultMapper.resultToDto(simulationService.getResult()));
     }
 
     public String updateView() {

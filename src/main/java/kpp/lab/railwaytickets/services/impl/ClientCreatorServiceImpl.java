@@ -1,8 +1,9 @@
-package kpp.lab.railwaytickets.services;
+package kpp.lab.railwaytickets.services.impl;
 
 import kpp.lab.railwaytickets.model.abstractions.BaseClient;
-import kpp.lab.railwaytickets.model.ClientCreatorSubscriber;
+import kpp.lab.railwaytickets.model.abstractions.ClientCreatorSubscriber;
 import kpp.lab.railwaytickets.model.generator.BaseClientGenerator;
+import kpp.lab.railwaytickets.services.ClientCreatorService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,6 @@ public class ClientCreatorServiceImpl implements ClientCreatorService {
 
     @Override
     public BaseClient createClient() {
-        //BaseClient client = clientGenerator.generateClients();
         notifySubscribersClientCreated();
         return null;
     }

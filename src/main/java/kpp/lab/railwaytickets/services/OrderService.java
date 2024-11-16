@@ -1,8 +1,8 @@
 package kpp.lab.railwaytickets.services;
 
-import kpp.lab.railwaytickets.model.BaseOrder;
+import kpp.lab.railwaytickets.model.abstractions.BaseOrder;
 
-public interface OrderService {
+public interface OrderService extends Runnable {
 
     void processOrder(BaseOrder order);
 }

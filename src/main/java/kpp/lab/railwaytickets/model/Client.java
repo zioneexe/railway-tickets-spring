@@ -5,13 +5,14 @@ import kpp.lab.railwaytickets.model.abstractions.BasePosition;
 
 public class Client implements BaseClient {
 
-    private int id;
+    private final int id;
 
     private BasePosition position;
 
-    private int ticketNumber;
+    private final int ticketNumber;
 
-    public Client(BasePosition position, int ticketNumber) {
+    public Client(int id, BasePosition position, int ticketNumber) {
+        this.id = id;
         this.position = position;
         this.ticketNumber = ticketNumber;
     }
