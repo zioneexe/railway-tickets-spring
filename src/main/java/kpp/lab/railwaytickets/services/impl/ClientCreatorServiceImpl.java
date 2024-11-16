@@ -37,6 +37,7 @@ public class ClientCreatorServiceImpl implements ClientCreatorService {
     @Override
     public BaseClient createClient() {
         BaseClient client = GeneratorHelper.DecorateClient(new Client(1, new Position(0 , 0), 1), decoratorChance);
+//        addSubscriber(client);
         notifySubscribersClientCreated();
         return null;
     }
