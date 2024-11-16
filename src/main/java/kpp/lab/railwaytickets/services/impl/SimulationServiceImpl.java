@@ -5,6 +5,8 @@ import kpp.lab.railwaytickets.model.abstractions.BaseStartupProperties;
 import kpp.lab.railwaytickets.model.abstractions.BaseTrainStation;
 import kpp.lab.railwaytickets.model.builder.BaseBuilder;
 import kpp.lab.railwaytickets.model.builder.BaseDirector;
+import kpp.lab.railwaytickets.model.builder.Director;
+import kpp.lab.railwaytickets.model.builder.TrainStationBuilder;
 import kpp.lab.railwaytickets.services.ClientCashDeskService;
 import kpp.lab.railwaytickets.services.ClientCreatorService;
 import kpp.lab.railwaytickets.services.SimulationService;
@@ -30,10 +32,8 @@ public class SimulationServiceImpl implements SimulationService {
     @Autowired
     public SimulationServiceImpl(BaseDirector director, BaseBuilder builder, BaseStartupProperties startupProperties) {
         this.startupProperties = startupProperties;
-        this.builder = builder;
-        this.director = director;
         this.clientCreatorService = new ClientCreatorServiceImpl(startupProperties.getClientGenerator());
-        //this.clientCashDeskService = new ClientCashDeskServiceImpl();
+        this.clientCashDeskService = new ClientCashDeskServiceImpl(trainStation.getCashDesks(), startupProperties.getMinServiceTime(), startupProperties.getMaxServiceTime());
         this.trainStation = getTrainStation();
     }
 
@@ -41,8 +41,8 @@ public class SimulationServiceImpl implements SimulationService {
     public void startSimulation() {
         threadService = new ThreadServiceImpl(clientCreatorService, clientCashDeskService);
 
-        //threadService.startCashDesks();
-        //threadService.startClientGenerator();
+        threadService.startClientGenerator(clientCreatorService.getClientGenerator());
+        threadService.startCashDesks(trainStation.getCashDesks());
     }
 
     @Override
@@ -67,8 +67,11 @@ public class SimulationServiceImpl implements SimulationService {
 
     @Override
     public BaseTrainStation createTrainStation() {
+        builder = new TrainStationBuilder();
+        director = new Director(startupProperties);
+
         director.createTrainStation(builder);
-        trainStation = builder.getResult();
+        this.trainStation = builder.getResult();
 
         return trainStation;
     }

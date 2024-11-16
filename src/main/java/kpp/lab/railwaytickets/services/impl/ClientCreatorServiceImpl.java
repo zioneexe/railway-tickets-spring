@@ -40,4 +40,9 @@ public class ClientCreatorServiceImpl implements ClientCreatorService {
             //sub.onClientCreated();
         }
     }
+
+    @Override
+    public BaseClientGenerator getClientGenerator() {
+        return clientGenerator;
+    }
 }
