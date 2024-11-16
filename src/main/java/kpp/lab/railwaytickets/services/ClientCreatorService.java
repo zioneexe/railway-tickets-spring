@@ -2,6 +2,7 @@ package kpp.lab.railwaytickets.services;
 
 import kpp.lab.railwaytickets.model.abstractions.BaseClient;
 import kpp.lab.railwaytickets.model.abstractions.ClientCreatorSubscriber;
+import kpp.lab.railwaytickets.model.generator.BaseClientGenerator;
 
 
 public interface ClientCreatorService {
@@ -13,4 +14,6 @@ public interface ClientCreatorService {
      void removeSubscriber(ClientCreatorSubscriber sub);
 
      void notifySubscribersClientCreated();
+
+     BaseClientGenerator getClientGenerator();
 }

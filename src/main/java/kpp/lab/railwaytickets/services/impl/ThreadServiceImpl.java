@@ -1,8 +1,9 @@
 package kpp.lab.railwaytickets.services.impl;
 
 import kpp.lab.railwaytickets.model.abstractions.BaseCashDesk;
-import kpp.lab.railwaytickets.model.abstractions.BaseClient;
 import kpp.lab.railwaytickets.model.generator.BaseClientGenerator;
+import kpp.lab.railwaytickets.services.ClientCashDeskService;
+import kpp.lab.railwaytickets.services.ClientCreatorService;
 import kpp.lab.railwaytickets.services.ThreadService;
 
 import java.util.List;
@@ -13,6 +14,14 @@ public class ThreadServiceImpl implements ThreadService {
 
     private ExecutorService cashDeskExecutorService;
     private ExecutorService clientGeneratorExecutorService;
+
+    private ClientCreatorService clientCreatorService;
+    private ClientCashDeskService clientCashDeskService;
+
+    public ThreadServiceImpl(ClientCreatorService clientCreatorService, ClientCashDeskService clientCashDeskService) {
+        this.clientCreatorService = clientCreatorService;
+        this.clientCashDeskService = clientCashDeskService;
+    }
 
     @Override
     public void startCashDesks(List<BaseCashDesk> cashDesks) {
@@ -33,7 +42,7 @@ public class ThreadServiceImpl implements ThreadService {
     @Override
     public void startClientGenerator(BaseClientGenerator clientGenerator) {
         clientGeneratorExecutorService = Executors.newSingleThreadExecutor();
-        clientGeneratorExecutorService.submit(() -> {});
+        clientGeneratorExecutorService.submit(clientGenerator::generateClients);
     }
 
     @Override

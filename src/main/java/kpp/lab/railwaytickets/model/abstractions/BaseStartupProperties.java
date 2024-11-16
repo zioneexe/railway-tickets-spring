@@ -29,7 +29,4 @@ public interface BaseStartupProperties {
 
     BaseClientGenerator getClientGenerator();
     void setClientGenerator(BaseClientGenerator generator);
-
-    int getMaxClientNumber();
-    void setMaxClientNumber(int maxClientNumber);
 }

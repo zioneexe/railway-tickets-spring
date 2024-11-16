@@ -34,7 +34,6 @@ public class SettingsController {
 
         startupProperties.setMinServiceTime(startupPropertiesDto.getMinServiceTime());
         startupProperties.setMaxServiceTime(startupPropertiesDto.getMaxServiceTime());
-        startupProperties.setMaxClientNumber(startupPropertiesDto.getMaxClientNumber());
         startupProperties.setClientGenerator(ClientGeneratorMapper.clientGeneratorDtoToBaseClientGenerator(startupPropertiesDto.getClientGenerator()));
         startupProperties.setStationWidth(startupPropertiesDto.getStationWidth());
         startupProperties.setStationHeight(startupPropertiesDto.getStationHeight());

@@ -42,12 +42,4 @@ public class OrderServiceImpl implements OrderService {
         logger.log("Start time:" + order.getStartTime());
         logger.log("End time:" + order.getEndTime());
     }
-
-    /**
-     * Runs this operation.
-     */
-    @Override
-    public void run() {
-
-    }
 }
