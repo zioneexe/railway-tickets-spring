@@ -31,12 +31,14 @@ public class SimulationServiceImpl implements SimulationService {
 
     @Autowired
     public SimulationServiceImpl(BaseDirector director, BaseBuilder builder, BaseStartupProperties startupProperties) {
+        this.startupProperties = startupProperties;
+
         this.director = director;
         this.builder = builder;
-        this.startupProperties = startupProperties;
-        this.clientCreatorService = new ClientCreatorServiceImpl(startupProperties.getClientGenerator());
-        this.clientCashDeskService = new ClientCashDeskServiceImpl(trainStation.getCashDesks(), startupProperties.getMinServiceTime(), startupProperties.getMaxServiceTime());
         this.trainStation = getTrainStation();
+
+        this.clientCreatorService = new ClientCreatorServiceImpl(startupProperties.getClientGenerator(), trainStation);
+        this.clientCashDeskService = new ClientCashDeskServiceImpl(trainStation.getCashDesks(), startupProperties.getMinServiceTime(), startupProperties.getMaxServiceTime());
     }
 
     @Override

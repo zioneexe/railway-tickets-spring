@@ -13,7 +13,7 @@ public interface ClientCreatorService {
 
      void removeSubscriber(ClientCreatorSubscriber sub);
 
-     void notifySubscribersClientCreated();
+     void notifySubscribersClientCreated(BaseClient client);
 
      BaseClientGenerator getClientGenerator();
 }
