@@ -10,26 +10,6 @@ public class DisabledClientDecorator extends ClientDecorator{
 
     @Override
     public int calculatePriority() {
-        return 0;
-    }
-
-    @Override
-    public int getId() {
-        return 0;
-    }
-
-    @Override
-    public int getTicketNumber() {
-        return 0;
-    }
-
-    @Override
-    public BasePosition getPosition() {
-        return null;
-    }
-
-    @Override
-    public void setPosition(BasePosition position) {
-
+        return 3;
     }
 }

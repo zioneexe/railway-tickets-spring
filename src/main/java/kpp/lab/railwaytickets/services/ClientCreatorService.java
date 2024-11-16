@@ -1,7 +1,7 @@
 package kpp.lab.railwaytickets.services;
 
 import kpp.lab.railwaytickets.model.abstractions.BaseClient;
-import kpp.lab.railwaytickets.model.ClientCreatorSubscriber;
+import kpp.lab.railwaytickets.model.abstractions.ClientCreatorSubscriber;
 
 
 public interface ClientCreatorService {

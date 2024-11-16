@@ -1,15 +1,12 @@
 package kpp.lab.railwaytickets.dto;
 
-import kpp.lab.railwaytickets.model.*;
-
 import java.util.List;
-import java.util.PriorityQueue;
 
 public class TrainStationDto {
-    private List<CashDeskDto> cashDesks;
-    private List<EntranceDto> entrances;
-    private MapDto buildingMap;
-    private int maxPeopleCount;
+    private final List<CashDeskDto> cashDesks;
+    private final List<EntranceDto> entrances;
+    private final MapDto buildingMap;
+    private final int maxPeopleCount;
 
     public TrainStationDto(List<CashDeskDto> cashDesks, List<EntranceDto> entrances, MapDto buildingMap, int maxPeopleCount) {
         this.cashDesks = cashDesks;
