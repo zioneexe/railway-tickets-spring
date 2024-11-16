@@ -11,6 +11,6 @@ public class ClientSoldierDecorator extends ClientDecorator {
 
     @Override
     public int calculatePriority() {
-        return 3 * getClient().calculatePriority();
+        return 3 + getClient().calculatePriority();
     }
 }

@@ -2,7 +2,7 @@ package kpp.lab.railwaytickets.services.impl;
 
 import kpp.lab.railwaytickets.model.abstractions.BaseCashDesk;
 import kpp.lab.railwaytickets.model.generator.BaseClientGenerator;
-import kpp.lab.railwaytickets.services.Base.ThreadService;
+import kpp.lab.railwaytickets.services.Base.*;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
