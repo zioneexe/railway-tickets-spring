@@ -1,5 +1,6 @@
 package kpp.lab.railwaytickets.model.decorator;
 
+import com.fasterxml.jackson.databind.ser.Serializers;
 import kpp.lab.railwaytickets.model.abstractions.BaseClient;
 import kpp.lab.railwaytickets.model.abstractions.BasePosition;
 
@@ -31,5 +32,7 @@ public abstract class ClientDecorator implements BaseClient {
         client.setPosition(position);
     }
 
-
+    public BaseClient getClient() {
+        return client;
+    }
 }

@@ -8,9 +8,12 @@ public class DisabledClientDecorator extends ClientDecorator{
         super(client);
     }
 
-    public BaseClient baseClient;
     @Override
     public int calculatePriority() {
-        return baseClient.calculatePriority() + 3;
+        return 3 + getClient().calculatePriority();
+    }
+
+    public String getType() {
+        return getClient().getType() + "_disabled";
     }
 }

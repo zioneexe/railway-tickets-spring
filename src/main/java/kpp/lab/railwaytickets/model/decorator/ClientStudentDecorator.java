@@ -11,6 +11,10 @@ public class ClientStudentDecorator extends ClientDecorator{
 
     @Override
     public int calculatePriority() {
-        return 1;
+        return 3 + getClient().calculatePriority();
+    }
+
+    public String getType() {
+        return getClient().getType() + "_student";
     }
 }

@@ -20,8 +20,6 @@ public class SimulationServiceImpl implements SimulationService {
     private BaseDirector director;
     private ClientCreatorService clientCreatorService;
 
-    private double renewGenerationCoeff = 0.7;
-
     @Autowired
     public SimulationServiceImpl(BaseDirector director, BaseBuilder builder, BaseStartupProperties startupProperties) {
         this.startupProperties = startupProperties;
