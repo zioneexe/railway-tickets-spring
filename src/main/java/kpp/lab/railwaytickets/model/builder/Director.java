@@ -14,11 +14,15 @@ public class Director implements BaseDirector {
         this.startupProperties = startupProperties;
     }
 
+    private int getMaxClientNumber() {
+        return startupProperties.getStationHeight() * startupProperties.getDeskPositions().size();
+    }
+
     @Override
     public void createTrainStation(BaseBuilder builder) {
         builder.reset();
         builder.addReserveCashDesk(startupProperties.getReserveDeskPosition());
-        builder.addMaxClientNumber(startupProperties.getMaxClientNumber());
+        builder.addMaxClientNumber(getMaxClientNumber());
         builder.addMap(startupProperties.getStationWidth(), startupProperties.getStationHeight());
 
         var entrancePositions = startupProperties.getEntrancePositions();
