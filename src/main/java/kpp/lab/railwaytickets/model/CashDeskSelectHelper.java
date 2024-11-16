@@ -18,7 +18,7 @@ public class CashDeskSelectHelper {
         return result;
     }
 
-    public static BaseCashDesk selectBestDesk(List<BaseCashDesk> cashDesks, Client client) {
+    public static BaseCashDesk selectBestDesk(List<BaseCashDesk> cashDesks, BaseClient client) {
         // Знайти мінімальну кількість клієнтів у черзі серед усіх кас
         long minClientsNumberInQueue = cashDesks.stream()
                 .mapToInt(cashDesk -> cashDesk.getQueue().size()) // Отримати розмір черги для кожної каси
