@@ -1,5 +1,6 @@
 package kpp.lab.railwaytickets.services.impl;
 
+import kpp.lab.railwaytickets.model.Result;
 import kpp.lab.railwaytickets.model.abstractions.BaseStartupProperties;
 import kpp.lab.railwaytickets.model.abstractions.BaseTrainStation;
 import kpp.lab.railwaytickets.model.builder.BaseBuilder;
@@ -37,6 +38,16 @@ public class SimulationServiceImpl implements SimulationService {
     @Override
     public void stopSimulation() {
 
+    }
+
+    @Override
+    public Result getResult() {
+        return new Result(
+                startupProperties.getStationWidth(),
+                startupProperties.getStationHeight(),
+                0,
+                0
+        );
     }
 
     @Override
