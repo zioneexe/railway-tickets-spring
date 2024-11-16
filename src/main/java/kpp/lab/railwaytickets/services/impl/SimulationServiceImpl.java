@@ -29,6 +29,17 @@ public class SimulationServiceImpl implements SimulationService {
     }
 
     @Override
+    public void startSimulation() {
+        startClientsGeneration();
+
+    }
+
+    @Override
+    public void stopSimulation() {
+
+    }
+
+    @Override
     public void startClientsGeneration() {
         clientCreatorService.createClient();
     }

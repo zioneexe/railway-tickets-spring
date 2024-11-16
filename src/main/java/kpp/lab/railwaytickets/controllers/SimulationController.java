@@ -37,12 +37,18 @@ public class SimulationController implements ClientCreatorSubscriber {
         return ResponseEntity.status(HttpStatus.CREATED).body(TrainStationMapper.baseTrainStationToTrainStationDto(trainStation));
     }
 
-    public String startSimulation() {
-        return null;
+    @PostMapping("/start")
+    public ResponseEntity<String> startSimulation() {
+        simulationService.startSimulation();
+        // Placeholder
+        return ResponseEntity.status(HttpStatus.CREATED).body("Simulation started");
     }
 
-    public String stopSimulation() {
-        return null;
+    @PostMapping("/stop")
+    public ResponseEntity<TrainStationDto> stopSimulation() {
+        simulationService.stopSimulation();
+        // Placeholder
+        return ResponseEntity.status(HttpStatus.CREATED).body(TrainStationMapper.baseTrainStationToTrainStationDto(simulationService.getTrainStation()));
     }
 
     public String updateView() {
