@@ -9,7 +9,6 @@ import kpp.lab.railwaytickets.model.abstractions.BaseClient;
 import kpp.lab.railwaytickets.model.abstractions.ClientCreatorSubscriber;
 import kpp.lab.railwaytickets.services.ClientCashDeskService;
 import kpp.lab.railwaytickets.services.ClientCreatorService;
-import kpp.lab.railwaytickets.services.ClientCreatorServiceImpl;
 import kpp.lab.railwaytickets.services.SimulationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,7 +30,6 @@ public class SimulationController implements ClientCreatorSubscriber {
     @Autowired
     public SimulationController(SimulationService simulationService) {
         this.simulationService = simulationService;
-        this.clientCreatorService = new ClientCreatorServiceImpl(StartupProperties.getInstance().getClientGenerator());
     }
 
     @PostMapping("/create")
