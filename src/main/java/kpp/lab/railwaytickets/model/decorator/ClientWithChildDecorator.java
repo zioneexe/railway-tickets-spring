@@ -1,7 +1,9 @@
 package kpp.lab.railwaytickets.model.decorator;
 
-import kpp.lab.railwaytickets.model.abstractions.BaseClient;
-import kpp.lab.railwaytickets.model.abstractions.BasePosition;
+import kpp.lab.railwaytickets.model.BaseClient;
+import kpp.lab.railwaytickets.model.BasePosition;
+
+import java.util.UUID;
 
 public class ClientWithChildDecorator extends ClientDecorator{
     public ClientWithChildDecorator(BaseClient client) {
@@ -10,6 +12,6 @@ public class ClientWithChildDecorator extends ClientDecorator{
 
     @Override
     public int calculatePriority() {
-        return 2 * getClient().calculatePriority();
+        return 2 + getClient().calculatePriority();
     }
 }

@@ -1,20 +1,20 @@
 package kpp.lab.railwaytickets.model;
 
-import kpp.lab.railwaytickets.model.abstractions.BaseClient;
-import kpp.lab.railwaytickets.model.abstractions.BasePosition;
+import java.util.UUID;
 
 public class Client implements BaseClient {
 
-    private final int id;
+    private static int nextId = 1;
+    private int id;
 
     private BasePosition position;
 
-    private final int ticketNumber;
+    private int ticketNumber;
 
-    public Client(int id, BasePosition position, int ticketNumber) {
-        this.id = id;
+    public Client(BasePosition position, int ticketNumber) {
         this.position = position;
         this.ticketNumber = ticketNumber;
+        this.id = nextId++;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package kpp.lab.railwaytickets.controllers;
 
+import com.corundumstudio.socketio.SocketIOServer;
 import kpp.lab.railwaytickets.dto.ResultDto;
 import kpp.lab.railwaytickets.dto.TrainStationDto;
 import kpp.lab.railwaytickets.mappers.ResultMapper;
@@ -10,6 +11,7 @@ import kpp.lab.railwaytickets.model.abstractions.ClientCreatorSubscriber;
 import kpp.lab.railwaytickets.services.ClientCashDeskService;
 import kpp.lab.railwaytickets.services.ClientCreatorService;
 import kpp.lab.railwaytickets.services.SimulationService;
+import org.apache.logging.log4j.message.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,15 +23,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/simulation")
 public class SimulationController implements ClientCreatorSubscriber {
 
-    private final SimulationService simulationService;
+    private SimulationService simulationService;
 
     private ClientCashDeskService clientCashDeskService;
+
+    private ClientCreatorService clientCreatorService;
 
     //private BaseStartupProperties startupProperties;
 
     @Autowired
     public SimulationController(SimulationService simulationService) {
         this.simulationService = simulationService;
+        this.startupProperties = startupProperties;
+        this.clientCreatorService = clientCreatorService;
     }
 
     @PostMapping("/create")
@@ -42,9 +48,8 @@ public class SimulationController implements ClientCreatorSubscriber {
 
     @PostMapping("/start")
     public ResponseEntity<String> startSimulation() {
-        simulationService.startSimulation();
-        // Placeholder
-        return ResponseEntity.status(HttpStatus.OK).body("Simulation started");
+        clientCreatorService.startGenerating();
+        return ResponseEntity.ok("Generator started");
     }
 
     @PostMapping("/stop")

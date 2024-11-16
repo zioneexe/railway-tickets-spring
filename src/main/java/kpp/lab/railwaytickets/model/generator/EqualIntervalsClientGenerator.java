@@ -1,8 +1,8 @@
 package kpp.lab.railwaytickets.model.generator;
 
-public class EqualIntervalsClientGenerator implements BaseClientGenerator{
+public class EqualIntervalsCientGenerator implements BaseClientGenerator{
     @Override
-    public void generateClients() {
-
+    public BaseClient generateClient() {
+        return null;
     }
 }
