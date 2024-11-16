@@ -1,5 +1,9 @@
 package kpp.lab.railwaytickets.model;
 
+import kpp.lab.railwaytickets.model.abstractions.BaseCashDesk;
+import kpp.lab.railwaytickets.model.abstractions.BaseClient;
+import kpp.lab.railwaytickets.model.abstractions.BaseOrder;
+
 import java.time.LocalDateTime;
 
 public class Order implements BaseOrder {

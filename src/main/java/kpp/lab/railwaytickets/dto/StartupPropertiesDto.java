@@ -1,9 +1,5 @@
 package kpp.lab.railwaytickets.dto;
 
-import kpp.lab.railwaytickets.model.BasePosition;
-import kpp.lab.railwaytickets.model.StartupProperties;
-import kpp.lab.railwaytickets.model.generator.BaseClientGenerator;
-
 import java.util.List;
 
 public class StartupPropertiesDto {

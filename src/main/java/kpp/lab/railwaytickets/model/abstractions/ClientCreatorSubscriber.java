@@ -1,4 +1,4 @@
-package kpp.lab.railwaytickets.model;
+package kpp.lab.railwaytickets.model.abstractions;
 
 public interface ClientCreatorSubscriber {
 

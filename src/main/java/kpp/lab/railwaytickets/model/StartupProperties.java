@@ -1,12 +1,16 @@
 package kpp.lab.railwaytickets.model;
 
+import kpp.lab.railwaytickets.model.abstractions.BasePosition;
+import kpp.lab.railwaytickets.model.abstractions.BaseStartupProperties;
 import kpp.lab.railwaytickets.model.generator.BaseClientGenerator;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
+@Component
 public class StartupProperties implements BaseStartupProperties {
 
     private List<BasePosition> deskPositions = new ArrayList<>();
@@ -17,7 +21,6 @@ public class StartupProperties implements BaseStartupProperties {
     private int maxServiceTime;
 
     private BaseClientGenerator clientGenerator;
-    private int maxClientNumber;
 
     private int stationWidth;
     private int stationHeight;
@@ -114,15 +117,5 @@ public class StartupProperties implements BaseStartupProperties {
     @Override
     public void setClientGenerator(BaseClientGenerator generator) {
         this.clientGenerator = generator;
-    }
-
-    @Override
-    public int getMaxClientNumber() {
-        return maxClientNumber;
-    }
-
-    @Override
-    public void setMaxClientNumber(int maxClientNumber) {
-        this.maxClientNumber = maxClientNumber;
     }
 }

@@ -4,6 +4,9 @@ import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import kpp.lab.railwaytickets.model.BaseClient;
 import kpp.lab.railwaytickets.model.ClientCreatorSubscriber;
+import kpp.lab.railwaytickets.model.abstractions.BaseClient;
+import kpp.lab.railwaytickets.model.abstractions.ClientCreatorSubscriber;
+import kpp.lab.railwaytickets.model.generator.BaseClientGenerator;
 
 import java.util.concurrent.TimeUnit;
 
@@ -18,6 +21,8 @@ public interface ClientCreatorService {
      void removeSubscriber(ClientCreatorSubscriber sub);
 
      void notifySubscribersClientCreated();
+
+     BaseClientGenerator getClientGenerator();
 
       */
 

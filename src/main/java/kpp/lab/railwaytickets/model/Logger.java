@@ -1,9 +1,10 @@
 package kpp.lab.railwaytickets.model;
 
 import jakarta.annotation.PreDestroy;
+import kpp.lab.railwaytickets.model.abstractions.BaseLogger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -11,7 +12,7 @@ import java.io.IOException;
 
 import static kpp.lab.railwaytickets.RailwayTicketsApplication.LOGGER;
 
-@Service
+@Component
 public class Logger implements BaseLogger {
 
     private BufferedWriter writer;

@@ -1,12 +1,17 @@
 package kpp.lab.railwaytickets.services;
 
-import kpp.lab.railwaytickets.model.BaseTrainStation;
+import kpp.lab.railwaytickets.model.Result;
+import kpp.lab.railwaytickets.model.abstractions.BaseTrainStation;
 
 public interface SimulationService {
 
-    void startClientsGeneration();
+    void startSimulation();
 
-    public BaseTrainStation createTrainStation();
+    void stopSimulation();
+
+    Result getResult();
+
+    BaseTrainStation createTrainStation();
 
     BaseTrainStation getTrainStation();
 }

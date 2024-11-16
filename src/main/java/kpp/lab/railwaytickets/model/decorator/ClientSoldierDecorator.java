@@ -6,10 +6,7 @@ import kpp.lab.railwaytickets.model.BasePosition;
 import java.util.UUID;
 
 public class ClientSoldierDecorator extends ClientDecorator {
-
-    private final BaseClient decoratedClient;
-
-    public ClientSoldierDecorator(BaseClient client) {
+    protected ClientSoldierDecorator(BaseClient client) {
         super(client);
         this.decoratedClient = client;
     }

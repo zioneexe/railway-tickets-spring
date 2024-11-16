@@ -1,6 +1,4 @@
-package kpp.lab.railwaytickets.model;
-
-import java.util.UUID;
+package kpp.lab.railwaytickets.model.abstractions;
 
 public interface BaseClient {
 

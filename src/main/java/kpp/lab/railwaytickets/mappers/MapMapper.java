@@ -1,9 +1,7 @@
 package kpp.lab.railwaytickets.mappers;
 
 import kpp.lab.railwaytickets.dto.MapDto;
-import kpp.lab.railwaytickets.dto.PositionDto;
-import kpp.lab.railwaytickets.model.BaseMap;
-import kpp.lab.railwaytickets.model.BasePosition;
+import kpp.lab.railwaytickets.model.abstractions.BaseMap;
 
 public class MapMapper {
     public static MapDto baseMapToMapDto(BaseMap map) {

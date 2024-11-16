@@ -1,18 +1,16 @@
 package kpp.lab.railwaytickets.services;
 
-import kpp.lab.railwaytickets.model.BaseCashDesk;
-import kpp.lab.railwaytickets.model.BaseClient;
-import kpp.lab.railwaytickets.model.BaseOrder;
+import kpp.lab.railwaytickets.model.abstractions.BaseCashDesk;
+import kpp.lab.railwaytickets.model.abstractions.BaseClient;
+import kpp.lab.railwaytickets.model.abstractions.BaseOrder;
 
 import java.util.List;
 
 public interface ClientCashDeskService {
 
-    BaseCashDesk chooseCashDesk(List<BaseCashDesk> baseCashDesks, BaseClient client);
+    BaseCashDesk chooseCashDesk(BaseClient client);
 
     void addClientToQueue(BaseCashDesk cashDesk, BaseClient client);
-
-    BaseOrder provideOrder(BaseCashDesk cashDesk);
 
     void moveClientsToBackupQueue(BaseCashDesk cashDesk);
 
@@ -21,4 +19,6 @@ public interface ClientCashDeskService {
     void setDeskWorking(BaseCashDesk cashDesk);
 
     boolean checkClientLoad();
+
+    int getClientsNumber();
 }

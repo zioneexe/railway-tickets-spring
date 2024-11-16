@@ -1,11 +1,13 @@
 package kpp.lab.railwaytickets.controllers;
 
 import com.corundumstudio.socketio.SocketIOServer;
+import kpp.lab.railwaytickets.dto.ResultDto;
 import kpp.lab.railwaytickets.dto.TrainStationDto;
+import kpp.lab.railwaytickets.mappers.ResultMapper;
 import kpp.lab.railwaytickets.mappers.TrainStationMapper;
-import kpp.lab.railwaytickets.model.BaseClient;
-import kpp.lab.railwaytickets.model.BaseStartupProperties;
-import kpp.lab.railwaytickets.model.ClientCreatorSubscriber;
+import kpp.lab.railwaytickets.model.StartupProperties;
+import kpp.lab.railwaytickets.model.abstractions.BaseClient;
+import kpp.lab.railwaytickets.model.abstractions.ClientCreatorSubscriber;
 import kpp.lab.railwaytickets.services.ClientCashDeskService;
 import kpp.lab.railwaytickets.services.ClientCreatorService;
 import kpp.lab.railwaytickets.services.SimulationService;
@@ -27,16 +29,16 @@ public class SimulationController implements ClientCreatorSubscriber {
 
     private ClientCreatorService clientCreatorService;
 
-    private BaseStartupProperties startupProperties;
+    //private BaseStartupProperties startupProperties;
 
     @Autowired
-    public SimulationController(BaseStartupProperties startupProperties, SimulationService simulationService, ClientCreatorService clientCreatorService) {
+    public SimulationController(SimulationService simulationService) {
         this.simulationService = simulationService;
         this.startupProperties = startupProperties;
         this.clientCreatorService = clientCreatorService;
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<TrainStationDto> createTrainStation() {
 
         var trainStation = simulationService.createTrainStation();
@@ -50,8 +52,10 @@ public class SimulationController implements ClientCreatorSubscriber {
         return ResponseEntity.ok("Generator started");
     }
 
-    public String stopSimulation() {
-        return null;
+    @PostMapping("/stop")
+    public ResponseEntity<ResultDto> stopSimulation() {
+        simulationService.stopSimulation();
+        return ResponseEntity.status(HttpStatus.OK).body(ResultMapper.resultToDto(simulationService.getResult()));
     }
 
     public String updateView() {

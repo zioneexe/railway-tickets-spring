@@ -1,19 +1,14 @@
 package kpp.lab.railwaytickets.dto;
 
-import kpp.lab.railwaytickets.model.BaseClient;
-import kpp.lab.railwaytickets.model.BasePosition;
-
-import java.util.UUID;
-
 public class ClientDto {
 
-    private int id;
+    private final int id;
 
-    private PositionDto position;
+    private final PositionDto position;
 
-    private int ticketNumber;
+    private final int ticketNumber;
 
-    private int priority;
+    private final int priority;
 
     public ClientDto(int id, PositionDto position, int ticketNumber, int priority) {
         this.id = id;

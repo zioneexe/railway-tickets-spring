@@ -1,4 +1,4 @@
-package kpp.lab.railwaytickets.model;
+package kpp.lab.railwaytickets.model.abstractions;
 
 import java.util.List;
 

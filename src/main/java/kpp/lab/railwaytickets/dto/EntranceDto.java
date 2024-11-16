@@ -1,10 +1,8 @@
 package kpp.lab.railwaytickets.dto;
 
-import kpp.lab.railwaytickets.model.BasePosition;
-
 public class EntranceDto {
 
-    private PositionDto position;
+    private final PositionDto position;
 
     public EntranceDto(PositionDto position) {
         this.position = position;

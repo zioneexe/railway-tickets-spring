@@ -1,4 +1,4 @@
-package kpp.lab.railwaytickets.model;
+package kpp.lab.railwaytickets.model.abstractions;
 
 import kpp.lab.railwaytickets.model.generator.BaseClientGenerator;
 
@@ -29,7 +29,4 @@ public interface BaseStartupProperties {
 
     BaseClientGenerator getClientGenerator();
     void setClientGenerator(BaseClientGenerator generator);
-
-    int getMaxClientNumber();
-    void setMaxClientNumber(int maxClientNumber);
 }

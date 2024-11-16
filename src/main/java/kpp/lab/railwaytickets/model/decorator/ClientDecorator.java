@@ -2,12 +2,20 @@ package kpp.lab.railwaytickets.model.decorator;
 
 import kpp.lab.railwaytickets.model.BaseClient;
 import kpp.lab.railwaytickets.model.BasePosition;
+import kpp.lab.railwaytickets.model.abstractions.BaseClient;
+import kpp.lab.railwaytickets.model.abstractions.BasePosition;
 
 public abstract class ClientDecorator implements BaseClient {
 
     private BaseClient client;
 
-    public ClientDecorator(BaseClient client) {}
+    protected ClientDecorator(BaseClient client) {
+        this.client = client;
+    }
+
+    protected BaseClient getClient() {
+        return client;
+    }
 
     @Override
     public int getId() {
@@ -19,6 +27,7 @@ public abstract class ClientDecorator implements BaseClient {
         return client.getTicketNumber();
     }
 
+
     @Override
     public BasePosition getPosition() {
         return client.getPosition();
@@ -26,6 +35,6 @@ public abstract class ClientDecorator implements BaseClient {
 
     @Override
     public void setPosition(BasePosition position) {
-        this.client.setPosition(position);
+        client.setPosition(position);
     }
 }
