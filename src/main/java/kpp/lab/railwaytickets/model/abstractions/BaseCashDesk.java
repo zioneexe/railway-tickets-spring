@@ -1,8 +1,6 @@
-package kpp.lab.railwaytickets.model;
+package kpp.lab.railwaytickets.model.abstractions;
 
 import java.util.List;
-import java.util.PriorityQueue;
-import java.util.UUID;
 
 public interface BaseCashDesk {
 

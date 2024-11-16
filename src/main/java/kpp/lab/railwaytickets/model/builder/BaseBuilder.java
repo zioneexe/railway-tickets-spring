@@ -1,6 +1,6 @@
 package kpp.lab.railwaytickets.model.builder;
 
-import kpp.lab.railwaytickets.model.BasePosition;
+import kpp.lab.railwaytickets.model.abstractions.BasePosition;
 import kpp.lab.railwaytickets.model.BaseTrainStation;
 
 public interface BaseBuilder {
@@ -17,5 +17,5 @@ public interface BaseBuilder {
 
     void addMap(int sizeX, int sizeY);
 
-    public BaseTrainStation getResult();
+    BaseTrainStation getResult();
 }

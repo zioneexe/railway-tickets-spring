@@ -1,5 +1,7 @@
 package kpp.lab.railwaytickets.model;
 
+import kpp.lab.railwaytickets.model.abstractions.BasePosition;
+
 public class Position implements BasePosition {
 
     // TODO: на UML конструктор

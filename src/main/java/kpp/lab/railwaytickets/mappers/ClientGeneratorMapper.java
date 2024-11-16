@@ -1,9 +1,6 @@
 package kpp.lab.railwaytickets.mappers;
 
 import kpp.lab.railwaytickets.dto.ClientGeneratorDto;
-import kpp.lab.railwaytickets.dto.PositionDto;
-import kpp.lab.railwaytickets.model.BasePosition;
-import kpp.lab.railwaytickets.model.Position;
 import kpp.lab.railwaytickets.model.generator.BaseClientGenerator;
 import kpp.lab.railwaytickets.model.generator.EqualIntervalsCientGenerator;
 import kpp.lab.railwaytickets.model.generator.OverwhelmedClientGenerator;
