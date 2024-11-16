@@ -1,5 +1,7 @@
 package kpp.lab.railwaytickets.model;
 
+import kpp.lab.railwaytickets.model.abstractions.BaseMap;
+
 public class Map implements BaseMap {
 
     // TODO: на UML конструктор

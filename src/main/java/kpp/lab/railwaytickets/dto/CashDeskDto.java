@@ -1,10 +1,6 @@
 package kpp.lab.railwaytickets.dto;
 
-import kpp.lab.railwaytickets.model.BaseClient;
-import kpp.lab.railwaytickets.model.BasePosition;
-
 import java.util.List;
-import java.util.PriorityQueue;
 
 public class CashDeskDto {
     private int id;

@@ -1,9 +1,11 @@
 package kpp.lab.railwaytickets.model;
 
+import kpp.lab.railwaytickets.model.abstractions.BaseCashDesk;
+import kpp.lab.railwaytickets.model.abstractions.BaseClient;
+import kpp.lab.railwaytickets.model.abstractions.BasePosition;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.PriorityQueue;
-import java.util.UUID;
 
 public class CashDesk implements BaseCashDesk {
 

@@ -1,7 +1,6 @@
 package kpp.lab.railwaytickets.model.builder;
 
-import kpp.lab.railwaytickets.model.BaseStartupProperties;
-import kpp.lab.railwaytickets.model.BaseTrainStation;
+import kpp.lab.railwaytickets.model.abstractions.BaseStartupProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

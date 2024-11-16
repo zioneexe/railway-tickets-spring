@@ -1,9 +1,7 @@
 package kpp.lab.railwaytickets.mappers;
 
-import kpp.lab.railwaytickets.dto.CashDeskDto;
 import kpp.lab.railwaytickets.dto.PositionDto;
-import kpp.lab.railwaytickets.model.BaseCashDesk;
-import kpp.lab.railwaytickets.model.BasePosition;
+import kpp.lab.railwaytickets.model.abstractions.BasePosition;
 import kpp.lab.railwaytickets.model.Position;
 
 public class PositionMapper {
