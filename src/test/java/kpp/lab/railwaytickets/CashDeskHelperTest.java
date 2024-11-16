@@ -22,7 +22,7 @@ public class CashDeskHelperTest {
         // Порожній список касових пунктів
         List<BaseCashDesk> cashDesks = new ArrayList<>();
         Position clientPos = new Position(5, 5);
-        BaseClient client = new Client(clientPos, 1);
+        BaseClient client = new Client(0,clientPos, 1);
 
         // Метод для вибору кращого касового пункту
         BaseCashDesk selectedDesk = selectBestDesk(cashDesks, client);
@@ -36,7 +36,7 @@ public class CashDeskHelperTest {
         List<BaseCashDesk> cashDesks = new ArrayList<>();
         Position p1 = new Position(0, 0);
         Position clientPos = new Position(5, 5);
-        BaseClient client = new Client(clientPos, 1);
+        BaseClient client = new Client(0,clientPos, 1);
 
         CashDesk desk1 = new CashDesk(p1, false);
         cashDesks.add(desk1);
@@ -57,14 +57,14 @@ public class CashDeskHelperTest {
         CashDesk desk2 = new CashDesk(p2, false);
 
         // Додаємо клієнтів у чергу другої каси
-        desk1.getQueue().add(new Client(new Position(3, 3), 1));
-        desk1.getQueue().add(new Client(new Position(4, 4), 1));
-        desk2.getQueue().add(new Client(new Position(5, 5), 1));
+        desk1.getQueue().add(new Client(0,new Position(3, 3), 1));
+        desk1.getQueue().add(new Client(1,new Position(4, 4), 1));
+        desk2.getQueue().add(new Client(2,new Position(5, 5), 1));
 
         cashDesks.add(desk1);
         cashDesks.add(desk2);
 
-        BaseClient client = new Client(clientPos, 1);
+        BaseClient client = new Client(3,clientPos, 1);
         BaseCashDesk selectedDesk = selectBestDesk(cashDesks, client);
 
         Assertions.assertEquals(desk2, selectedDesk, "Каса з найменшою чергою повинна бути вибрана");
@@ -81,13 +81,13 @@ public class CashDeskHelperTest {
         CashDesk desk2 = new CashDesk(p2, false);
 
         // Додаємо клієнта в обидві черги
-        desk1.getQueue().add(new Client(new Position(1, 1), 1));
-        desk2.getQueue().add(new Client(new Position(1, 1), 1));
+        desk1.getQueue().add(new Client(0,new Position(1, 1), 1));
+        desk2.getQueue().add(new Client(1,new Position(1, 1), 1));
 
         cashDesks.add(desk1);
         cashDesks.add(desk2);
 
-        BaseClient client = new Client(clientPos, 1);
+        BaseClient client = new Client(2,clientPos, 1);
         BaseCashDesk selectedDesk = selectBestDesk(cashDesks, client);
 
         Assertions.assertEquals(desk1, selectedDesk, "Ближча каса повинна бути вибрана, якщо розмір черг однаковий");
@@ -104,13 +104,13 @@ public class CashDeskHelperTest {
         CashDesk desk2 = new CashDesk(p2, false);
 
         // Додаємо клієнтів у чергу обох кас
-        desk1.getQueue().add(new Client(new Position(1, 1), 1));
-        desk2.getQueue().add(new Client(new Position(1, 1), 1));
+        desk1.getQueue().add(new Client(0,new Position(1, 1), 1));
+        desk2.getQueue().add(new Client(1,new Position(1, 1), 1));
 
         cashDesks.add(desk1);
         cashDesks.add(desk2);
 
-        BaseClient client = new Client(clientPos, 1);
+        BaseClient client = new Client(2,clientPos, 1);
         BaseCashDesk selectedDesk = selectBestDesk(cashDesks, client);
 
         Assertions.assertEquals(desk1, selectedDesk, "Ближча каса повинна бути вибрана, якщо відстань різна, а черги однакові");
