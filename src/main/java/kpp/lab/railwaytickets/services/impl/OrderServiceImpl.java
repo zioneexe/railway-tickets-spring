@@ -1,7 +1,8 @@
-package kpp.lab.railwaytickets.services;
+package kpp.lab.railwaytickets.services.impl;
 
 import kpp.lab.railwaytickets.model.abstractions.BaseLogger;
 import kpp.lab.railwaytickets.model.abstractions.BaseOrder;
+import kpp.lab.railwaytickets.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,5 +41,13 @@ public class OrderServiceImpl implements OrderService {
         logger.log("Cash desk: " + order.getCashDesk().getId());
         logger.log("Start time:" + order.getStartTime());
         logger.log("End time:" + order.getEndTime());
+    }
+
+    /**
+     * Runs this operation.
+     */
+    @Override
+    public void run() {
+
     }
 }

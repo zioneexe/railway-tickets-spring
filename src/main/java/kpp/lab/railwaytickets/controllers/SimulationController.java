@@ -22,8 +22,6 @@ public class SimulationController implements ClientCreatorSubscriber {
 
     private ClientCashDeskService clientCashDeskService;
 
-    private ClientCreatorService clientCreatorService;
-
     //private BaseStartupProperties startupProperties;
 
     @Autowired
