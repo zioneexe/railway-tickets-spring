@@ -1,11 +1,14 @@
 package kpp.lab.railwaytickets.controllers;
 
+import kpp.lab.railwaytickets.dto.StartupPropertiesDto;
 import kpp.lab.railwaytickets.dto.TrainStationDto;
 import kpp.lab.railwaytickets.mappers.TrainStationMapper;
+import kpp.lab.railwaytickets.model.StartupProperties;
 import kpp.lab.railwaytickets.model.abstractions.BaseClient;
-import kpp.lab.railwaytickets.model.ClientCreatorSubscriber;
+import kpp.lab.railwaytickets.model.abstractions.ClientCreatorSubscriber;
 import kpp.lab.railwaytickets.services.ClientCashDeskService;
 import kpp.lab.railwaytickets.services.ClientCreatorService;
+import kpp.lab.railwaytickets.services.ClientCreatorServiceImpl;
 import kpp.lab.railwaytickets.services.SimulationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,9 +32,10 @@ public class SimulationController implements ClientCreatorSubscriber {
     @Autowired
     public SimulationController(SimulationService simulationService) {
         this.simulationService = simulationService;
+        this.clientCreatorService = new ClientCreatorServiceImpl(StartupProperties.getInstance().getClientGenerator());
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<TrainStationDto> createTrainStation() {
 
         var trainStation = simulationService.createTrainStation();
@@ -39,12 +43,15 @@ public class SimulationController implements ClientCreatorSubscriber {
         return ResponseEntity.status(HttpStatus.CREATED).body(TrainStationMapper.baseTrainStationToTrainStationDto(trainStation));
     }
 
-    public String startSimulation() {
-        return null;
+    @PostMapping("/start")
+    public ResponseEntity<String> startSimulation() {
+        simulationService.startSimulation();
+        return ResponseEntity.ok("Simulation started");
     }
 
     public String stopSimulation() {
-        return null;
+        simulationService.stopSimulation();
+        return "Simulation stopped";
     }
 
     public String updateView() {

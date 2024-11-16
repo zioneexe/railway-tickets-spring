@@ -1,7 +1,4 @@
-package kpp.lab.railwaytickets.model;
-
-import kpp.lab.railwaytickets.model.abstractions.BaseCashDesk;
-import kpp.lab.railwaytickets.model.abstractions.BaseClient;
+package kpp.lab.railwaytickets.model.abstractions;
 
 import java.time.LocalDateTime;
 

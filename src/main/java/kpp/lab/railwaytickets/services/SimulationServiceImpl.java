@@ -1,7 +1,7 @@
 package kpp.lab.railwaytickets.services;
 
 import kpp.lab.railwaytickets.model.abstractions.BaseStartupProperties;
-import kpp.lab.railwaytickets.model.BaseTrainStation;
+import kpp.lab.railwaytickets.model.abstractions.BaseTrainStation;
 import kpp.lab.railwaytickets.model.builder.BaseBuilder;
 import kpp.lab.railwaytickets.model.builder.BaseDirector;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,19 @@ public class SimulationServiceImpl implements SimulationService {
     }
 
     @Override
+    public void startSimulation() {
+        startClientsGeneration();
+
+    }
+
+    @Override
+    public void stopSimulation() {
+
+    }
+
+    @Override
     public void startClientsGeneration() {
+
     }
 
     @Override
