@@ -51,7 +51,7 @@ public class SimulationController implements ClientCreatorSubscriber {
         return ResponseEntity.status(HttpStatus.OK).body(ResultMapper.resultToDto(simulationService.getResult()));
     }
 
-    public String updateView() {
+    public ResponseEntity<String> updateView() {
         return null;
     }
 

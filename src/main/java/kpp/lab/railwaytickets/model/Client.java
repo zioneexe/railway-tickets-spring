@@ -41,4 +41,26 @@ public class Client implements BaseClient {
     public void setPosition(BasePosition position) {
         this.position = position;
     }
+
+
+    @Override
+    public double getChanceSoldier() {
+        return 0.10;
+    }
+
+    @Override
+    public double getChanceStudent() {
+        return 0.4;
+    };
+
+    @Override
+    public  double getChanceDisabled() {
+        return 0.2;
+    }
+
+    @Override
+    public  double getChanceParent() {
+        return 0.7;
+    }
+
 }

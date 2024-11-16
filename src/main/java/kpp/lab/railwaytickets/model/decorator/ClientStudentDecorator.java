@@ -5,7 +5,7 @@ import kpp.lab.railwaytickets.model.abstractions.BasePosition;
 
 public class ClientStudentDecorator extends ClientDecorator{
 
-    protected ClientStudentDecorator(BaseClient client) {
+    public ClientStudentDecorator(BaseClient client) {
         super(client);
     }
 
