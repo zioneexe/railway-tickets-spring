@@ -26,6 +26,8 @@ public class ClientCashDeskServiceImpl implements ClientCashDeskService {
         this.orderService = orderService;
         this.outOfOrderMaxNumberOfOrders = maxNum;
         this.cashDesks = cashDesks;
+
+        backupCashDesk = cashDesks.stream().filter(e -> e.getIsBackup()).findFirst().get();
     }
 
     @Override
@@ -40,11 +42,6 @@ public class ClientCashDeskServiceImpl implements ClientCashDeskService {
     @Override
     public void addClientToQueue(BaseCashDesk cashDesk, BaseClient client) {
         cashDesk.addClientToQueue(client);
-    }
-
-    @Override
-    public BaseOrder provideOrder(BaseCashDesk cashDesk) {
-        return null;
     }
 
     @Override

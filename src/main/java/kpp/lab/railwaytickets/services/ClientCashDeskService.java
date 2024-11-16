@@ -12,8 +12,6 @@ public interface ClientCashDeskService {
 
     void addClientToQueue(BaseCashDesk cashDesk, BaseClient client);
 
-    BaseOrder provideOrder(BaseCashDesk cashDesk);
-
     void moveClientsToBackupQueue(BaseCashDesk cashDesk);
 
     void setDeskOutOfOrder(BaseCashDesk cashDesk);
