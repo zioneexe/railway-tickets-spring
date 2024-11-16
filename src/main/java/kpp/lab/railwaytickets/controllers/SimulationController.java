@@ -31,7 +31,7 @@ public class SimulationController implements ClientCreatorSubscriber {
         this.simulationService = simulationService;
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<TrainStationDto> createTrainStation() {
 
         var trainStation = simulationService.createTrainStation();
