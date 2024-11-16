@@ -4,6 +4,7 @@ import kpp.lab.railwaytickets.dto.ResultDto;
 import kpp.lab.railwaytickets.dto.TrainStationDto;
 import kpp.lab.railwaytickets.mappers.ResultMapper;
 import kpp.lab.railwaytickets.mappers.TrainStationMapper;
+import kpp.lab.railwaytickets.model.StartupProperties;
 import kpp.lab.railwaytickets.model.abstractions.BaseClient;
 import kpp.lab.railwaytickets.model.abstractions.ClientCreatorSubscriber;
 import kpp.lab.railwaytickets.services.ClientCashDeskService;
@@ -31,7 +32,7 @@ public class SimulationController implements ClientCreatorSubscriber {
         this.simulationService = simulationService;
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<TrainStationDto> createTrainStation() {
 
         var trainStation = simulationService.createTrainStation();
