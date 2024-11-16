@@ -5,17 +5,23 @@ import kpp.lab.railwaytickets.model.Position;
 import kpp.lab.railwaytickets.model.abstractions.BaseClient;
 import kpp.lab.railwaytickets.model.decorator.*;
 import kpp.lab.railwaytickets.services.Base.ClientCashDeskService;
+import kpp.lab.railwaytickets.services.Base.ClientCreatorService;
+import kpp.lab.railwaytickets.services.impl.ClientCreatorServiceImpl;
 
 import java.util.HashMap;
 
 public class RandomIntervalsClientGenerator implements BaseClientGenerator {
 
     private ClientCashDeskService cashDeskService;
+    private ClientCreatorService creatorService;
 
     private HashMap<ClientDecorator, Double> clientDecoratorChances = new HashMap<>();
-    public RandomIntervalsClientGenerator(ClientCashDeskService cashDeskService, HashMap<ClientDecorator, Double> clientDecoratorChances) {
+    public RandomIntervalsClientGenerator(ClientCashDeskService cashDeskService,
+                                          ClientCreatorServiceImpl clientCreatorService,
+                                          HashMap<ClientDecorator, Double> clientDecoratorChances) {
         this.cashDeskService = cashDeskService;
         this.clientDecoratorChances = clientDecoratorChances;
+        this.creatorService = clientCreatorService;
     }
 
     double minInterval = 0.5;  // 0.5 seconds
@@ -33,12 +39,7 @@ public class RandomIntervalsClientGenerator implements BaseClientGenerator {
             // Sleep for the random interval
             Thread.sleep(intervalInMilliseconds);
 
-
-
-
-
-
-
+            creatorService.createClient();
             // Now, you can generate the client
             // For example:
             // cashDeskService.createClient(); // Assuming createClient is a method in the cashDeskService
