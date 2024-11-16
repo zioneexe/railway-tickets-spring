@@ -8,35 +8,36 @@ import java.util.List;
 
 public class StartupPropertiesDto {
 
-    private int cashDesksNumber;
     private List<PositionDto> deskPositions;
-    private int entrancesNumber;
+    private List<PositionDto> entrancePositions;
+    private PositionDto reserveDeskPosition;
     private int minServiceTime;
     private int maxServiceTime;
     private ClientGeneratorDto clientGenerator;
-
-    public int getCashDesksNumber() {
-        return cashDesksNumber;
-    }
-
-    public void setCashDesksNumber(int number) {
-        this.cashDesksNumber = number;
-    }
+    private int maxClientNumber;
+    private int stationWidth;
+    private int stationHeight;
 
     public List<PositionDto> getDeskPositions() {
         return deskPositions;
     }
 
-    public void setDeskPositions(List<PositionDto> positions) {
-        this.deskPositions = positions;
+    public void setDeskPositions(List<PositionDto> positions) { this.deskPositions = positions;}
+
+    public List<PositionDto> getEntrancePositions() {
+        return entrancePositions;
     }
 
-    public int getEntrancesNumber() {
-        return entrancesNumber;
+    public void setEntrancePositions(List<PositionDto> positions) {
+        this.entrancePositions = positions;
     }
 
-    public void setEntrancesNumber(int number) {
-        this.entrancesNumber = number;
+    public PositionDto getReserveDeskPosition() {
+        return reserveDeskPosition;
+    }
+
+    public void setReserveDeskPosition(PositionDto position) {
+        this.reserveDeskPosition = position;
     }
 
     public int getMinServiceTime() {
@@ -61,36 +62,23 @@ public class StartupPropertiesDto {
 
     public void setClientGenerator(ClientGeneratorDto generator) { this.clientGenerator = generator; }
 
-    public static class PositionDto {
-        private int x;
-        private int y;
-
-        public int getX() {
-            return x;
-        }
-
-        public void setX(int x) {
-            this.x = x;
-        }
-
-        public int getY() {
-            return y;
-        }
-
-        public void setY(int y) {
-            this.y = y;
-        }
+    public int getMaxClientNumber() {
+        return maxClientNumber;
     }
 
-    public static class ClientGeneratorDto {
-        private String generatorType;
+    public void setMaxClientNumber(int maxClientNumber) { this.maxClientNumber = maxClientNumber; }
 
-        public String getGeneratorType() {
-            return generatorType;
-        }
+    public int getStationWidth() {
+        return stationWidth;
+    }
 
-        public void setGeneratorType(String generatorType) {
-            this.generatorType = generatorType;
-        }
+    public void setStationWidth(int stationWidth) { this.stationWidth = stationWidth; }
+
+    public int getStationHeight() {
+        return stationHeight;
+    }
+
+    public void setStationHeight(int stationHeight) {
+        this.stationHeight = stationHeight;
     }
 }

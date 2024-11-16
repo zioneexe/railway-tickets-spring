@@ -6,7 +6,7 @@ public interface BaseClient {
 
     int calculatePriority();
 
-    UUID getId();
+    int getId();
 
     int getTicketNumber();
 

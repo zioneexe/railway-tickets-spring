@@ -12,14 +12,14 @@ public interface BaseStartupProperties {
     int getStationHeight();
     void setStationHeight(int height);
 
-    int getCashDesksNumber();
-    void setCashDesksNumber(int number);
-
     List<BasePosition> getDeskPositions();
     void setDeskPositions(List<BasePosition> positions);
 
-    int getEntrancesNumber();
-    void setEntrancesNumber(int number);
+    BasePosition getReserveDeskPosition();
+    void setReserveDeskPosition(BasePosition position);
+
+    List<BasePosition> getEntrancePositions();
+    void setEntrancePositions(List<BasePosition> positions);
 
     int getMinServiceTime();
     void setMinServiceTime(int timeMs);
@@ -29,4 +29,7 @@ public interface BaseStartupProperties {
 
     BaseClientGenerator getClientGenerator();
     void setClientGenerator(BaseClientGenerator generator);
+
+    int getMaxClientNumber();
+    void setMaxClientNumber(int maxClientNumber);
 }

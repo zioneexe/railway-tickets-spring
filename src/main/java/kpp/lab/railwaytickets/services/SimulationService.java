@@ -6,5 +6,7 @@ public interface SimulationService {
 
     void startClientsGeneration();
 
+    public BaseTrainStation createTrainStation();
+
     BaseTrainStation getTrainStation();
 }

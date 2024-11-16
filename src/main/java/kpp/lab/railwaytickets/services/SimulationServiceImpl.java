@@ -2,19 +2,28 @@ package kpp.lab.railwaytickets.services;
 
 import kpp.lab.railwaytickets.model.BaseStartupProperties;
 import kpp.lab.railwaytickets.model.BaseTrainStation;
+import kpp.lab.railwaytickets.model.builder.BaseBuilder;
 import kpp.lab.railwaytickets.model.builder.BaseDirector;
+import kpp.lab.railwaytickets.model.builder.TrainStationBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class SimulationServiceImpl implements SimulationService {
 
-    private double renewGenerationCoeff;
-    private BaseTrainStation trainStation;
     private BaseStartupProperties startupProperties;
 
-    public SimulationServiceImpl(BaseDirector director, double renewGenerationCoeff, BaseStartupProperties startupProperties) {
-        this.renewGenerationCoeff = renewGenerationCoeff;
+    private BaseTrainStation trainStation;
+    private BaseBuilder builder;
+    private BaseDirector director;
+
+    private double renewGenerationCoeff = 0.7;
+
+    @Autowired
+    public SimulationServiceImpl(BaseDirector director, BaseBuilder builder, BaseStartupProperties startupProperties) {
         this.startupProperties = startupProperties;
-        // Assuming BaseDirector helps initialize or set up the train station
-       // this.trainStation = director.getTrainStation();
+        this.builder = builder;
+        this.director = director;
     }
 
     @Override
@@ -23,6 +32,14 @@ public class SimulationServiceImpl implements SimulationService {
 
     @Override
     public BaseTrainStation getTrainStation() {
+        return trainStation;
+    }
+
+    @Override
+    public BaseTrainStation createTrainStation() {
+        director.createTrainStation(builder);
+        trainStation = builder.getResult();
+
         return trainStation;
     }
 }

@@ -14,9 +14,11 @@ public interface BaseTrainStation {
 
      void addCashDesk(BasePosition position);
 
-     void addBackUpCashDesk(BasePosition position);
+     void addReserveCashDesk(BasePosition position);
 
      void addEntrance(BasePosition position);
 
      void setMaxClientNumber(int number);
+
+     void addMap(int sizeX, int sizeY);
 }

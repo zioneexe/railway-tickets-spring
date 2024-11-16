@@ -1,6 +1,9 @@
 package kpp.lab.railwaytickets.controllers;
 
+import kpp.lab.railwaytickets.dto.PositionDto;
 import kpp.lab.railwaytickets.dto.StartupPropertiesDto;
+import kpp.lab.railwaytickets.mappers.ClientGeneratorMapper;
+import kpp.lab.railwaytickets.mappers.PositionMapper;
 import kpp.lab.railwaytickets.model.BasePosition;
 import kpp.lab.railwaytickets.model.BaseStartupProperties;
 import kpp.lab.railwaytickets.model.Position;
@@ -33,31 +36,31 @@ public class SettingsController {
     @PostMapping
     public ResponseEntity<StartupPropertiesDto> setProperties(@RequestBody StartupPropertiesDto startupPropertiesDto) {
 
-        startupProperties.setCashDesksNumber(startupPropertiesDto.getCashDesksNumber());
         startupProperties.setMinServiceTime(startupPropertiesDto.getMinServiceTime());
         startupProperties.setMaxServiceTime(startupPropertiesDto.getMaxServiceTime());
-        startupProperties.setEntrancesNumber(startupPropertiesDto.getEntrancesNumber());
+        startupProperties.setMaxClientNumber(startupPropertiesDto.getMaxClientNumber());
+        startupProperties.setClientGenerator(ClientGeneratorMapper.clientGeneratorDtoToBaseClientGenerator(startupPropertiesDto.getClientGenerator()));
+        startupProperties.setStationWidth(startupPropertiesDto.getStationWidth());
+        startupProperties.setStationHeight(startupPropertiesDto.getStationHeight());
 
         var deskPositionsDto = startupPropertiesDto.getDeskPositions();
         List<BasePosition> deskPositions = new ArrayList<>();
-        for (StartupPropertiesDto.PositionDto positionDto : deskPositionsDto) {
-            deskPositions.add(new Position(positionDto.getX(), positionDto.getY()));
+        for (PositionDto positionDto : deskPositionsDto) {
+            deskPositions.add(PositionMapper.positionDtoToBasePosition(positionDto));
         }
 
         startupProperties.setDeskPositions(deskPositions);
 
-        if (Objects.equals(startupPropertiesDto.getClientGenerator().getGeneratorType(), "equal"))
-        {
-            startupProperties.setClientGenerator(new EqualIntervalsCientGenerator());
+        var reserveDeskPositionDto = startupPropertiesDto.getReserveDeskPosition();
+        startupProperties.setReserveDeskPosition(new Position(reserveDeskPositionDto.getX(), reserveDeskPositionDto.getY()));
+
+        var entrancePositionsDto = startupPropertiesDto.getEntrancePositions();
+        List<BasePosition> entrancePositions = new ArrayList<>();
+        for (PositionDto positionDto : entrancePositionsDto) {
+            entrancePositions.add(PositionMapper.positionDtoToBasePosition(positionDto));
         }
-        if (Objects.equals(startupPropertiesDto.getClientGenerator().getGeneratorType(), "overwhelmed"))
-        {
-            startupProperties.setClientGenerator(new OverwhelmedClientGenerator());
-        }
-        if (Objects.equals(startupPropertiesDto.getClientGenerator().getGeneratorType(), "random"))
-        {
-            startupProperties.setClientGenerator(new RandomIntervalsClientGenerator());
-        }
+
+        startupProperties.setEntrancePositions(entrancePositions);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(startupPropertiesDto);
     }

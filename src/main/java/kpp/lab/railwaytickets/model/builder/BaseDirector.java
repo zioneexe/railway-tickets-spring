@@ -4,5 +4,5 @@ import kpp.lab.railwaytickets.model.BaseTrainStation;
 
 public interface BaseDirector {
 
-    void createTrainStation(BaseBuilder builder, String comand);
+    public void createTrainStation(BaseBuilder builder);
 }

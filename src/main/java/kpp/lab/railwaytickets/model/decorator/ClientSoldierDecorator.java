@@ -16,8 +16,8 @@ public class ClientSoldierDecorator extends ClientDecorator {
     }
 
     @Override
-    public UUID getId() {
-        return null;
+    public int getId() {
+        return 0;
     }
 
     @Override
