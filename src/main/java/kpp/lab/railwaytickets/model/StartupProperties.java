@@ -1,5 +1,7 @@
 package kpp.lab.railwaytickets.model;
 
+import kpp.lab.railwaytickets.model.abstractions.BasePosition;
+import kpp.lab.railwaytickets.model.abstractions.BaseStartupProperties;
 import kpp.lab.railwaytickets.model.generator.BaseClientGenerator;
 import org.springframework.stereotype.Service;
 

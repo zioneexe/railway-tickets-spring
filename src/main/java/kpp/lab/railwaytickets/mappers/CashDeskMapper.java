@@ -2,11 +2,10 @@ package kpp.lab.railwaytickets.mappers;
 
 import kpp.lab.railwaytickets.dto.CashDeskDto;
 import kpp.lab.railwaytickets.dto.ClientDto;
-import kpp.lab.railwaytickets.model.BaseCashDesk;
+import kpp.lab.railwaytickets.model.abstractions.BaseCashDesk;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.PriorityQueue;
 
 public class CashDeskMapper {
     public static CashDeskDto baseCashDeskToCashDeskDto(BaseCashDesk cashDesk) {

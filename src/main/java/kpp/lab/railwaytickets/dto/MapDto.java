@@ -1,7 +1,5 @@
 package kpp.lab.railwaytickets.dto;
 
-import kpp.lab.railwaytickets.model.BaseMap;
-
 public class MapDto {
 
     private int sizeX;
