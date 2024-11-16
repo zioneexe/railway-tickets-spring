@@ -1,6 +1,7 @@
 package kpp.lab.railwaytickets.model;
 
-import java.util.UUID;
+import kpp.lab.railwaytickets.model.abstractions.BaseClient;
+import kpp.lab.railwaytickets.model.abstractions.BasePosition;
 
 public class Client implements BaseClient {
 

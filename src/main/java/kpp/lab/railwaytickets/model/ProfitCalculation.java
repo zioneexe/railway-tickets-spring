@@ -1,5 +1,7 @@
 package kpp.lab.railwaytickets.model;
 
+import kpp.lab.railwaytickets.model.abstractions.BaseCashDesk;
+
 import java.util.List;
 
 public class ProfitCalculation {
