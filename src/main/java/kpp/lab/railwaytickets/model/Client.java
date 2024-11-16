@@ -4,6 +4,7 @@ import java.util.UUID;
 
 public class Client implements BaseClient {
 
+    private static int nextId = 1;
     private int id;
 
     private BasePosition position;
@@ -13,6 +14,7 @@ public class Client implements BaseClient {
     public Client(BasePosition position, int ticketNumber) {
         this.position = position;
         this.ticketNumber = ticketNumber;
+        this.id = nextId++;
     }
 
     @Override

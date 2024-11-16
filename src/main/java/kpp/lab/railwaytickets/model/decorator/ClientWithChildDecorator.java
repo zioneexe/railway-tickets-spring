@@ -6,13 +6,13 @@ import kpp.lab.railwaytickets.model.BasePosition;
 import java.util.UUID;
 
 public class ClientWithChildDecorator extends ClientDecorator{
-    protected ClientWithChildDecorator(BaseClient client) {
+    public ClientWithChildDecorator(BaseClient client) {
         super(client);
     }
 
     @Override
     public int calculatePriority() {
-        return 0;
+        return 2;
     }
 
     @Override

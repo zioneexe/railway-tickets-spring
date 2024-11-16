@@ -1,6 +1,8 @@
 package kpp.lab.railwaytickets.model.generator;
 
+import kpp.lab.railwaytickets.model.BaseClient;
+
 public interface BaseClientGenerator {
 
-    void generateClients();
+    BaseClient generateClient() throws InterruptedException;
 }

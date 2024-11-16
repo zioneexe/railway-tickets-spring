@@ -28,6 +28,7 @@ public class SimulationServiceImpl implements SimulationService {
 
     @Override
     public void startClientsGeneration() {
+
     }
 
     @Override

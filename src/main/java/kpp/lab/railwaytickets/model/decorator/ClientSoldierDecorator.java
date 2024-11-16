@@ -6,32 +6,16 @@ import kpp.lab.railwaytickets.model.BasePosition;
 import java.util.UUID;
 
 public class ClientSoldierDecorator extends ClientDecorator {
-    protected ClientSoldierDecorator(BaseClient client) {
+
+    private final BaseClient decoratedClient;
+
+    public ClientSoldierDecorator(BaseClient client) {
         super(client);
+        this.decoratedClient = client;
     }
 
     @Override
     public int calculatePriority() {
-        return 0;
-    }
-
-    @Override
-    public int getId() {
-        return 0;
-    }
-
-    @Override
-    public int getTicketNumber() {
-        return 0;
-    }
-
-    @Override
-    public BasePosition getPosition() {
-        return null;
-    }
-
-    @Override
-    public void setPosition(BasePosition position) {
-
+        return 3 + decoratedClient.calculatePriority();
     }
 }

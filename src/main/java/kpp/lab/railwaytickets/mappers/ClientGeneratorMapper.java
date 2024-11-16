@@ -9,10 +9,11 @@ import kpp.lab.railwaytickets.model.generator.EqualIntervalsCientGenerator;
 import kpp.lab.railwaytickets.model.generator.OverwhelmedClientGenerator;
 import kpp.lab.railwaytickets.model.generator.RandomIntervalsClientGenerator;
 
+import java.util.List;
 import java.util.Objects;
 
 public class ClientGeneratorMapper {
-    public static BaseClientGenerator clientGeneratorDtoToBaseClientGenerator(ClientGeneratorDto generatorDto) {
+    public static BaseClientGenerator clientGeneratorDtoToBaseClientGenerator(ClientGeneratorDto generatorDto, int minServiceTime, int maxServiceTime, List<BasePosition> entrancePositions) {
         if (Objects.equals(generatorDto.getGeneratorType(), "equal"))
         {
             return new EqualIntervalsCientGenerator();
@@ -23,7 +24,7 @@ public class ClientGeneratorMapper {
         }
         if (Objects.equals(generatorDto.getGeneratorType(), "random"))
         {
-            return new RandomIntervalsClientGenerator();
+            return new RandomIntervalsClientGenerator(minServiceTime, maxServiceTime, entrancePositions);
         }
 
         return null;

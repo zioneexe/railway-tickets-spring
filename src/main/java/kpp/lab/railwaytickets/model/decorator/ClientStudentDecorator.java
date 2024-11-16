@@ -7,13 +7,13 @@ import java.util.UUID;
 
 public class ClientStudentDecorator extends ClientDecorator{
 
-    protected ClientStudentDecorator(BaseClient client) {
+    public ClientStudentDecorator(BaseClient client) {
         super(client);
     }
 
     @Override
     public int calculatePriority() {
-        return 0;
+        return 1;
     }
 
     @Override
