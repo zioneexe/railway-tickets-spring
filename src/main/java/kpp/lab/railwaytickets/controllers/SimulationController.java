@@ -1,6 +1,8 @@
 package kpp.lab.railwaytickets.controllers;
 
+import kpp.lab.railwaytickets.dto.ResultDto;
 import kpp.lab.railwaytickets.dto.TrainStationDto;
+import kpp.lab.railwaytickets.mappers.ResultMapper;
 import kpp.lab.railwaytickets.mappers.TrainStationMapper;
 import kpp.lab.railwaytickets.model.abstractions.BaseClient;
 import kpp.lab.railwaytickets.model.abstractions.ClientCreatorSubscriber;
@@ -37,12 +39,17 @@ public class SimulationController implements ClientCreatorSubscriber {
         return ResponseEntity.status(HttpStatus.CREATED).body(TrainStationMapper.baseTrainStationToTrainStationDto(trainStation));
     }
 
-    public String startSimulation() {
-        return null;
+    @PostMapping("/start")
+    public ResponseEntity<String> startSimulation() {
+        simulationService.startSimulation();
+        // Placeholder
+        return ResponseEntity.status(HttpStatus.CREATED).body("Simulation started");
     }
 
-    public String stopSimulation() {
-        return null;
+    @PostMapping("/stop")
+    public ResponseEntity<ResultDto> stopSimulation() {
+        simulationService.stopSimulation();
+        return ResponseEntity.status(HttpStatus.OK).body(ResultMapper.resultToDto(simulationService.getResult()));
     }
 
     public String updateView() {
