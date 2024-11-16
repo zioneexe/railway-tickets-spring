@@ -2,7 +2,7 @@ package kpp.lab.railwaytickets.dto;
 
 public class EntranceDto {
 
-    private PositionDto position;
+    private final PositionDto position;
 
     public EntranceDto(PositionDto position) {
         this.position = position;

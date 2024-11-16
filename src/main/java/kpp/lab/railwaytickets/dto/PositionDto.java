@@ -1,8 +1,8 @@
 package kpp.lab.railwaytickets.dto;
 
 public class PositionDto {
-    private int x;
-    private int y;
+    private final int x;
+    private final int y;
 
     public PositionDto(int x, int y) {
         this.x = x;
