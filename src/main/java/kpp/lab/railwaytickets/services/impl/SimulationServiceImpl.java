@@ -31,6 +31,8 @@ public class SimulationServiceImpl implements SimulationService {
 
     @Autowired
     public SimulationServiceImpl(BaseDirector director, BaseBuilder builder, BaseStartupProperties startupProperties) {
+        this.director = director;
+        this.builder = builder;
         this.startupProperties = startupProperties;
         this.clientCreatorService = new ClientCreatorServiceImpl(startupProperties.getClientGenerator());
         this.clientCashDeskService = new ClientCashDeskServiceImpl(trainStation.getCashDesks(), startupProperties.getMinServiceTime(), startupProperties.getMaxServiceTime());
@@ -67,9 +69,6 @@ public class SimulationServiceImpl implements SimulationService {
 
     @Override
     public BaseTrainStation createTrainStation() {
-        builder = new TrainStationBuilder();
-        director = new Director(startupProperties);
-
         director.createTrainStation(builder);
         this.trainStation = builder.getResult();
 
