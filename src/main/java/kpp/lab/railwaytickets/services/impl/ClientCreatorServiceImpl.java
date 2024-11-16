@@ -3,7 +3,7 @@ package kpp.lab.railwaytickets.services.impl;
 import kpp.lab.railwaytickets.model.abstractions.BaseClient;
 import kpp.lab.railwaytickets.model.abstractions.ClientCreatorSubscriber;
 import kpp.lab.railwaytickets.model.generator.BaseClientGenerator;
-import kpp.lab.railwaytickets.services.ClientCreatorService;
+import kpp.lab.railwaytickets.services.Base.ClientCreatorService;
 
 import java.util.ArrayList;
 import java.util.List;

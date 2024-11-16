@@ -3,8 +3,8 @@ package kpp.lab.railwaytickets.services.impl;
 import kpp.lab.railwaytickets.model.CashDeskSelectHelper;
 import kpp.lab.railwaytickets.model.abstractions.BaseCashDesk;
 import kpp.lab.railwaytickets.model.abstractions.BaseClient;
-import kpp.lab.railwaytickets.services.ClientCashDeskService;
-import kpp.lab.railwaytickets.services.OrderService;
+import kpp.lab.railwaytickets.services.Base.ClientCashDeskService;
+import kpp.lab.railwaytickets.services.Base.OrderService;
 
 import java.util.List;
 

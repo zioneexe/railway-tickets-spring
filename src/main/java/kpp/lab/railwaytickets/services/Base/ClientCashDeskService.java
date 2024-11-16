@@ -1,10 +1,7 @@
-package kpp.lab.railwaytickets.services;
+package kpp.lab.railwaytickets.services.Base;
 
 import kpp.lab.railwaytickets.model.abstractions.BaseCashDesk;
 import kpp.lab.railwaytickets.model.abstractions.BaseClient;
-import kpp.lab.railwaytickets.model.abstractions.BaseOrder;
-
-import java.util.List;
 
 public interface ClientCashDeskService {
 
