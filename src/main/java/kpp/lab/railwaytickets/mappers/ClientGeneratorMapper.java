@@ -1,12 +1,9 @@
 package kpp.lab.railwaytickets.mappers;
 
 import kpp.lab.railwaytickets.dto.ClientGeneratorDto;
-import kpp.lab.railwaytickets.model.generator.BaseClientGenerator;
-import kpp.lab.railwaytickets.model.generator.EqualIntervalsClientGenerator;
-import kpp.lab.railwaytickets.model.generator.OverwhelmedClientGenerator;
-import kpp.lab.railwaytickets.model.generator.RandomIntervalsClientGenerator;
+import kpp.lab.railwaytickets.model.generator.*;
 
-import java.util.List;
+
 import java.util.Objects;
 
 public class ClientGeneratorMapper {
@@ -17,11 +14,11 @@ public class ClientGeneratorMapper {
         }
         if (Objects.equals(generatorDto.getGeneratorType(), "overwhelmed"))
         {
-            return new OverwhelmedClientGenerator();
+            return new OverwhelmedClientGenerator(cashDeskService);
         }
         if (Objects.equals(generatorDto.getGeneratorType(), "random"))
         {
-            return new RandomIntervalsClientGenerator(minServiceTime, maxServiceTime, entrancePositions);
+            return new RandomIntervalsClientGenerator(cashDeskService);
         }
 
         return null;

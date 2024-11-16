@@ -7,41 +7,58 @@ import kpp.lab.railwaytickets.model.decorator.ClientSoldierDecorator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 
-import java.util.List;
-import java.util.Random;
+import kpp.lab.railwaytickets.model.Client;
+import kpp.lab.railwaytickets.model.Position;
+import kpp.lab.railwaytickets.model.abstractions.BaseClient;
+import kpp.lab.railwaytickets.model.decorator.*;
+import kpp.lab.railwaytickets.services.Base.ClientCashDeskService;
+import kpp.lab.railwaytickets.services.Base.ClientCreatorService;
+import kpp.lab.railwaytickets.services.impl.ClientCreatorServiceImpl;
 
-@Slf4j
+import java.util.HashMap;
+
 public class RandomIntervalsClientGenerator implements BaseClientGenerator {
 
-    private final Random random;
-    private final int minServiceTime;
-    private final int maxServiceTime;
-    List<BasePosition> entrancePositions;
-    @Value("${generator.tickets.min}")
-    private final int minTicketsNumber = 1;
-    @Value("${generator.tickets.max}")
-    private final int maxTicketsNumber = 2;
+    private ClientCashDeskService cashDeskService;
+    private ClientCreatorService creatorService;
 
-    public RandomIntervalsClientGenerator(
-            int minServiceTime,
-            int maxServiceTime,
-            List<BasePosition> entrancePositions
-    ) {
-        random = new Random();
-        this.minServiceTime = minServiceTime;
-        this.maxServiceTime = maxServiceTime;
-        this.entrancePositions = entrancePositions;
+    private HashMap<ClientDecorator, Double> clientDecoratorChances = new HashMap<>();
+    public RandomIntervalsClientGenerator(ClientCashDeskService cashDeskService,
+                                          ClientCreatorServiceImpl clientCreatorService,
+                                          HashMap<ClientDecorator, Double> clientDecoratorChances) {
+        this.cashDeskService = cashDeskService;
+        this.clientDecoratorChances = clientDecoratorChances;
+        this.creatorService = clientCreatorService;
     }
+
+    double minInterval = 0.5;  // 0.5 seconds
+    double maxInterval = 2;    // 2 seconds
 
     @Override
-    public BaseClient generateClient() throws InterruptedException {
-        var client = generateClientModel();
-        waitFor(getRandomServiceTime() * client.getTicketNumber());
-        return new ClientSoldierDecorator(client);
-    }
+    public void generateClients() {
+        try {
+            // Generate a random interval between minInterval and maxInterval (in seconds)
+            double randomInterval = minInterval + (Math.random() * (maxInterval - minInterval));
 
-    private int getRandomServiceTime() {
-        return getRandomBetween(minServiceTime, maxServiceTime);
+            // Convert seconds to milliseconds
+            long intervalInMilliseconds = (long) (randomInterval * 1000);
+
+            // Sleep for the random interval
+            Thread.sleep(intervalInMilliseconds);
+
+            creatorService.createClient();
+            // Now, you can generate the client
+            // For example:
+            // cashDeskService.createClient(); // Assuming createClient is a method in the cashDeskService
+
+            // Print the interval for debugging purposes
+            System.out.println("Generated client after " + randomInterval + " seconds.");
+
+        } catch (InterruptedException e) {
+            // Handle the interruption (optional)
+            Thread.currentThread().interrupt(); // Restore interrupted status
+            e.printStackTrace();
+        }
     }
 
     private void waitFor(int timeMs) throws InterruptedException {

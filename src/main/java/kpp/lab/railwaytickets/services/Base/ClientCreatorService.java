@@ -1,4 +1,4 @@
-package kpp.lab.railwaytickets.services;
+package kpp.lab.railwaytickets.services.Base;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;

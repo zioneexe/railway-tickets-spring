@@ -5,12 +5,7 @@ import kpp.lab.railwaytickets.model.abstractions.BaseStartupProperties;
 import kpp.lab.railwaytickets.model.abstractions.BaseTrainStation;
 import kpp.lab.railwaytickets.model.builder.BaseBuilder;
 import kpp.lab.railwaytickets.model.builder.BaseDirector;
-import kpp.lab.railwaytickets.model.builder.Director;
-import kpp.lab.railwaytickets.model.builder.TrainStationBuilder;
-import kpp.lab.railwaytickets.services.ClientCashDeskService;
-import kpp.lab.railwaytickets.services.ClientCreatorService;
-import kpp.lab.railwaytickets.services.SimulationService;
-import kpp.lab.railwaytickets.services.ThreadService;
+import kpp.lab.railwaytickets.services.Base.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

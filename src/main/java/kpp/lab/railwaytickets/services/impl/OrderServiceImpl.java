@@ -2,7 +2,7 @@ package kpp.lab.railwaytickets.services.impl;
 
 import kpp.lab.railwaytickets.model.abstractions.BaseLogger;
 import kpp.lab.railwaytickets.model.abstractions.BaseOrder;
-import kpp.lab.railwaytickets.services.OrderService;
+import kpp.lab.railwaytickets.services.Base.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

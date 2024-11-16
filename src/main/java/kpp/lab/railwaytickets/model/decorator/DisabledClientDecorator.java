@@ -12,6 +12,6 @@ public class DisabledClientDecorator extends ClientDecorator{
 
     @Override
     public int calculatePriority() {
-        return 3 * getClient().calculatePriority();
+        return 3 + getClient().calculatePriority();
     }
 }

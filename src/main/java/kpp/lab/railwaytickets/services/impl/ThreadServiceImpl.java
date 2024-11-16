@@ -2,15 +2,22 @@ package kpp.lab.railwaytickets.services.impl;
 
 import kpp.lab.railwaytickets.model.abstractions.BaseCashDesk;
 import kpp.lab.railwaytickets.model.generator.BaseClientGenerator;
-import kpp.lab.railwaytickets.services.ClientCashDeskService;
-import kpp.lab.railwaytickets.services.ClientCreatorService;
-import kpp.lab.railwaytickets.services.ThreadService;
+import kpp.lab.railwaytickets.services.Base.*;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class ThreadServiceImpl implements ThreadService {
+
+
+    double getChanceSoldier = 0.1;
+
+    double getChanceStudent = 0.4;
+
+    double getChanceDisabled = 0.2;
+
+    double getChanceParent = 0.6;
 
     private ExecutorService cashDeskExecutorService;
     private ExecutorService clientGeneratorExecutorService;
@@ -28,7 +35,9 @@ public class ThreadServiceImpl implements ThreadService {
 
         cashDeskExecutorService = Executors.newFixedThreadPool(cashDesks.size());
         for (BaseCashDesk cashDesk : cashDesks) {
-            cashDeskExecutorService.submit(() -> {});
+            cashDeskExecutorService.submit(() -> {
+
+            });
         }
     }
 

@@ -41,4 +41,5 @@ public class Client implements BaseClient {
     public void setPosition(BasePosition position) {
         this.position = position;
     }
+
 }

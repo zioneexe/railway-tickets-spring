@@ -27,7 +27,6 @@ public abstract class ClientDecorator implements BaseClient {
         return client.getTicketNumber();
     }
 
-
     @Override
     public BasePosition getPosition() {
         return client.getPosition();
@@ -37,4 +36,6 @@ public abstract class ClientDecorator implements BaseClient {
     public void setPosition(BasePosition position) {
         client.setPosition(position);
     }
+
+
 }

@@ -1,14 +1,13 @@
 package kpp.lab.railwaytickets.services.impl;
 
 import kpp.lab.railwaytickets.model.Client;
-import kpp.lab.railwaytickets.model.TrainStation;
-import kpp.lab.railwaytickets.model.abstractions.*;
-import kpp.lab.railwaytickets.model.decorator.ClientSoldierDecorator;
-import kpp.lab.railwaytickets.model.decorator.ClientStudentDecorator;
-import kpp.lab.railwaytickets.model.decorator.ClientWithChildDecorator;
-import kpp.lab.railwaytickets.model.decorator.DisabledClientDecorator;
+import kpp.lab.railwaytickets.model.Position;
+import kpp.lab.railwaytickets.model.abstractions.BaseClient;
+import kpp.lab.railwaytickets.model.abstractions.ClientCreatorSubscriber;
+import kpp.lab.railwaytickets.model.decorator.*;
 import kpp.lab.railwaytickets.model.generator.BaseClientGenerator;
-import kpp.lab.railwaytickets.services.ClientCreatorService;
+import kpp.lab.railwaytickets.model.generator.GeneratorHelper;
+import kpp.lab.railwaytickets.services.Base.ClientCreatorService;
 
 import java.util.*;
 
@@ -41,22 +40,14 @@ public class ClientCreatorServiceImpl implements ClientCreatorService {
         this.subscribers = new ArrayList<>();
     }
 
+    HashMap<ClientDecorator, Double> decoratorChance;
+
     @Override
     public BaseClient createClient() {
-        int entranceIndex = random.nextInt(entrancePositions.size());
-        int ticketCount = random.nextInt(6);
-
-        BaseClient client = new Client(nextId++, entrancePositions.get(entranceIndex), ticketCount);
-
-        List<Class<? extends BaseClient>> appliedDecorators = getSelectedDecorators();
-
-        if (isValidCombination(appliedDecorators)) {
-            client = applyDecorators(client, appliedDecorators);
-        }
-
-        notifySubscribersClientCreated(client);
-
-        return client;
+        BaseClient client = GeneratorHelper.DecorateClient(new Client(1, new Position(0 , 0), 1), decoratorChance);
+//        addSubscriber(client);
+        notifySubscribersClientCreated();
+        return null;
     }
 
     private List<Class<? extends BaseClient>> getSelectedDecorators() {
