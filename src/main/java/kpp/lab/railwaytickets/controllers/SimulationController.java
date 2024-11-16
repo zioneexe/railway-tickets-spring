@@ -44,7 +44,7 @@ public class SimulationController implements ClientCreatorSubscriber {
     public ResponseEntity<String> startSimulation() {
         simulationService.startSimulation();
         // Placeholder
-        return ResponseEntity.status(HttpStatus.CREATED).body("Simulation started");
+        return ResponseEntity.status(HttpStatus.OK).body("Simulation started");
     }
 
     @PostMapping("/stop")

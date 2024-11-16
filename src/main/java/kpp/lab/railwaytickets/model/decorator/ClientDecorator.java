@@ -11,6 +11,10 @@ public abstract class ClientDecorator implements BaseClient {
         this.client = client;
     }
 
+    protected BaseClient getClient() {
+        return client;
+    }
+
     @Override
     public int getId() {
         return client.getId();

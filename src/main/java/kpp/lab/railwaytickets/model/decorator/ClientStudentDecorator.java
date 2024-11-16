@@ -11,6 +11,6 @@ public class ClientStudentDecorator extends ClientDecorator{
 
     @Override
     public int calculatePriority() {
-        return 1;
+        return 2 * getClient().calculatePriority();
     }
 }
