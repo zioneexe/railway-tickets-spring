@@ -2,7 +2,6 @@ package kpp.lab.railwaytickets.model;
 
 import kpp.lab.railwaytickets.model.interfaces.*;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,8 +9,8 @@ import java.util.List;
 @Component
 public class TrainStation implements BaseTrainStation {
 
-    private List<BaseCashDesk> cashDesks;
-    private List<BaseEntrance> entrances;
+    private final List<BaseCashDesk> cashDesks;
+    private final List<BaseEntrance> entrances;
     private BaseMap buildingMap;
     private int maxPeopleCount;
 
