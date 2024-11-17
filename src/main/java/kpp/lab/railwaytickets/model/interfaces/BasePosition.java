@@ -1,4 +1,4 @@
-package kpp.lab.railwaytickets.model.abstractions;
+package kpp.lab.railwaytickets.model.interfaces;
 
 public interface BasePosition {
 

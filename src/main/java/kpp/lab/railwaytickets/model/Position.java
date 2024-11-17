@@ -1,6 +1,6 @@
 package kpp.lab.railwaytickets.model;
 
-import kpp.lab.railwaytickets.model.abstractions.BasePosition;
+import kpp.lab.railwaytickets.model.interfaces.BasePosition;
 
 public class Position implements BasePosition {
 

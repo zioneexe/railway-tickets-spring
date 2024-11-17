@@ -1,7 +1,7 @@
 package kpp.lab.railwaytickets.mappers;
 
 import kpp.lab.railwaytickets.dto.EntranceDto;
-import kpp.lab.railwaytickets.model.abstractions.BaseEntrance;
+import kpp.lab.railwaytickets.model.interfaces.BaseEntrance;
 
 public class EntranceMapper {
     public static EntranceDto baseEntranceToEntranceDto(BaseEntrance entrance) {

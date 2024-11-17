@@ -1,6 +1,6 @@
-package kpp.lab.railwaytickets.services.Base;
+package kpp.lab.railwaytickets.services.interfaces;
 
-import kpp.lab.railwaytickets.model.abstractions.BaseCashDesk;
+import kpp.lab.railwaytickets.model.interfaces.BaseCashDesk;
 import kpp.lab.railwaytickets.model.generator.BaseClientGenerator;
 
 import java.util.List;

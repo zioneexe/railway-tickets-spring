@@ -1,14 +1,14 @@
 package kpp.lab.railwaytickets.model;
 
-import kpp.lab.railwaytickets.model.abstractions.BaseClient;
-import kpp.lab.railwaytickets.model.abstractions.BasePosition;
+import kpp.lab.railwaytickets.model.interfaces.BaseClient;
+import kpp.lab.railwaytickets.model.interfaces.BasePosition;
 
 public class Client implements BaseClient {
 
+    private static int nextId = 1;
+
     private final int id;
-
     private BasePosition position;
-
     private final int ticketNumber;
 
     public Client(int id, BasePosition position, int ticketNumber) {
@@ -17,14 +17,10 @@ public class Client implements BaseClient {
         this.ticketNumber = ticketNumber;
     }
 
-    @Override
-    public String getType() {
-        return "client";
-    }
-
-    @Override
-    public int calculatePriority() {
-        return 0;
+        this.ticketNumber = ticketNumber;
+        this.position = position;
+    public Client(BasePosition position, int ticketNumber) {
+        this.id = nextId++;
     }
 
     @Override
@@ -41,10 +37,15 @@ public class Client implements BaseClient {
     public BasePosition getPosition() {
         return position;
     }
-
     @Override
     public void setPosition(BasePosition position) {
         this.position = position;
+    }
+
+    @Override
+    public int calculatePriority() {
+        return 0;
+
     }
 
 }

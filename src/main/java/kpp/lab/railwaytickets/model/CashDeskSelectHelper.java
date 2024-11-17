@@ -1,7 +1,7 @@
 package kpp.lab.railwaytickets.model;
 
-import kpp.lab.railwaytickets.model.abstractions.BaseCashDesk;
-import kpp.lab.railwaytickets.model.abstractions.BaseClient;
+import kpp.lab.railwaytickets.model.interfaces.BaseCashDesk;
+import kpp.lab.railwaytickets.model.interfaces.BaseClient;
 
 import java.util.Comparator;
 import java.util.List;

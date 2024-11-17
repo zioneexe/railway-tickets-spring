@@ -1,10 +1,10 @@
-package kpp.lab.railwaytickets.services.impl;
+package kpp.lab.railwaytickets.services.implementations;
 
 import kpp.lab.railwaytickets.model.CashDeskSelectHelper;
-import kpp.lab.railwaytickets.model.abstractions.BaseCashDesk;
-import kpp.lab.railwaytickets.model.abstractions.BaseClient;
-import kpp.lab.railwaytickets.services.Base.ClientCashDeskService;
-import kpp.lab.railwaytickets.services.Base.OrderService;
+import kpp.lab.railwaytickets.model.interfaces.BaseCashDesk;
+import kpp.lab.railwaytickets.model.interfaces.BaseClient;
+import kpp.lab.railwaytickets.services.interfaces.ClientCashDeskService;
+import kpp.lab.railwaytickets.services.interfaces.OrderService;
 
 import java.util.List;
 

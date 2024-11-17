@@ -4,10 +4,10 @@ import kpp.lab.railwaytickets.dto.ResultDto;
 import kpp.lab.railwaytickets.dto.TrainStationDto;
 import kpp.lab.railwaytickets.mappers.ResultMapper;
 import kpp.lab.railwaytickets.mappers.TrainStationMapper;
-import kpp.lab.railwaytickets.model.abstractions.BaseClient;
-import kpp.lab.railwaytickets.model.abstractions.ClientCreatorSubscriber;
-import kpp.lab.railwaytickets.services.Base.ClientCashDeskService;
-import kpp.lab.railwaytickets.services.Base.SimulationService;
+import kpp.lab.railwaytickets.model.interfaces.BaseClient;
+import kpp.lab.railwaytickets.model.interfaces.ClientCreatorSubscriber;
+import kpp.lab.railwaytickets.services.interfaces.ClientCashDeskService;
+import kpp.lab.railwaytickets.services.interfaces.SimulationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/simulation")
-public class SimulationController implements ClientCreatorSubscriber {
+public class SimulationController {
 
     private SimulationService simulationService;
 
@@ -38,25 +38,9 @@ public class SimulationController implements ClientCreatorSubscriber {
         return ResponseEntity.status(HttpStatus.CREATED).body(TrainStationMapper.baseTrainStationToTrainStationDto(trainStation));
     }
 
-    @PostMapping("/start")
-    public ResponseEntity<String> startSimulation() {
-        simulationService.startSimulation();
-        // Placeholder
-        return ResponseEntity.status(HttpStatus.CREATED).body("Simulation started");
-    }
-
     @PostMapping("/stop")
     public ResponseEntity<ResultDto> stopSimulation() {
-        simulationService.stopSimulation();
         return ResponseEntity.status(HttpStatus.OK).body(ResultMapper.resultToDto(simulationService.getResult()));
     }
 
-    public ResponseEntity<String> updateView() {
-        return null;
-    }
-
-    @Override
-    public String onClientCreated(BaseClient client) {
-        return "";
-    }
 }

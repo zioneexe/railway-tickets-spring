@@ -1,7 +1,7 @@
 package kpp.lab.railwaytickets.mappers;
 
 import kpp.lab.railwaytickets.dto.ClientDto;
-import kpp.lab.railwaytickets.model.abstractions.BaseClient;
+import kpp.lab.railwaytickets.model.interfaces.BaseClient;
 
 public class ClientMapper {
     public static ClientDto baseClientToClientDto(BaseClient client) {

@@ -1,8 +1,6 @@
 package kpp.lab.railwaytickets.model.decorator;
 
-import kpp.lab.railwaytickets.model.Client;
-import kpp.lab.railwaytickets.model.abstractions.BaseClient;
-import kpp.lab.railwaytickets.model.abstractions.BasePosition;
+import kpp.lab.railwaytickets.model.interfaces.BaseClient;
 
 public class ClientSoldierDecorator extends ClientDecorator {
     public ClientSoldierDecorator(BaseClient client) {

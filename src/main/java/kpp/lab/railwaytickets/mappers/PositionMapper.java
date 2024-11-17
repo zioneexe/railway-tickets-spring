@@ -1,7 +1,7 @@
 package kpp.lab.railwaytickets.mappers;
 
 import kpp.lab.railwaytickets.dto.PositionDto;
-import kpp.lab.railwaytickets.model.abstractions.BasePosition;
+import kpp.lab.railwaytickets.model.interfaces.BasePosition;
 import kpp.lab.railwaytickets.model.Position;
 
 public class PositionMapper {

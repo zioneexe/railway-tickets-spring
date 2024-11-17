@@ -1,8 +1,8 @@
 package kpp.lab.railwaytickets.model;
 
-import kpp.lab.railwaytickets.model.abstractions.BaseCashDesk;
-import kpp.lab.railwaytickets.model.abstractions.BaseClient;
-import kpp.lab.railwaytickets.model.abstractions.BasePosition;
+import kpp.lab.railwaytickets.model.interfaces.BaseCashDesk;
+import kpp.lab.railwaytickets.model.interfaces.BaseClient;
+import kpp.lab.railwaytickets.model.interfaces.BasePosition;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,6 @@ import java.util.List;
 public class CashDesk implements BaseCashDesk {
 
     private static int nextId = 1;
-
     private int id;
 
     private BasePosition position;

@@ -2,7 +2,7 @@ package kpp.lab.railwaytickets.mappers;
 
 import kpp.lab.railwaytickets.dto.CashDeskDto;
 import kpp.lab.railwaytickets.dto.ClientDto;
-import kpp.lab.railwaytickets.model.abstractions.BaseCashDesk;
+import kpp.lab.railwaytickets.model.interfaces.BaseCashDesk;
 
 import java.util.ArrayList;
 import java.util.List;

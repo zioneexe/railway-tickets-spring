@@ -1,28 +1,37 @@
 package kpp.lab.railwaytickets.model.generator;
 
 import kpp.lab.railwaytickets.model.decorator.ClientDecorator;
-import kpp.lab.railwaytickets.services.Base.ClientCashDeskService;
-import kpp.lab.railwaytickets.services.impl.ClientCashDeskServiceImpl;
+import kpp.lab.railwaytickets.model.interfaces.BaseClient;
+import kpp.lab.railwaytickets.model.interfaces.BasePosition;
+import kpp.lab.railwaytickets.services.interfaces.ClientCashDeskService;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class OverwhelmedClientGenerator implements BaseClientGenerator {
 
-    private ClientCashDeskService cashDeskService;
+    @Value("${clientGenerator.overwhelmed.startGenerationTimeMs}")
+    private int startGenerationTimeMs;
+    @Value("${clientGenerator.overwhelmed.additionalGenerationTimeMs}")
+    private int additionalGenerationTimeMs;
 
-    public OverwhelmedClientGenerator(ClientCashDeskService cashDeskService,  HashMap<ClientDecorator, Double> clientDecoratorChances) {
-        this.cashDeskService = cashDeskService;
+    private static int nextGenerationTimeMs = -1;
+
+    private BaseGeneratorHelper generatorHelper;
+    List<BasePosition> entrancePositions;
+
+    public OverwhelmedClientGenerator(List<BasePosition> entrancePositions) {
+        this.generatorHelper = new GeneratorHelper();
+        this.entrancePositions = entrancePositions;
+
+        this.nextGenerationTimeMs = this.nextGenerationTimeMs == -1 ? startGenerationTimeMs : this.nextGenerationTimeMs;
     }
 
     @Override
-    public void generateClients() {
-        try {
-            // Sleep for 1000 milliseconds (1 second)
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            // Handle the interruption (optional)
-            Thread.currentThread().interrupt(); // Restore interrupted status
-            e.printStackTrace();
-        }
+    public BaseClient generateClient() throws InterruptedException {
+        generatorHelper.waitFor(nextGenerationTimeMs);
+        nextGenerationTimeMs += additionalGenerationTimeMs;
+        return generatorHelper.createClient(entrancePositions);
     }
 }

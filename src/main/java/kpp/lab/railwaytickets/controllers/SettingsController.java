@@ -4,8 +4,8 @@ import kpp.lab.railwaytickets.dto.PositionDto;
 import kpp.lab.railwaytickets.dto.StartupPropertiesDto;
 import kpp.lab.railwaytickets.mappers.ClientGeneratorMapper;
 import kpp.lab.railwaytickets.mappers.PositionMapper;
-import kpp.lab.railwaytickets.model.abstractions.BasePosition;
-import kpp.lab.railwaytickets.model.abstractions.BaseStartupProperties;
+import kpp.lab.railwaytickets.model.interfaces.BasePosition;
+import kpp.lab.railwaytickets.model.interfaces.BaseStartupProperties;
 import kpp.lab.railwaytickets.model.Position;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,7 +35,6 @@ public class SettingsController {
         startupProperties.setMinServiceTime(startupPropertiesDto.getMinServiceTime());
         startupProperties.setMaxServiceTime(startupPropertiesDto.getMaxServiceTime());
         startupProperties.setMaxClientNumber(startupPropertiesDto.getMaxClientNumber());
-        startupProperties.setClientGenerator(ClientGeneratorMapper.clientGeneratorDtoToBaseClientGenerator(startupPropertiesDto.getClientGenerator()));
         startupProperties.setStationWidth(startupPropertiesDto.getStationWidth());
         startupProperties.setStationHeight(startupPropertiesDto.getStationHeight());
 
@@ -57,6 +56,12 @@ public class SettingsController {
         }
 
         startupProperties.setEntrancePositions(entrancePositions);
+        startupProperties.setClientGenerator(
+                ClientGeneratorMapper.clientGeneratorDtoToBaseClientGenerator(
+                        startupPropertiesDto.getClientGenerator(),
+                        entrancePositions
+                )
+        );
 
         return ResponseEntity.status(HttpStatus.CREATED).body(startupPropertiesDto);
     }

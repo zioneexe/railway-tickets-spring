@@ -1,7 +1,7 @@
 package kpp.lab.railwaytickets.model;
 
-import kpp.lab.railwaytickets.model.abstractions.BaseEntrance;
-import kpp.lab.railwaytickets.model.abstractions.BasePosition;
+import kpp.lab.railwaytickets.model.interfaces.BaseEntrance;
+import kpp.lab.railwaytickets.model.interfaces.BasePosition;
 
 public class Entrance implements BaseEntrance {
 
