@@ -1,8 +1,8 @@
-package kpp.lab.railwaytickets.services.impl;
+package kpp.lab.railwaytickets.services.implementations;
 
-import kpp.lab.railwaytickets.model.abstractions.BaseCashDesk;
+import kpp.lab.railwaytickets.model.interfaces.BaseCashDesk;
 import kpp.lab.railwaytickets.model.generator.BaseClientGenerator;
-import kpp.lab.railwaytickets.services.Base.ThreadService;
+import kpp.lab.railwaytickets.services.interfaces.ThreadService;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;

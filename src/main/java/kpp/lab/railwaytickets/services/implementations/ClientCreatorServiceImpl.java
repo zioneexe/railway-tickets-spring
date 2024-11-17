@@ -1,13 +1,9 @@
-package kpp.lab.railwaytickets.services.impl;
+package kpp.lab.railwaytickets.services.implementations;
 
-import kpp.lab.railwaytickets.model.Client;
-import kpp.lab.railwaytickets.model.Position;
-import kpp.lab.railwaytickets.model.abstractions.BaseClient;
-import kpp.lab.railwaytickets.model.abstractions.ClientCreatorSubscriber;
+import kpp.lab.railwaytickets.model.interfaces.BaseClient;
+import kpp.lab.railwaytickets.model.interfaces.ClientCreatorSubscriber;
 import kpp.lab.railwaytickets.model.decorator.ClientDecorator;
-import kpp.lab.railwaytickets.model.generator.BaseClientGenerator;
-import kpp.lab.railwaytickets.model.generator.GeneratorHelper;
-import kpp.lab.railwaytickets.services.Base.ClientCreatorService;
+import kpp.lab.railwaytickets.services.interfaces.ClientCreatorService;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,8 +21,8 @@ public class ClientCreatorServiceImpl implements ClientCreatorService {
 
     @Override
     public BaseClient createClient() {
-        BaseClient client = GeneratorHelper.DecorateClient(new Client(1, new Position(0 , 0), 1), decoratorChance);
-//        addSubscriber(client);
+        // ЦЕ ЯКАСЬ ХЙУНЯ, ВОНО МАЄ БУТИ В ГЕНЕРАТОРАХ BaseClient client = GeneratorHelper.DecorateClient(new Client(1, new Position(0 , 0), 1), decoratorChance);
+        // addSubscriber(client);
         notifySubscribersClientCreated();
         return null;
     }

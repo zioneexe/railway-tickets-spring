@@ -3,9 +3,9 @@ package kpp.lab.railwaytickets.mappers;
 import kpp.lab.railwaytickets.dto.CashDeskDto;
 import kpp.lab.railwaytickets.dto.EntranceDto;
 import kpp.lab.railwaytickets.dto.TrainStationDto;
-import kpp.lab.railwaytickets.model.abstractions.BaseCashDesk;
-import kpp.lab.railwaytickets.model.abstractions.BaseEntrance;
-import kpp.lab.railwaytickets.model.abstractions.BaseTrainStation;
+import kpp.lab.railwaytickets.model.interfaces.BaseCashDesk;
+import kpp.lab.railwaytickets.model.interfaces.BaseEntrance;
+import kpp.lab.railwaytickets.model.interfaces.BaseTrainStation;
 
 import java.util.ArrayList;
 import java.util.List;

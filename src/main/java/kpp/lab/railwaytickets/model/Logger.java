@@ -1,7 +1,7 @@
 package kpp.lab.railwaytickets.model;
 
 import jakarta.annotation.PreDestroy;
-import kpp.lab.railwaytickets.model.abstractions.BaseLogger;
+import kpp.lab.railwaytickets.model.interfaces.BaseLogger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
 package kpp.lab.railwaytickets.model;
 
-import kpp.lab.railwaytickets.model.abstractions.BaseMap;
+import kpp.lab.railwaytickets.model.interfaces.BaseMap;
 
 public class Map implements BaseMap {
 

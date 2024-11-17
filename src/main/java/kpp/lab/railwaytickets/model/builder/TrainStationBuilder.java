@@ -1,8 +1,8 @@
 package kpp.lab.railwaytickets.model.builder;
 
 import kpp.lab.railwaytickets.model.*;
-import kpp.lab.railwaytickets.model.abstractions.BasePosition;
-import kpp.lab.railwaytickets.model.abstractions.BaseTrainStation;
+import kpp.lab.railwaytickets.model.interfaces.BasePosition;
+import kpp.lab.railwaytickets.model.interfaces.BaseTrainStation;
 import org.springframework.stereotype.Service;
 
 @Service

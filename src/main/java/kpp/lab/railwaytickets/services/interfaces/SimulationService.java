@@ -1,7 +1,7 @@
-package kpp.lab.railwaytickets.services.Base;
+package kpp.lab.railwaytickets.services.interfaces;
 
 import kpp.lab.railwaytickets.model.Result;
-import kpp.lab.railwaytickets.model.abstractions.BaseTrainStation;
+import kpp.lab.railwaytickets.model.interfaces.BaseTrainStation;
 
 public interface SimulationService {
 

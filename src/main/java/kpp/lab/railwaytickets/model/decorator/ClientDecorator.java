@@ -1,7 +1,7 @@
 package kpp.lab.railwaytickets.model.decorator;
 
-import kpp.lab.railwaytickets.model.abstractions.BaseClient;
-import kpp.lab.railwaytickets.model.abstractions.BasePosition;
+import kpp.lab.railwaytickets.model.interfaces.BaseClient;
+import kpp.lab.railwaytickets.model.interfaces.BasePosition;
 
 public abstract class ClientDecorator implements BaseClient {
 
