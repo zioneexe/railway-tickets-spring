@@ -6,11 +6,5 @@ import kpp.lab.railwaytickets.model.interfaces.ClientCreatorSubscriber;
 
 public interface ClientCreatorService {
 
-     BaseClient createClient();
-
-     void addSubscriber(ClientCreatorSubscriber sub);
-
-     void removeSubscriber(ClientCreatorSubscriber sub);
-
-     void notifySubscribersClientCreated();
+     BaseClient createClient() throws InterruptedException;
 }

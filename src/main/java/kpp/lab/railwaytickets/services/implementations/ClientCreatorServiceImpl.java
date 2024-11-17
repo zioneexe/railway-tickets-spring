@@ -1,46 +1,32 @@
 package kpp.lab.railwaytickets.services.implementations;
 
+import kpp.lab.railwaytickets.model.generator.BaseClientGenerator;
 import kpp.lab.railwaytickets.model.interfaces.BaseClient;
+import kpp.lab.railwaytickets.model.interfaces.BaseStartupProperties;
 import kpp.lab.railwaytickets.model.interfaces.ClientCreatorSubscriber;
 import kpp.lab.railwaytickets.model.decorator.ClientDecorator;
 import kpp.lab.railwaytickets.services.interfaces.ClientCreatorService;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.stereotype.Service;
+import org.springframework.web.context.WebApplicationContext;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+@Service
 public class ClientCreatorServiceImpl implements ClientCreatorService {
 
-    private List<ClientCreatorSubscriber> subscribers;
+    private BaseStartupProperties startupProperties;
+    private BaseClientGenerator clientGenerator;
 
-    public ClientCreatorServiceImpl( ) {
-        this.subscribers = new ArrayList<>();
-    }
-
-    HashMap<ClientDecorator, Double> decoratorChance;
-
-    @Override
-    public BaseClient createClient() {
-        // ЦЕ ЯКАСЬ ХЙУНЯ, ВОНО МАЄ БУТИ В ГЕНЕРАТОРАХ BaseClient client = GeneratorHelper.DecorateClient(new Client(1, new Position(0 , 0), 1), decoratorChance);
-        // addSubscriber(client);
-        notifySubscribersClientCreated();
-        return null;
+    public ClientCreatorServiceImpl(BaseStartupProperties startupProperties) {
+        this.startupProperties = startupProperties;
     }
 
     @Override
-    public void addSubscriber(ClientCreatorSubscriber sub) {
-        subscribers.add(sub);
-    }
-
-    @Override
-    public void removeSubscriber(ClientCreatorSubscriber sub) {
-        subscribers.remove(sub);
-    }
-
-    @Override
-    public void notifySubscribersClientCreated() {
-        for (ClientCreatorSubscriber sub : subscribers) {
-            //sub.onClientCreated();
-        }
+    public BaseClient createClient() throws InterruptedException {
+        return startupProperties.getClientGenerator().generateClient();
     }
 }

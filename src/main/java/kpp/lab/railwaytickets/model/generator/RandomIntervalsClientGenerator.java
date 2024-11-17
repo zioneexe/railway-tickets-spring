@@ -7,10 +7,12 @@ import kpp.lab.railwaytickets.services.interfaces.ClientCashDeskService;
 import kpp.lab.railwaytickets.services.interfaces.ClientCreatorService;
 import kpp.lab.railwaytickets.services.implementations.ClientCreatorServiceImpl;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.List;
 
+@Component
 public class RandomIntervalsClientGenerator implements BaseClientGenerator {
 
     @Value("${clientGenerator.randomIntervals.minGenerationTimeMs}")
