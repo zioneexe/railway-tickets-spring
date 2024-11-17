@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import java.util.HashMap;
 import java.util.List;
 
-public class OverwhelmedClientGenerator implements BaseClientGenerator {
+public class IncreasingClientGenerator implements BaseClientGenerator {
 
     @Value("${clientGenerator.overwhelmed.startGenerationTimeMs}")
     private int startGenerationTimeMs;
@@ -21,7 +21,7 @@ public class OverwhelmedClientGenerator implements BaseClientGenerator {
     private BaseGeneratorHelper generatorHelper;
     List<BasePosition> entrancePositions;
 
-    public OverwhelmedClientGenerator(List<BasePosition> entrancePositions) {
+    public IncreasingClientGenerator(List<BasePosition> entrancePositions) {
         this.generatorHelper = new GeneratorHelper();
         this.entrancePositions = entrancePositions;
 

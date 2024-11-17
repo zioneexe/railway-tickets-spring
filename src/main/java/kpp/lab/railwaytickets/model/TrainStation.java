@@ -1,10 +1,13 @@
 package kpp.lab.railwaytickets.model;
 
 import kpp.lab.railwaytickets.model.interfaces.*;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class TrainStation implements BaseTrainStation {
 
     private List<BaseCashDesk> cashDesks;
@@ -60,5 +63,9 @@ public class TrainStation implements BaseTrainStation {
 
     public void setMaxClientNumber(int number) {
         maxPeopleCount = number;
+    }
+
+    public int getCurrentClientNumber() {
+        return cashDesks.stream().mapToInt(e -> e.getQueue().size()).sum();
     }
 }

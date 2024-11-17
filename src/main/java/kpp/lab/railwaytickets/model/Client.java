@@ -17,9 +17,9 @@ public class Client implements BaseClient {
         this.ticketNumber = ticketNumber;
     }
 
+    public Client(BasePosition position, int ticketNumber) {
         this.ticketNumber = ticketNumber;
         this.position = position;
-    public Client(BasePosition position, int ticketNumber) {
         this.id = nextId++;
     }
 
@@ -45,7 +45,10 @@ public class Client implements BaseClient {
     @Override
     public int calculatePriority() {
         return 0;
+    }
 
+    public String getType() {
+        return "Client";
     }
 
 }

@@ -21,4 +21,6 @@ public interface BaseTrainStation {
      void setMaxClientNumber(int number);
 
      void addMap(int sizeX, int sizeY);
+
+     int getCurrentClientNumber();
 }

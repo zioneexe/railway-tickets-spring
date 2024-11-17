@@ -3,12 +3,13 @@ package kpp.lab.railwaytickets.model;
 import kpp.lab.railwaytickets.model.interfaces.BasePosition;
 import kpp.lab.railwaytickets.model.interfaces.BaseStartupProperties;
 import kpp.lab.railwaytickets.model.generator.BaseClientGenerator;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
+@Component
 public class StartupProperties implements BaseStartupProperties {
 
     private List<BasePosition> deskPositions = new ArrayList<>();
@@ -27,7 +28,8 @@ public class StartupProperties implements BaseStartupProperties {
     // Шось придумаєм і юсіді
     private static StartupProperties instance;
 
-    private StartupProperties() {}
+    private StartupProperties() {
+    }
 
     // TODO: багатопотоковий
     public static StartupProperties getInstance() {

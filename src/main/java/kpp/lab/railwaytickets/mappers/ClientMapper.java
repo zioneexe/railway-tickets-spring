@@ -9,7 +9,8 @@ public class ClientMapper {
                 client.getId(),
                 PositionMapper.basePositionToPositionDto(client.getPosition()),
                 client.getTicketNumber(),
-                client.calculatePriority()
+                client.calculatePriority(),
+                client.getType()
         );
     }
 }

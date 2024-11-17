@@ -12,4 +12,6 @@ public interface BaseClient {
     void setPosition(BasePosition position);
 
     int calculatePriority();
+
+    String getType();
 }
