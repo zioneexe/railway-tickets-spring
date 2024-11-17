@@ -1,5 +1,6 @@
 package kpp.lab.railwaytickets.services.implementations;
 
+import kpp.lab.railwaytickets.mappers.ClientMapper;
 import kpp.lab.railwaytickets.model.interfaces.BaseCashDesk;
 import kpp.lab.railwaytickets.model.generator.BaseClientGenerator;
 import kpp.lab.railwaytickets.model.interfaces.BaseClient;
@@ -50,7 +51,7 @@ public class ThreadServiceImpl implements ThreadService {
         clientGeneratorExecutorService.submit(() -> {
             while (true) {
                 try {
-                    sendCreatedClientResponse.execute(clientCreatorService.createClient());
+                    sendCreatedClientResponse.execute(ClientMapper.baseClientToClientDto(clientCreatorService.createClient()));
                 } catch (InterruptedException e) {
                     log.error("Error while generating client: {}", e.getMessage());
                 }

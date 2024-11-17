@@ -4,14 +4,14 @@ import kpp.lab.railwaytickets.model.interfaces.BaseClient;
 import kpp.lab.railwaytickets.model.interfaces.BasePosition;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Slf4j
+@Component
 public class EqualIntervalsClientGenerator implements BaseClientGenerator {
 
-    @Value("${clientGenerator.equalIntervals.timeMs}")
-    private int generationTimeMs;
+    private int generationTimeMs = 3000;
 
     private BaseGeneratorHelper generatorHelper;
     List<BasePosition> entrancePositions;

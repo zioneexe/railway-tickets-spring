@@ -5,6 +5,7 @@ import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.listener.ConnectListener;
 import com.corundumstudio.socketio.listener.DataListener;
 import com.corundumstudio.socketio.listener.DisconnectListener;
+import kpp.lab.railwaytickets.dto.ClientDto;
 import kpp.lab.railwaytickets.model.interfaces.BaseClient;
 import kpp.lab.railwaytickets.model.messages.*;
 import kpp.lab.railwaytickets.services.interfaces.ClientCreatorService;
@@ -56,8 +57,10 @@ public class SocketIOStarter {
             try {
                 log.info("Received << " + START_SIMULATION_EVENT + " >> from client: {}", client.getSessionId());
 
-                threadService.startClientGeneration((BaseClient generatedClient) -> {
-                    client.sendEvent(NEW_CLIENT_GENERATED_EVENT, generatedClient);
+                threadService.startClientGeneration((ClientDto generatedClient) -> {
+                    if(client.isChannelOpen()) {
+                        client.sendEvent(NEW_CLIENT_GENERATED_EVENT, generatedClient);
+                    }
                 });
 
             } catch (Exception e) {
