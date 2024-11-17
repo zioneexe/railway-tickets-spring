@@ -2,25 +2,29 @@ package kpp.lab.railwaytickets.services.implementations;
 
 import kpp.lab.railwaytickets.model.interfaces.BaseCashDesk;
 import kpp.lab.railwaytickets.model.generator.BaseClientGenerator;
+import kpp.lab.railwaytickets.model.interfaces.BaseClient;
+import kpp.lab.railwaytickets.services.interfaces.ClientCreatorService;
 import kpp.lab.railwaytickets.services.interfaces.ThreadService;
+import kpp.lab.railwaytickets.socket.SendCreatedClientResponse;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+@Slf4j
+@Service
 public class ThreadServiceImpl implements ThreadService {
 
-
-    double getChanceSoldier = 0.1;
-
-    double getChanceStudent = 0.4;
-
-    double getChanceDisabled = 0.2;
-
-    double getChanceParent = 0.6;
+    private ClientCreatorService clientCreatorService;
 
     private ExecutorService cashDeskExecutorService;
     private ExecutorService clientGeneratorExecutorService;
+
+    public ThreadServiceImpl(ClientCreatorService clientCreatorService) {
+        this.clientCreatorService = clientCreatorService;
+    }
 
     @Override
     public void startCashDesks(List<BaseCashDesk> cashDesks) {
@@ -41,9 +45,17 @@ public class ThreadServiceImpl implements ThreadService {
     }
 
     @Override
-    public void startClientGenerator(BaseClientGenerator clientGenerator) {
+    public void startClientGeneration(SendCreatedClientResponse sendCreatedClientResponse) {
         clientGeneratorExecutorService = Executors.newSingleThreadExecutor();
-        clientGeneratorExecutorService.submit(() -> {});
+        clientGeneratorExecutorService.submit(() -> {
+            while (true) {
+                try {
+                    sendCreatedClientResponse.execute(clientCreatorService.createClient());
+                } catch (InterruptedException e) {
+                    log.error("Error while generating client: {}", e.getMessage());
+                }
+            }
+        });
     }
 
     @Override

@@ -3,7 +3,7 @@ package kpp.lab.railwaytickets.mappers;
 import kpp.lab.railwaytickets.dto.ClientGeneratorDto;
 import kpp.lab.railwaytickets.model.generator.BaseClientGenerator;
 import kpp.lab.railwaytickets.model.generator.EqualIntervalsClientGenerator;
-import kpp.lab.railwaytickets.model.generator.OverwhelmedClientGenerator;
+import kpp.lab.railwaytickets.model.generator.IncreasingClientGenerator;
 import kpp.lab.railwaytickets.model.generator.RandomIntervalsClientGenerator;
 import kpp.lab.railwaytickets.model.interfaces.BasePosition;
 
@@ -18,7 +18,7 @@ public class ClientGeneratorMapper {
         }
         if (Objects.equals(generatorDto.getGeneratorType(), "overwhelmed"))
         {
-            return new OverwhelmedClientGenerator(entrancePositions);
+            return new IncreasingClientGenerator(entrancePositions);
         }
         if (Objects.equals(generatorDto.getGeneratorType(), "random"))
         {
