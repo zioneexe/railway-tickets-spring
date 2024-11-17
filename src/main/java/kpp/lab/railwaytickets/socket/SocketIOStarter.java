@@ -23,6 +23,7 @@ public class SocketIOStarter {
     private static final String START_SIMULATION_EVENT = "start_simulation";
     private static final String STOP_SIMULATION_EVENT = "stop_simulation";
     private static final String NEW_CLIENT_GENERATED_EVENT = "new_client";
+    private static final String ASSIGN_CLIENT_TO_QUEUE_EVENT = "assign_client_to_queue";
 
     private ClientCreatorService clientCreatorService;
 
@@ -34,12 +35,24 @@ public class SocketIOStarter {
         this.clientCreatorService = clientCreatorService;
     }
 
+
     private void initializeEventListeners() {
         socketServer.addConnectListener(onUserConnect());
         socketServer.addDisconnectListener(onUserDisconnect());
         socketServer.addEventListener(START_SIMULATION_EVENT, SocketRequestMessage.class, onMessageReceived());
+        socketServer.addEventListener(ASSIGN_CLIENT_TO_QUEUE_EVENT, SocketRequestMessage.class, onClientAssignedToQueue());
     }
 
+    private DataListener<SocketRequestMessage> onClientAssignedToQueue() {
+        return (client, message, ackRequest) -> {
+            try {
+                log.info("Received start message from client: {}", client.getSessionId());
+                startSendingDataToClient(client);
+            } catch (Exception e) {
+                log.error("Error processing message: {}", e.getMessage());
+            }
+        };
+    }
     private ConnectListener onUserConnect() {
         return client -> {
             log.info("Client connected - ID: {}", client.getSessionId().toString());

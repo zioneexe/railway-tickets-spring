@@ -10,15 +10,6 @@ import java.util.concurrent.Executors;
 
 public class ThreadServiceImpl implements ThreadService {
 
-
-    double getChanceSoldier = 0.1;
-
-    double getChanceStudent = 0.4;
-
-    double getChanceDisabled = 0.2;
-
-    double getChanceParent = 0.6;
-
     private ExecutorService cashDeskExecutorService;
     private ExecutorService clientGeneratorExecutorService;
 
