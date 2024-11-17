@@ -49,7 +49,7 @@ public class GeneratorHelper implements BaseGeneratorHelper {
     }
 
     public void waitFor(int timeMs) throws InterruptedException {
-        log.info("Generating client. It takes around" + timeMs + " milliseconds.");
+        log.info("Generating client. It takes around " + timeMs + " milliseconds.");
         Thread.sleep(timeMs);
     }
 

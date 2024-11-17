@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @Service
@@ -49,26 +50,40 @@ public class ThreadServiceImpl implements ThreadService {
     public void startClientGeneration(SendCreatedClientResponse sendCreatedClientResponse) {
         clientGeneratorExecutorService = Executors.newSingleThreadExecutor();
         clientGeneratorExecutorService.submit(() -> {
-            while (true) {
-                try {
+            try {
+                while (!Thread.currentThread().isInterrupted()) {
                     sendCreatedClientResponse.execute(ClientMapper.baseClientToClientDto(clientCreatorService.createClient()));
-                } catch (InterruptedException e) {
-                    log.error("Error while generating client: {}", e.getMessage());
                 }
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                log.info("Client generation thread was interrupted.");
+            } catch (Exception e) {
+                log.error("Error while generating client: {}", e.getMessage());
+            } finally {
+                log.info("Client generation thread stopped.");
             }
         });
     }
 
     @Override
-    public void stopClientGenerator() {
-        if (clientGeneratorExecutorService != null) {
+    public void stopClientGeneration() {
+        if (clientGeneratorExecutorService != null && !clientGeneratorExecutorService.isShutdown()) {
+            log.info("Shutting down client generation thread...");
             clientGeneratorExecutorService.shutdownNow();
+            try {
+                if (!clientGeneratorExecutorService.awaitTermination(5, TimeUnit.SECONDS)) {
+                    log.warn("Client generation thread did not terminate in the specified time.");
+                }
+            } catch (InterruptedException e) {
+                log.error("Interrupted while waiting for client generation thread to terminate.");
+                Thread.currentThread().interrupt();
+            }
         }
     }
 
     @Override
     public void shutdownAll() {
         stopCashDesks();
-        stopClientGenerator();
+        stopClientGeneration();
     }
 }

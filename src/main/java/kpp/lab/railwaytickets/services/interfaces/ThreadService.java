@@ -10,7 +10,7 @@ public interface ThreadService {
 
     void startClientGeneration(SendCreatedClientResponse responseLambda);
 
-    void stopClientGenerator();
+    void stopClientGeneration();
 
     void startCashDesks(List<BaseCashDesk> cashDesks);
 
