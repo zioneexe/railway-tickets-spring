@@ -38,6 +38,7 @@ public class ThreadServiceImpl implements ThreadService {
     private final int clientsToBreakCashDesk = 5;
     private final int restoreTimeMs = 20000;
 
+    private boolean isThereABrokenCashDesk = false;
 
 
     public ThreadServiceImpl(
@@ -64,9 +65,10 @@ public class ThreadServiceImpl implements ThreadService {
                         try {
                             if (!cashDesk.getQueue().isEmpty()) {
 
-                                if (currentClientsServed.incrementAndGet() % clientsToBreakCashDesk == 0) {
+                                if (currentClientsServed.incrementAndGet() % clientsToBreakCashDesk == 0 && !isThereABrokenCashDesk) {
 
                                     clientCashDeskService.setDeskOutOfOrder(cashDesk);
+                                    isThereABrokenCashDesk = true;
                                     sendCashDeskResponse.execute(CashDeskMapper.baseCashDeskToCashDeskDto(cashDesk));
 
                                     clientCashDeskService.moveClientsToBackupQueue(cashDesk);
