@@ -82,6 +82,7 @@ public class SocketIOSimulationRunner {
                 log.info("Received << " + STOP_SIMULATION_EVENT + " >> from client: {}", client.getSessionId());
 
                 threadService.stopClientGeneration();
+                threadService.stopCashDesks();
                 if(client.isChannelOpen()) {
                     client.sendEvent(SIMULATION_STOPPED_EVENT);
                 }
