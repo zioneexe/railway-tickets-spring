@@ -1,9 +1,8 @@
 package kpp.lab.railwaytickets.model.generator;
 
+import kpp.lab.railwaytickets.configuration.ClientGeneratorProperties;
 import kpp.lab.railwaytickets.model.interfaces.BaseClient;
 import kpp.lab.railwaytickets.model.interfaces.BasePosition;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -11,13 +10,21 @@ import java.util.List;
 @Component
 public class EqualIntervalsClientGenerator implements BaseClientGenerator {
 
-    private int generationTimeMs = 3000;
+    private int generationTimeMs;
 
     private BaseGeneratorHelper generatorHelper;
+
     List<BasePosition> entrancePositions;
 
-    public EqualIntervalsClientGenerator(List<BasePosition> entrancePositions) {
-        this.generatorHelper = new GeneratorHelper();
+    public EqualIntervalsClientGenerator() {}
+
+    public void configure(
+            int generationTimeMs,
+            BaseGeneratorHelper generatorHelper,
+            List<BasePosition> entrancePositions
+    ) {
+        this.generationTimeMs = generationTimeMs;
+        this.generatorHelper = generatorHelper;
         this.entrancePositions = entrancePositions;
     }
 

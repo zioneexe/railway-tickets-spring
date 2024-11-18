@@ -38,7 +38,7 @@ public class SimulationController {
     }
 
     @PostMapping("/chooseQueue")
-    public ResponseEntity<CashDeskDto> chooseClientQueue() {
+    public ResponseEntity<TrainStationDto> chooseClientQueue() {
 
         var trainStation = simulationService.createTrainStation();
 

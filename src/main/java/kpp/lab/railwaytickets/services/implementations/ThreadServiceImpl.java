@@ -20,7 +20,8 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
-@Slf4j
+import static kpp.lab.railwaytickets.RailwayTicketsApplication.LOGGER;
+
 @Service
 public class ThreadServiceImpl implements ThreadService {
 
@@ -61,15 +62,15 @@ public class ThreadServiceImpl implements ThreadService {
                             if (!cashDesk.getQueue().isEmpty()) {
                                 if (currentClientsServed.incrementAndGet() % clientsToBreakCashDesk == 0) {
                                     sendCashDeskResponse.execute(CashDeskMapper.baseCashDeskToCashDeskDto(clientCashDeskService.processOrder(cashDesk)));
-                                    log.info("Cash desk {} is out of order due to reaching the client limit.", cashDesk.getId());
+                                    LOGGER.info("Cash desk {} is out of order due to reaching the client limit.", cashDesk.getId());
                                     clientCashDeskService.setDeskOutOfOrder(cashDesk);
                                     clientCashDeskService.moveClientsToBackupQueue(cashDesk);
-                                    log.info("Moving clients to backup queue.");
+                                    LOGGER.info("Moving clients to backup queue.");
 
                                     long restoreTimeMs = 15000;
                                     scheduler.schedule(() -> {
                                         clientCashDeskService.setDeskWorking(cashDesk);
-                                        log.info("Cash desk {} has been restored to working state.", cashDesk.getId());
+                                        LOGGER.info("Cash desk {} has been restored to working state.", cashDesk.getId());
                                     }, restoreTimeMs, TimeUnit.MILLISECONDS);
                                 } else {
                                     sendCashDeskResponse.execute(CashDeskMapper.baseCashDeskToCashDeskDto(clientCashDeskService.processOrder(cashDesk)));
@@ -78,16 +79,16 @@ public class ThreadServiceImpl implements ThreadService {
                             Thread.sleep(100);
                         } catch (InterruptedException e) {
                             Thread.currentThread().interrupt();
-                            log.info("Cash desk processing thread was interrupted for cash desk: {}", cashDesk.getId());
+                            LOGGER.info("Cash desk processing thread was interrupted for cash desk: {}", cashDesk.getId());
                             break;
                         } catch (NoSuchElementException e) {
-                            log.warn("Queue is empty for cash desk: {}", cashDesk.getId());
+                            LOGGER.warn("Queue is empty for cash desk: {}", cashDesk.getId());
                         } catch (Exception e) {
-                            log.error("Error while processing order client: {}", e.getMessage());
+                            LOGGER.error("Error while processing order client: {}", e.getMessage());
                         }
                     }
                 } finally {
-                    log.info("Cash desk processing thread stopped for cash desk: {}", cashDesk.getId());
+                    LOGGER.info("Cash desk processing thread stopped for cash desk: {}", cashDesk.getId());
                 }
             });
         }
@@ -112,11 +113,11 @@ public class ThreadServiceImpl implements ThreadService {
                 }
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
-                log.info("Client generation thread was interrupted.");
+                LOGGER.info("Client generation thread was interrupted.");
             } catch (Exception e) {
-                log.error("Error while generating client: {}", e.getMessage());
+                LOGGER.error("Error while generating client: {}", e.getMessage());
             } finally {
-                log.info("Client generation thread stopped.");
+                LOGGER.info("Client generation thread stopped.");
             }
         });
     }
@@ -124,14 +125,14 @@ public class ThreadServiceImpl implements ThreadService {
     @Override
     public void stopClientGeneration() {
         if (clientGeneratorExecutorService != null && !clientGeneratorExecutorService.isShutdown()) {
-            log.info("Shutting down client generation thread...");
+            LOGGER.info("Shutting down client generation thread...");
             clientGeneratorExecutorService.shutdownNow();
             try {
                 if (!clientGeneratorExecutorService.awaitTermination(5, TimeUnit.SECONDS)) {
-                    log.warn("Client generation thread did not terminate in the specified time.");
+                    LOGGER.warn("Client generation thread did not terminate in the specified time.");
                 }
             } catch (InterruptedException e) {
-                log.error("Interrupted while waiting for client generation thread to terminate.");
+                LOGGER.error("Interrupted while waiting for client generation thread to terminate.");
                 Thread.currentThread().interrupt();
             }
         }

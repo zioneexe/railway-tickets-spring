@@ -1,29 +1,38 @@
 package kpp.lab.railwaytickets.model.generator;
 
-import kpp.lab.railwaytickets.model.interfaces.BaseClient;
+import kpp.lab.railwaytickets.configuration.ClientGeneratorProperties;
 import kpp.lab.railwaytickets.model.Client;
-import kpp.lab.railwaytickets.model.decorator.*;
-import lombok.extern.slf4j.Slf4j;
+import kpp.lab.railwaytickets.model.decorator.ClientSoldierDecorator;
+import kpp.lab.railwaytickets.model.decorator.ClientStudentDecorator;
+import kpp.lab.railwaytickets.model.decorator.ClientWithChildDecorator;
+import kpp.lab.railwaytickets.model.decorator.DisabledClientDecorator;
+import kpp.lab.railwaytickets.model.interfaces.BaseClient;
 import kpp.lab.railwaytickets.model.interfaces.BasePosition;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.util.List;
 import java.util.Random;
 
-@Slf4j
+import static kpp.lab.railwaytickets.RailwayTicketsApplication.LOGGER;
+
 public class GeneratorHelper implements BaseGeneratorHelper {
 
-    private int minClientTiketsNumber = 1;
-    private int maxClientTiketsNumber = 5;
+    private final int minClientTicketsNumber;
+    private final int maxClientTicketsNumber;
 
-    private double soldierDecoratorChance = 0.1;
-    private double disabledDecoratorChance = 0.2;
-    private double studentDecoratorChance = 0.3;
-    private double withChildDecoratorChance = 0.4;
+    private final double soldierDecoratorChance;
+    private final double disabledDecoratorChance;
+    private final double studentDecoratorChance;
+    private final double withChildDecoratorChance;
 
-    Random random;
+    private static Random random;
 
-    public GeneratorHelper() {
+    public GeneratorHelper(ClientGeneratorProperties clientGeneratorProperties) {
+        this.minClientTicketsNumber = clientGeneratorProperties.getMinClientTicketsNumber();
+        this.maxClientTicketsNumber = clientGeneratorProperties.getMaxClientTicketsNumber();
+        this.soldierDecoratorChance = clientGeneratorProperties.getSoldierDecoratorChance();
+        this.disabledDecoratorChance = clientGeneratorProperties.getDisabledDecoratorChance();
+        this.studentDecoratorChance = clientGeneratorProperties.getStudentDecoratorChance();
+        this.withChildDecoratorChance = clientGeneratorProperties.getWithChildDecoratorChance();
         random = new Random();
     }
 
@@ -49,7 +58,7 @@ public class GeneratorHelper implements BaseGeneratorHelper {
     }
 
     public void waitFor(int timeMs) throws InterruptedException {
-        log.info("Generating client. It takes around " + timeMs + " milliseconds.");
+        LOGGER.info("Generating client. It takes around {} milliseconds.", timeMs);
         Thread.sleep(timeMs);
     }
 
@@ -57,7 +66,7 @@ public class GeneratorHelper implements BaseGeneratorHelper {
     public BaseClient createClient(List<BasePosition> entrancePositions) {
 
         var clientPosition = entrancePositions.get(random.nextInt(entrancePositions.size()));
-        var clientTicketsNumber = getRandomBetween(minClientTiketsNumber, maxClientTiketsNumber);
+        var clientTicketsNumber = getRandomBetween(minClientTicketsNumber, maxClientTicketsNumber);
 
         return decorateClient(new Client(clientPosition, clientTicketsNumber));
     }
