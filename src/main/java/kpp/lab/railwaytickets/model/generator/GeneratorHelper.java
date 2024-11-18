@@ -13,19 +13,13 @@ import java.util.Random;
 @Slf4j
 public class GeneratorHelper implements BaseGeneratorHelper {
 
-    @Value("${clientGenerator.minClientTiketsNumber}")
-    private int minClientTiketsNumber;
-    @Value("${clientGenerator.maxClientTiketsNumber}")
-    private int maxClientTiketsNumber;
+    private int minClientTiketsNumber = 1;
+    private int maxClientTiketsNumber = 5;
 
-    @Value("${clientGenerator.soldierDecoratorChance}")
-    private double soldierDecoratorChance;
-    @Value("${clientGenerator.disabledDecoratorChance}")
-    private double disabledDecoratorChance;
-    @Value("${clientGenerator.studentDecoratorChance}")
-    private double studentDecoratorChance;
-    @Value("${clientGenerator.withChildDecoratorChance}")
-    private double withChildDecoratorChance;
+    private double soldierDecoratorChance = 0.1;
+    private double disabledDecoratorChance = 0.2;
+    private double studentDecoratorChance = 0.3;
+    private double withChildDecoratorChance = 0.4;
 
     Random random;
 
@@ -35,43 +29,27 @@ public class GeneratorHelper implements BaseGeneratorHelper {
 
     public BaseClient decorateClient(BaseClient client) {
 
-        BaseClient client2;
-
         if (Math.random() < soldierDecoratorChance) {
-            client2 = new ClientSoldierDecorator(client);  // Apply the decorator if the chance is met
-        } else {
-            client2 = client;  // No decorator applied
+            client = new ClientSoldierDecorator(client);
         }
-
-        BaseClient client3;
 
         if (Math.random() < disabledDecoratorChance) {
-            client3 = new DisabledClientDecorator(client2);  // Apply the decorator if the chance is met
-        } else {
-            client3 = client2;  // No decorator applied
+            client = new DisabledClientDecorator(client);
         }
-
-        BaseClient client4;
 
         if (Math.random() < studentDecoratorChance) {
-            client4 = new ClientStudentDecorator(client3);  // Apply the decorator if the chance is met
-        } else {
-            client4 = client3;  // No decorator applied
+            client = new ClientStudentDecorator(client);
         }
-
-        BaseClient client5;
 
         if (Math.random() < withChildDecoratorChance) {
-            client5 = new ClientWithChildDecorator(client4);  // Apply the decorator if the chance is met
-        } else {
-            client5 = client4;  // No decorator applied
+            client = new ClientWithChildDecorator(client);
         }
 
-        return client5;
+        return client;
     }
 
     public void waitFor(int timeMs) throws InterruptedException {
-        log.info("Generating client. It takes around" + timeMs + " milliseconds.");
+        log.info("Generating client. It takes around " + timeMs + " milliseconds.");
         Thread.sleep(timeMs);
     }
 

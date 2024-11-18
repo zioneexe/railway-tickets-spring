@@ -5,16 +5,16 @@ import kpp.lab.railwaytickets.model.interfaces.BaseClient;
 import kpp.lab.railwaytickets.model.interfaces.BasePosition;
 import kpp.lab.railwaytickets.services.interfaces.ClientCashDeskService;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.List;
 
+@Component
 public class IncreasingClientGenerator implements BaseClientGenerator {
 
-    @Value("${clientGenerator.overwhelmed.startGenerationTimeMs}")
-    private int startGenerationTimeMs;
-    @Value("${clientGenerator.overwhelmed.additionalGenerationTimeMs}")
-    private int additionalGenerationTimeMs;
+    private int startGenerationTimeMs = 2000;
+    private int additionalGenerationTimeMs = 10;
 
     private static int nextGenerationTimeMs = -1;
 

@@ -2,16 +2,18 @@ package kpp.lab.railwaytickets.services.interfaces;
 
 import kpp.lab.railwaytickets.model.interfaces.BaseCashDesk;
 import kpp.lab.railwaytickets.model.generator.BaseClientGenerator;
+import kpp.lab.railwaytickets.socket.SendCashDeskResponse;
+import kpp.lab.railwaytickets.socket.SendCreatedClientResponse;
 
 import java.util.List;
 
 public interface ThreadService {
 
-    void startClientGenerator(BaseClientGenerator clientGenerator);
+    void startClientGeneration(SendCreatedClientResponse responseLambda);
 
-    void stopClientGenerator();
+    void stopClientGeneration();
 
-    void startCashDesks(List<BaseCashDesk> cashDesks);
+    void startCashDesks(SendCashDeskResponse sendCashDeskResponse);
 
     void stopCashDesks();
 

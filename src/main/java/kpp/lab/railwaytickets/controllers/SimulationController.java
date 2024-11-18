@@ -30,7 +30,7 @@ public class SimulationController {
         this.simulationService = simulationService;
     }
 
-    @PostMapping("/create")
+    @PostMapping("/trainStation")
     public ResponseEntity<TrainStationDto> createTrainStation() {
 
         var trainStation = simulationService.createTrainStation();
