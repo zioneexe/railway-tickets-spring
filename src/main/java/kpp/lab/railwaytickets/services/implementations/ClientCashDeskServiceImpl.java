@@ -74,13 +74,11 @@ public class ClientCashDeskServiceImpl implements ClientCashDeskService {
 
     @Override
     public void moveClientsToBackupQueue(BaseCashDesk baseCashDesk) {
-/*
+
+        BaseCashDesk backupCashDesk = trainStation.getCashDesks().stream().filter(e -> e.getIsBackup()).toList().get(0);
         backupCashDesk.getQueue().clear();
         backupCashDesk.getQueue().forEach(e -> baseCashDesk.getQueue().add(e));
         baseCashDesk.getQueue().clear();
-
-
- */
     }
     @Override
     public void setDeskOutOfOrder(BaseCashDesk cashDesk) {
