@@ -37,10 +37,4 @@ public class SimulationController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(TrainStationMapper.baseTrainStationToTrainStationDto(trainStation));
     }
-
-    @PostMapping("/stop")
-    public ResponseEntity<ResultDto> stopSimulation() {
-        return ResponseEntity.status(HttpStatus.OK).body(ResultMapper.resultToDto(simulationService.getResult()));
-    }
-
 }
