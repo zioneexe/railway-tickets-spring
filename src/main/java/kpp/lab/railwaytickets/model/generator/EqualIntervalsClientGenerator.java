@@ -11,7 +11,7 @@ import java.util.List;
 @Component
 public class EqualIntervalsClientGenerator implements BaseClientGenerator {
 
-    private int generationTimeMs = 3000;
+    private int generationTimeMs = 30;
 
     private BaseGeneratorHelper generatorHelper;
     List<BasePosition> entrancePositions;

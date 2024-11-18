@@ -25,12 +25,10 @@ public class ClientCashDeskServiceImpl implements ClientCashDeskService {
     }
 
     @Override
-    public BaseCashDesk processOrder(BaseCashDesk cashDesk ) {
-        if (cashDesk.getQueue().isEmpty()) {
-        }
+    public BaseCashDesk processOrder(BaseCashDesk cashDesk) {
 
-        BaseClient client = cashDesk.getQueue().removeFirst();
-
+        var clientQueue = cashDesk.getQueue();
+        BaseClient client = clientQueue.getFirst();
         try {
             Thread.sleep(getRandomBetween(startupProperties.getMinServiceTime(), startupProperties.getMaxServiceTime())
                     * client.getTicketNumber());
@@ -39,6 +37,7 @@ public class ClientCashDeskServiceImpl implements ClientCashDeskService {
             e.printStackTrace();
         }
 
+        clientQueue.removeFirst();
         return cashDesk;
     }
 

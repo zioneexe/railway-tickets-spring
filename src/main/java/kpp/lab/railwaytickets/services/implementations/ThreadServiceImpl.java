@@ -5,6 +5,8 @@ import kpp.lab.railwaytickets.mappers.ClientMapper;
 import kpp.lab.railwaytickets.model.interfaces.BaseCashDesk;
 import kpp.lab.railwaytickets.model.generator.BaseClientGenerator;
 import kpp.lab.railwaytickets.model.interfaces.BaseClient;
+import kpp.lab.railwaytickets.model.interfaces.BaseTrainStation;
+import kpp.lab.railwaytickets.services.interfaces.ClientCashDeskService;
 import kpp.lab.railwaytickets.services.interfaces.ClientCreatorService;
 import kpp.lab.railwaytickets.services.interfaces.ThreadService;
 import kpp.lab.railwaytickets.socket.SendCashDeskResponse;
@@ -25,57 +27,62 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class ThreadServiceImpl implements ThreadService {
 
     private ClientCreatorService clientCreatorService;
-
-    private ClientCashDeskServiceImpl clientCashDeskService;
-
-    private List<BaseCashDesk> cashDesks;
+    private ClientCashDeskService clientCashDeskService;
+    private BaseTrainStation trainStation;
 
     private ExecutorService cashDeskExecutorService;
     private ExecutorService clientGeneratorExecutorService;
 
-    private AtomicInteger currentClientsServed = new AtomicInteger(0);
+    private AtomicInteger currentClientsServed = new AtomicInteger(1);
 
-    private int clientsToBreakCashDesk = 100;
+    private final int clientsToBreakCashDesk = 5;
+    private final int restoreTimeMs = 20000;
 
 
 
-    public ThreadServiceImpl(ClientCreatorService clientCreatorService,
-                             ClientCashDeskServiceImpl clientCashDeskService, List<BaseCashDesk> cashDesks
-                             ) {
+    public ThreadServiceImpl(
+            ClientCreatorService clientCreatorService,
+            ClientCashDeskService clientCashDeskService,
+            BaseTrainStation trainStation) {
+
         this.clientCreatorService = clientCreatorService;
         this.clientCashDeskService = clientCashDeskService;
-        this.cashDesks = cashDesks;
+        this.trainStation = trainStation;
     }
+
     @Override
     public void startCashDesks(SendCashDeskResponse sendCashDeskResponse) {
-        // Створюємо пул потоків із розміром, що дорівнює кількості кас
-        cashDeskExecutorService = Executors.newFixedThreadPool(cashDesks.size());
-        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1); // Пул для відновлення кас
 
-        // Запускаємо кожну касу в окремому потоці
+        var cashDesks = trainStation.getCashDesks();
+
+        cashDeskExecutorService = Executors.newFixedThreadPool(cashDesks.size());
+
         for (BaseCashDesk cashDesk : cashDesks) {
             cashDeskExecutorService.submit(() -> {
                 try {
                     while (!Thread.currentThread().isInterrupted()) {
                         try {
                             if (!cashDesk.getQueue().isEmpty()) {
-                                if (currentClientsServed.incrementAndGet() % clientsToBreakCashDesk == 0) {
-                                    sendCashDeskResponse.execute(CashDeskMapper.baseCashDeskToCashDeskDto(clientCashDeskService.processOrder(cashDesk)));
-                                    log.info("Cash desk {} is out of order due to reaching the client limit.", cashDesk.getId());
-                                    clientCashDeskService.setDeskOutOfOrder(cashDesk);
-                                    clientCashDeskService.moveClientsToBackupQueue(cashDesk);
-                                    log.info("Moving clients to backup queue.");
 
-                                    long restoreTimeMs = 15000;
+                                if (currentClientsServed.incrementAndGet() % clientsToBreakCashDesk == 0) {
+
+                                    clientCashDeskService.setDeskOutOfOrder(cashDesk);
+                                    sendCashDeskResponse.execute(CashDeskMapper.baseCashDeskToCashDeskDto(cashDesk));
+
+                                    clientCashDeskService.moveClientsToBackupQueue(cashDesk);
+
+                                    var scheduler = Executors.newScheduledThreadPool(1);
                                     scheduler.schedule(() -> {
                                         clientCashDeskService.setDeskWorking(cashDesk);
-                                        log.info("Cash desk {} has been restored to working state.", cashDesk.getId());
                                     }, restoreTimeMs, TimeUnit.MILLISECONDS);
+
                                 } else {
                                     sendCashDeskResponse.execute(CashDeskMapper.baseCashDeskToCashDeskDto(clientCashDeskService.processOrder(cashDesk)));
                                 }
                             }
+
                             Thread.sleep(100);
+
                         } catch (InterruptedException e) {
                             Thread.currentThread().interrupt();
                             log.info("Cash desk processing thread was interrupted for cash desk: {}", cashDesk.getId());
@@ -93,12 +100,19 @@ public class ThreadServiceImpl implements ThreadService {
         }
     }
 
-
-
     @Override
     public void stopCashDesks() {
-        if (cashDeskExecutorService != null) {
+        if (cashDeskExecutorService != null && !cashDeskExecutorService.isShutdown()) {
+            log.info("Shutting down cash generation threads...");
             cashDeskExecutorService.shutdownNow();
+            try {
+                if (!cashDeskExecutorService.awaitTermination(5, TimeUnit.SECONDS)) {
+                    log.warn("Client generation thread did not terminate in the specified time.");
+                }
+            } catch (InterruptedException e) {
+                log.error("Interrupted while waiting for client generation thread to terminate.");
+                Thread.currentThread().interrupt();
+            }
         }
     }
 

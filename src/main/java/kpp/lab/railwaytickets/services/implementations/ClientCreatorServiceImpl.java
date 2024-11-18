@@ -29,14 +29,15 @@ public class ClientCreatorServiceImpl implements ClientCreatorService {
 
     @Override
     public BaseClient createClient() throws InterruptedException {
-            if (trainStation.getMaxPeopleCount() > trainStation.getCurrentClientNumber()) {
-                while(true) {
-                    if (trainStation.getCurrentClientNumber() < trainStation.getMaxPeopleCount() * 0.7) {
-                        break;
-                    }
-                    Thread.sleep(100);
+        if (trainStation.getMaxPeopleCount() < trainStation.getCurrentClientNumber()) {
+            while(true) {
+                if (trainStation.getCurrentClientNumber() < trainStation.getMaxPeopleCount() * 0.7) {
+                    break;
                 }
+                Thread.sleep(100);
+            }
         }
+
         return startupProperties.getClientGenerator().generateClient();
     }
 }

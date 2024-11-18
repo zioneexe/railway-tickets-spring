@@ -23,7 +23,6 @@ public class SocketIOSimulationRunner {
     private static final String NEW_CLIENT_GENERATED_EVENT = "new_client";
     private static final String CASH_DESK_EVENT = "cash_desk";
     private static final String SIMULATION_STOPPED_EVENT = "simulation_stopped";
-    private static final String CASH_DESK_BROKEN_EVENT = "cash_desk_broken";
 
     private ThreadService threadService;
 
