@@ -25,9 +25,8 @@ public class ClientCashDeskServiceImpl implements ClientCashDeskService {
     }
 
     @Override
-    public BaseCashDesk processOrder(BaseCashDesk cashDesk ) throws Exception {
+    public BaseCashDesk processOrder(BaseCashDesk cashDesk ) {
         if (cashDesk.getQueue().isEmpty()) {
-            throw new Exception("Cash desk has no clients in queue.");
         }
 
         BaseClient client = cashDesk.getQueue().removeFirst();
@@ -53,7 +52,16 @@ public class ClientCashDeskServiceImpl implements ClientCashDeskService {
 
         var cashDesks = trainStation.getCashDesks();
 
-        List<BaseCashDesk> workingCashDesks = cashDesks.stream().filter(e -> !e.getIsBroken() && !e.getIsBackup()).toList();
+        boolean isBackupWorking = cashDesks.stream().filter(e -> e.getIsBroken()).count() > 0;
+
+        List<BaseCashDesk> workingCashDesks;
+
+        if (isBackupWorking) {
+            workingCashDesks = cashDesks.stream().filter(e -> !e.getIsBroken()).toList();
+        }
+        else {
+            workingCashDesks = cashDesks.stream().filter(e -> !e.getIsBackup()).toList();
+        }
 
         BaseCashDesk chosenCashDesk = CashDeskSelectHelper.selectBestDesk(workingCashDesks, client);
         if (chosenCashDesk == null) {

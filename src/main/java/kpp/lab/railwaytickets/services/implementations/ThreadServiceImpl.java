@@ -16,7 +16,9 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Slf4j
 @Service
@@ -31,6 +33,12 @@ public class ThreadServiceImpl implements ThreadService {
     private ExecutorService cashDeskExecutorService;
     private ExecutorService clientGeneratorExecutorService;
 
+    private AtomicInteger currentClientsServed = new AtomicInteger(0);
+
+    private int clientsToBreakCashDesk = 100;
+
+
+
     public ThreadServiceImpl(ClientCreatorService clientCreatorService,
                              ClientCashDeskServiceImpl clientCashDeskService, List<BaseCashDesk> cashDesks
                              ) {
@@ -42,6 +50,7 @@ public class ThreadServiceImpl implements ThreadService {
     public void startCashDesks(SendCashDeskResponse sendCashDeskResponse) {
         // Створюємо пул потоків із розміром, що дорівнює кількості кас
         cashDeskExecutorService = Executors.newFixedThreadPool(cashDesks.size());
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1); // Пул для відновлення кас
 
         // Запускаємо кожну касу в окремому потоці
         for (BaseCashDesk cashDesk : cashDesks) {
@@ -49,19 +58,28 @@ public class ThreadServiceImpl implements ThreadService {
                 try {
                     while (!Thread.currentThread().isInterrupted()) {
                         try {
-                            // Перевірка черги перед видаленням клієнта
                             if (!cashDesk.getQueue().isEmpty()) {
-//                                BaseClient client = cashDesk.getQueue().removeFirst(); // Видаляємо першого клієнта
-//                                clientCashDeskService.processOrder(client);
-//                                log.info("Processed order for client: {}", client.getId());
-                                sendCashDeskResponse.execute(CashDeskMapper.baseCashDeskToCashDeskDto(clientCashDeskService.processOrder(cashDesk)));
-                            } else {
-                                Thread.sleep(100);
+                                if (currentClientsServed.incrementAndGet() % clientsToBreakCashDesk == 0) {
+                                    sendCashDeskResponse.execute(CashDeskMapper.baseCashDeskToCashDeskDto(clientCashDeskService.processOrder(cashDesk)));
+                                    log.info("Cash desk {} is out of order due to reaching the client limit.", cashDesk.getId());
+                                    clientCashDeskService.setDeskOutOfOrder(cashDesk);
+                                    clientCashDeskService.moveClientsToBackupQueue(cashDesk);
+                                    log.info("Moving clients to backup queue.");
+
+                                    long restoreTimeMs = 15000;
+                                    scheduler.schedule(() -> {
+                                        clientCashDeskService.setDeskWorking(cashDesk);
+                                        log.info("Cash desk {} has been restored to working state.", cashDesk.getId());
+                                    }, restoreTimeMs, TimeUnit.MILLISECONDS);
+                                } else {
+                                    sendCashDeskResponse.execute(CashDeskMapper.baseCashDeskToCashDeskDto(clientCashDeskService.processOrder(cashDesk)));
+                                }
                             }
+                            Thread.sleep(100);
                         } catch (InterruptedException e) {
                             Thread.currentThread().interrupt();
                             log.info("Cash desk processing thread was interrupted for cash desk: {}", cashDesk.getId());
-                            break; // Виходимо з циклу при перериванні потоку
+                            break;
                         } catch (NoSuchElementException e) {
                             log.warn("Queue is empty for cash desk: {}", cashDesk.getId());
                         } catch (Exception e) {
@@ -74,6 +92,7 @@ public class ThreadServiceImpl implements ThreadService {
             });
         }
     }
+
 
 
     @Override
