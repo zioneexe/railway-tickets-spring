@@ -17,6 +17,7 @@ public class TrainStation implements BaseTrainStation {
     public TrainStation() {
         cashDesks = new ArrayList<>();
         entrances = new ArrayList<>();
+        buildingMap = new Map();
     }
 
     @Override
@@ -51,7 +52,6 @@ public class TrainStation implements BaseTrainStation {
 
     @Override
     public void addMap(int sizeX, int sizeY) {
-        buildingMap = new Map();
         buildingMap.setSizeX(sizeX);
         buildingMap.setSizeY(sizeY);
     }
