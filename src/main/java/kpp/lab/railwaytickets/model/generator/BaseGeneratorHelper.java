@@ -1,10 +1,8 @@
 package kpp.lab.railwaytickets.model.generator;
 
-import kpp.lab.railwaytickets.model.decorator.ClientDecorator;
 import kpp.lab.railwaytickets.model.interfaces.BaseClient;
 import kpp.lab.railwaytickets.model.interfaces.BasePosition;
 
-import java.util.HashMap;
 import java.util.List;
 
 public interface BaseGeneratorHelper {

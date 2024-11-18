@@ -1,7 +1,5 @@
 package kpp.lab.railwaytickets.services.implementations;
 
-import kpp.lab.railwaytickets.model.StartupProperties;
-import kpp.lab.railwaytickets.model.TrainStation;
 import kpp.lab.railwaytickets.model.interfaces.BaseCashDesk;
 import kpp.lab.railwaytickets.model.interfaces.BaseClient;
 import kpp.lab.railwaytickets.model.interfaces.BaseStartupProperties;
@@ -30,7 +28,7 @@ public class ClientCashDeskServiceImpl implements ClientCashDeskService {
         var clientQueue = cashDesk.getQueue();
         BaseClient client = clientQueue.getFirst();
         try {
-            Thread.sleep(getRandomBetween(startupProperties.getMinServiceTime(), startupProperties.getMaxServiceTime())
+            Thread.sleep((long) getRandomBetween(startupProperties.getMinServiceTime(), startupProperties.getMaxServiceTime())
                     * client.getTicketNumber());
         }
         catch (InterruptedException e) {

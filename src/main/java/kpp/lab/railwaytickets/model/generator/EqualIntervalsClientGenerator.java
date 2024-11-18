@@ -11,13 +11,21 @@ import java.util.List;
 @Component
 public class EqualIntervalsClientGenerator implements BaseClientGenerator {
 
-    private int generationTimeMs = 30;
+    private int generationTimeMs;
 
     private BaseGeneratorHelper generatorHelper;
+
     List<BasePosition> entrancePositions;
 
-    public EqualIntervalsClientGenerator(List<BasePosition> entrancePositions) {
-        this.generatorHelper = new GeneratorHelper();
+    public EqualIntervalsClientGenerator() {}
+
+    public void configure(
+            int generationTimeMs,
+            BaseGeneratorHelper generatorHelper,
+            List<BasePosition> entrancePositions
+    ) {
+        this.generationTimeMs = generationTimeMs;
+        this.generatorHelper = generatorHelper;
         this.entrancePositions = entrancePositions;
     }
 

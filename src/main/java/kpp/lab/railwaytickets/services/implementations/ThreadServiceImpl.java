@@ -100,6 +100,8 @@ public class ThreadServiceImpl implements ThreadService {
         }
     }
 
+
+
     @Override
     public void stopCashDesks() {
         if (cashDeskExecutorService != null && !cashDeskExecutorService.isShutdown()) {
