@@ -1,5 +1,6 @@
 package kpp.lab.railwaytickets.services.implementations;
 
+import kpp.lab.railwaytickets.mappers.CashDeskMapper;
 import kpp.lab.railwaytickets.mappers.ClientMapper;
 import kpp.lab.railwaytickets.model.interfaces.BaseCashDesk;
 import kpp.lab.railwaytickets.model.generator.BaseClientGenerator;
@@ -12,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -22,25 +24,57 @@ public class ThreadServiceImpl implements ThreadService {
 
     private ClientCreatorService clientCreatorService;
 
+    private ClientCashDeskServiceImpl clientCashDeskService;
+
+    private List<BaseCashDesk> cashDesks;
+
     private ExecutorService cashDeskExecutorService;
     private ExecutorService clientGeneratorExecutorService;
 
-    public ThreadServiceImpl(ClientCreatorService clientCreatorService) {
+    public ThreadServiceImpl(ClientCreatorService clientCreatorService,
+                             ClientCashDeskServiceImpl clientCashDeskService, List<BaseCashDesk> cashDesks
+                             ) {
         this.clientCreatorService = clientCreatorService;
+        this.clientCashDeskService = clientCashDeskService;
+        this.cashDesks = cashDesks;
     }
-
     @Override
     public void startCashDesks(SendCashDeskResponse sendCashDeskResponse) {
-/*
+        // Створюємо пул потоків із розміром, що дорівнює кількості кас
         cashDeskExecutorService = Executors.newFixedThreadPool(cashDesks.size());
+
+        // Запускаємо кожну касу в окремому потоці
         for (BaseCashDesk cashDesk : cashDesks) {
             cashDeskExecutorService.submit(() -> {
-
+                try {
+                    while (!Thread.currentThread().isInterrupted()) {
+                        try {
+                            // Перевірка черги перед видаленням клієнта
+                            if (!cashDesk.getQueue().isEmpty()) {
+//                                BaseClient client = cashDesk.getQueue().removeFirst(); // Видаляємо першого клієнта
+//                                clientCashDeskService.processOrder(client);
+//                                log.info("Processed order for client: {}", client.getId());
+                                sendCashDeskResponse.execute(CashDeskMapper.baseCashDeskToCashDeskDto(clientCashDeskService.processOrder(cashDesk)));
+                            } else {
+                                Thread.sleep(100);
+                            }
+                        } catch (InterruptedException e) {
+                            Thread.currentThread().interrupt();
+                            log.info("Cash desk processing thread was interrupted for cash desk: {}", cashDesk.getId());
+                            break; // Виходимо з циклу при перериванні потоку
+                        } catch (NoSuchElementException e) {
+                            log.warn("Queue is empty for cash desk: {}", cashDesk.getId());
+                        } catch (Exception e) {
+                            log.error("Error while processing order client: {}", e.getMessage());
+                        }
+                    }
+                } finally {
+                    log.info("Cash desk processing thread stopped for cash desk: {}", cashDesk.getId());
+                }
             });
         }
-
- */
     }
+
 
     @Override
     public void stopCashDesks() {
