@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.ArrayList;
 import java.util.List;
 
-import static kpp.lab.railwaytickets.model.CashDeskSelectHelper.selectBestDesk;
+import static kpp.lab.railwaytickets.services.implementations.CashDeskSelectHelper.selectBestDesk;
 
 @SpringBootTest
 public class CashDeskHelperTest {

@@ -8,23 +8,9 @@ import java.util.List;
 
 public interface ClientCashDeskService {
 
-    BaseCashDesk chooseCashDesk(BaseClient client);
-
-    void addClientToQueue(BaseCashDesk cashDesk, BaseClient client);
-
-    void moveClientsToBackupQueue(BaseCashDesk cashDesk);
-
-    void setDeskOutOfOrder(BaseCashDesk cashDesk);
-
-    void setDeskWorking(BaseCashDesk cashDesk);
-
-    boolean checkClientLoad();
-
-    BaseCashDesk processOrder(BaseCashDesk cashDesk);
-
-    BaseClient processOrder(BaseClient client);
-
-    int getClientsNumber();
-
-    BaseCashDesk chooseCashDesk(BaseClient client, List<BaseCashDesk> cashDesks);
+    public BaseCashDesk processOrder(BaseCashDesk cashDesk);
+    public BaseCashDesk chooseCashDesk(BaseClient client) throws Exception;
+    public void moveClientsToBackupQueue(BaseCashDesk baseCashDesk);
+    public void setDeskOutOfOrder(BaseCashDesk cashDesk);
+    public void setDeskWorking(BaseCashDesk cashDesk);
 }

@@ -1,5 +1,6 @@
 package kpp.lab.railwaytickets.controllers;
 
+import kpp.lab.railwaytickets.dto.CashDeskDto;
 import kpp.lab.railwaytickets.dto.ResultDto;
 import kpp.lab.railwaytickets.dto.TrainStationDto;
 import kpp.lab.railwaytickets.mappers.ResultMapper;
@@ -20,18 +21,24 @@ import org.springframework.web.bind.annotation.RestController;
 public class SimulationController {
 
     private SimulationService simulationService;
-
     private ClientCashDeskService clientCashDeskService;
 
-    //private BaseStartupProperties startupProperties;
-
     @Autowired
-    public SimulationController(SimulationService simulationService) {
+    public SimulationController(SimulationService simulationService, ClientCashDeskService clientCashDeskService) {
         this.simulationService = simulationService;
+        this.clientCashDeskService = clientCashDeskService;
     }
 
     @PostMapping("/trainStation")
     public ResponseEntity<TrainStationDto> createTrainStation() {
+
+        var trainStation = simulationService.createTrainStation();
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(TrainStationMapper.baseTrainStationToTrainStationDto(trainStation));
+    }
+
+    @PostMapping("/chooseQueue")
+    public ResponseEntity<CashDeskDto> chooseClientQueue() {
 
         var trainStation = simulationService.createTrainStation();
 

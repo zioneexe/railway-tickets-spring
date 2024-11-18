@@ -1,64 +1,78 @@
 package kpp.lab.railwaytickets.services.implementations;
 
-import com.fasterxml.jackson.databind.ser.Serializers;
-import kpp.lab.railwaytickets.model.CashDeskSelectHelper;
+import kpp.lab.railwaytickets.model.StartupProperties;
+import kpp.lab.railwaytickets.model.TrainStation;
 import kpp.lab.railwaytickets.model.interfaces.BaseCashDesk;
 import kpp.lab.railwaytickets.model.interfaces.BaseClient;
+import kpp.lab.railwaytickets.model.interfaces.BaseStartupProperties;
+import kpp.lab.railwaytickets.model.interfaces.BaseTrainStation;
 import kpp.lab.railwaytickets.services.interfaces.ClientCashDeskService;
-import kpp.lab.railwaytickets.services.interfaces.OrderService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class ClientCashDeskServiceImpl implements ClientCashDeskService {
 
-    public ClientCashDeskServiceImpl() {
-    }
+    BaseStartupProperties startupProperties;
+    BaseTrainStation trainStation;
+    Random random = new Random();
 
-
-    public BaseClient processOrder(BaseClient client) {
-        int ticketsNumber = client.getTicketNumber();
-        while(ticketsNumber-- > 0) {
-            try {
-                Thread.sleep(500);
-            }
-            catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        return client;
-    }
-
-    public BaseCashDesk processOrder(BaseCashDesk cashDesk ) {
-        if (!cashDesk.getQueue().isEmpty()) {
-            BaseClient client = cashDesk.getQueue().removeFirst();
-            processOrder(client);
-            return cashDesk;
-        }
-        return cashDesk;
+    public ClientCashDeskServiceImpl(BaseStartupProperties startupProperties, BaseTrainStation trainStation) {
+        this.startupProperties = startupProperties;
+        this.trainStation = trainStation;
     }
 
     @Override
-    public BaseCashDesk chooseCashDesk(BaseClient client, List<BaseCashDesk> cashDesks) {
-        List<BaseCashDesk> workingCashDesks =
-                cashDesks.stream().filter(e -> !e.getIsBroken() && !e.getIsBackup()).toList();
+    public BaseCashDesk processOrder(BaseCashDesk cashDesk ) throws Exception {
+        if (cashDesk.getQueue().isEmpty()) {
+            throw new Exception("Cash desk has no clients in queue.");
+        }
+
+        BaseClient client = cashDesk.getQueue().removeFirst();
+
+        try {
+            Thread.sleep(getRandomBetween(startupProperties.getMinServiceTime(), startupProperties.getMaxServiceTime())
+                    * client.getTicketNumber());
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return cashDesk;
+    }
+
+    private int getRandomBetween(int min, int max) {
+        return random.nextInt(max - min + 1) + min;
+    }
+
+
+    @Override
+    public BaseCashDesk chooseCashDesk(BaseClient client) throws Exception {
+
+        var cashDesks = trainStation.getCashDesks();
+
+        List<BaseCashDesk> workingCashDesks = cashDesks.stream().filter(e -> !e.getIsBroken() && !e.getIsBackup()).toList();
 
         BaseCashDesk chosenCashDesk = CashDeskSelectHelper.selectBestDesk(workingCashDesks, client);
+        if (chosenCashDesk == null) {
+            throw new Exception("Cash desk is null.");
+        }
+
+        chosenCashDesk.addClientToQueue(client);
         return chosenCashDesk;
     }
 
     @Override
-    public void addClientToQueue(BaseCashDesk cashDesk, BaseClient client) {
-        cashDesk.addClientToQueue(client);
-    }
-
-    @Override
     public void moveClientsToBackupQueue(BaseCashDesk baseCashDesk) {
-
+/*
         backupCashDesk.getQueue().clear();
         backupCashDesk.getQueue().forEach(e -> baseCashDesk.getQueue().add(e));
         baseCashDesk.getQueue().clear();
+
+
+ */
     }
     @Override
     public void setDeskOutOfOrder(BaseCashDesk cashDesk) {
@@ -68,14 +82,5 @@ public class ClientCashDeskServiceImpl implements ClientCashDeskService {
     @Override
     public void setDeskWorking(BaseCashDesk cashDesk) {
         cashDesk.setIsBroken(false);
-    }
-
-    @Override
-    public int getClientsNumber() {
-        return cashDesks.stream().mapToInt(e -> e.getQueue().size()).sum();
-    }
-    @Override
-    public boolean checkClientLoad() {
-        return getClientsNumber() > outOfOrderMaxNumberOfOrders;
     }
 }
