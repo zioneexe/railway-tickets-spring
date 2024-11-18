@@ -1,37 +1,46 @@
 package kpp.lab.railwaytickets.services.implementations;
 
+import com.fasterxml.jackson.databind.ser.Serializers;
 import kpp.lab.railwaytickets.model.CashDeskSelectHelper;
 import kpp.lab.railwaytickets.model.interfaces.BaseCashDesk;
 import kpp.lab.railwaytickets.model.interfaces.BaseClient;
 import kpp.lab.railwaytickets.services.interfaces.ClientCashDeskService;
 import kpp.lab.railwaytickets.services.interfaces.OrderService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ClientCashDeskServiceImpl implements ClientCashDeskService {
 
-    private OrderService orderService;
+    public ClientCashDeskServiceImpl() {
+    }
 
-    private int outOfOrderMaxNumberOfOrders;
 
-    private List<BaseCashDesk> cashDesks;
+    public BaseClient processOrder(BaseClient client) {
+        int ticketsNumber = client.getTicketNumber();
+        while(ticketsNumber-- > 0) {
+            try {
+                Thread.sleep(500);
+            }
+            catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        return client;
+    }
 
-    private BaseCashDesk backupCashDesk;
-
-    private double MAX_NUMBER_OF_CLIENTS_MULTIPLIER = 0.7;
-
-    private int MaxNumberOfClients = (int)(cashDesks.stream().mapToInt(e -> e.getPosition().getY()).sum() * MAX_NUMBER_OF_CLIENTS_MULTIPLIER);
-
-    public ClientCashDeskServiceImpl(OrderService orderService, List<BaseCashDesk> cashDesks, int minNum, int maxNum) {
-        this.orderService = orderService;
-        this.outOfOrderMaxNumberOfOrders = maxNum;
-        this.cashDesks = cashDesks;
-
-        backupCashDesk = cashDesks.stream().filter(e -> e.getIsBackup()).findFirst().get();
+    public BaseCashDesk processOrder(BaseCashDesk cashDesk ) {
+        if (!cashDesk.getQueue().isEmpty()) {
+            BaseClient client = cashDesk.getQueue().removeFirst();
+            processOrder(client);
+            return cashDesk;
+        }
+        return cashDesk;
     }
 
     @Override
-    public BaseCashDesk chooseCashDesk(BaseClient client) {
+    public BaseCashDesk chooseCashDesk(BaseClient client, List<BaseCashDesk> cashDesks) {
         List<BaseCashDesk> workingCashDesks =
                 cashDesks.stream().filter(e -> !e.getIsBroken() && !e.getIsBackup()).toList();
 
@@ -46,6 +55,7 @@ public class ClientCashDeskServiceImpl implements ClientCashDeskService {
 
     @Override
     public void moveClientsToBackupQueue(BaseCashDesk baseCashDesk) {
+
         backupCashDesk.getQueue().clear();
         backupCashDesk.getQueue().forEach(e -> baseCashDesk.getQueue().add(e));
         baseCashDesk.getQueue().clear();
