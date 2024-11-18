@@ -1,7 +1,9 @@
 package kpp.lab.railwaytickets.controllers;
 
+import kpp.lab.railwaytickets.dto.CashDeskLogDto;
 import kpp.lab.railwaytickets.dto.TrainStationDto;
 import kpp.lab.railwaytickets.mappers.TrainStationMapper;
+import kpp.lab.railwaytickets.model.interfaces.BaseLogger;
 import kpp.lab.railwaytickets.services.interfaces.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,26 +14,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/order")
 public class OrderController {
 
-    private OrderService orderService;
+    private BaseLogger<CashDeskLogDto> cashDeskLogger;
 
     @Autowired
-    public OrderController(OrderService orderService) {
-        this.orderService = orderService;
-    }
-
-    public String showOrdersLog() {
-        return null;
+    public OrderController(BaseLogger<CashDeskLogDto> cashDeskLogger) {
+        this.cashDeskLogger = cashDeskLogger;
     }
 
     @GetMapping("/log")
-    public ResponseEntity<TrainStationDto> createTrainStation() {
+    public ResponseEntity<List<CashDeskLogDto>> get() {
+        var logs = cashDeskLogger.readAll();
 
-        //var trainStation = simulationService.createTrainStation();
-        return null;
-        //return ResponseEntity.status(HttpStatus.CREATED).body(TrainStationMapper.baseTrainStationToTrainStationDto(trainStation));
+        return ResponseEntity.status(HttpStatus.CREATED).body(logs);
     }
 }

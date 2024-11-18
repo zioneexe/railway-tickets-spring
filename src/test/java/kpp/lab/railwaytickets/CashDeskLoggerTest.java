@@ -1,7 +1,7 @@
 package kpp.lab.railwaytickets;
 
 import kpp.lab.railwaytickets.dto.CashDeskLogDto;
-import kpp.lab.railwaytickets.model.CashDeskLogger;
+import kpp.lab.railwaytickets.services.implementations.CashDeskLoggerServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,13 +16,13 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class CashDeskLoggerTest {
 
-    private CashDeskLogger cashDeskLogger;
+    private CashDeskLoggerServiceImpl cashDeskLogger;
 
     private static final String LOG_FILE_PATH = "src/test/resources/cashdesk-log.json";
 
     @BeforeEach
     public void setUp() throws IOException {
-        cashDeskLogger = new CashDeskLogger(LOG_FILE_PATH);
+        cashDeskLogger = new CashDeskLoggerServiceImpl(LOG_FILE_PATH);
         Files.write(Paths.get(LOG_FILE_PATH), "[]".getBytes());
     }
 

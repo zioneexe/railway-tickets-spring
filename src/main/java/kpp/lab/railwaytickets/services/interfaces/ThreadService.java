@@ -13,7 +13,7 @@ public interface ThreadService {
 
     void stopClientGeneration();
 
-    void startCashDesks(SendCashDeskResponse sendCashDeskResponse);
+    void startCashDesks(SendCashDeskResponse sendCashDeskResponse, long ApplicationStartTime);
 
     void stopCashDesks();
 

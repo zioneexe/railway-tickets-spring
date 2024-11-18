@@ -1,4 +1,4 @@
-package kpp.lab.railwaytickets.model;
+package kpp.lab.railwaytickets.services.implementations;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import kpp.lab.railwaytickets.dto.CashDeskLogDto;
@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PreDestroy;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.file.Files;
@@ -18,13 +19,13 @@ import java.util.List;
 import static kpp.lab.railwaytickets.RailwayTicketsApplication.LOGGER;
 
 @Service
-public class CashDeskLogger implements BaseLogger<CashDeskLogDto> {
+public class CashDeskLoggerServiceImpl implements BaseLogger<CashDeskLogDto> {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final Path logFilePath;
 
     @Autowired
-    public CashDeskLogger(@Value("${log.filename}") String logFileName) {
+    public CashDeskLoggerServiceImpl(@Value("${log.filename}") String logFileName) {
         this.logFilePath = Paths.get(logFileName);
 
         if (Files.notExists(logFilePath)) {
@@ -67,5 +68,14 @@ public class CashDeskLogger implements BaseLogger<CashDeskLogDto> {
             LOGGER.error("Error reading from log file: {}", e.getMessage());
         }
         return Collections.emptyList();
+    }
+
+    @PreDestroy
+    public synchronized void clear() {
+        try {
+            Files.write(logFilePath, "[]".getBytes());
+        } catch (IOException e) {
+            LOGGER.error("Error when opening file: {}", e.getMessage());
+        }
     }
 }

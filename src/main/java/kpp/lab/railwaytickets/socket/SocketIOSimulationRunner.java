@@ -12,6 +12,8 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
+
 @Service
 @Log4j2
 public class SocketIOSimulationRunner {
@@ -24,14 +26,16 @@ public class SocketIOSimulationRunner {
     private static final String CASH_DESK_EVENT = "cash_desk";
     private static final String SIMULATION_STOPPED_EVENT = "simulation_stopped";
 
+    private long startSimulationTime;
     private ThreadService threadService;
 
     @Autowired
     public SocketIOSimulationRunner(SocketIOServer socketServer, ThreadService threadService) {
         this.socketServer = socketServer;
         initializeEventListeners();
-
         this.threadService = threadService;
+
+        startSimulationTime = Instant.now().toEpochMilli();        startSimulationTime = Instant.now().toEpochMilli();
     }
 
     private void initializeEventListeners() {
@@ -69,7 +73,7 @@ public class SocketIOSimulationRunner {
                     if(client.isChannelOpen()) {
                         client.sendEvent(CASH_DESK_EVENT, cashDeskResponse);
                     }
-                });
+                }, startSimulationTime);
 
             } catch (Exception e) {
                 log.error("Error: {}", e.getMessage());

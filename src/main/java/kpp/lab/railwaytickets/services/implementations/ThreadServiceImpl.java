@@ -1,10 +1,11 @@
 package kpp.lab.railwaytickets.services.implementations;
 
+import kpp.lab.railwaytickets.dto.CashDeskLogDto;
 import kpp.lab.railwaytickets.mappers.CashDeskMapper;
 import kpp.lab.railwaytickets.mappers.ClientMapper;
 import kpp.lab.railwaytickets.model.interfaces.BaseCashDesk;
-import kpp.lab.railwaytickets.model.generator.BaseClientGenerator;
 import kpp.lab.railwaytickets.model.interfaces.BaseClient;
+import kpp.lab.railwaytickets.model.interfaces.BaseLogger;
 import kpp.lab.railwaytickets.model.interfaces.BaseTrainStation;
 import kpp.lab.railwaytickets.services.interfaces.ClientCashDeskService;
 import kpp.lab.railwaytickets.services.interfaces.ClientCreatorService;
@@ -14,11 +15,10 @@ import kpp.lab.railwaytickets.socket.SendCreatedClientResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.time.Instant;
 import java.util.NoSuchElementException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -35,23 +35,28 @@ public class ThreadServiceImpl implements ThreadService {
 
     private AtomicInteger currentClientsServed = new AtomicInteger(1);
 
-    private final int clientsToBreakCashDesk = 5;
+    private final int clientsToBreakCashDesk = 10;
     private final int restoreTimeMs = 20000;
 
+    private boolean isThereABrokenCashDesk = false;
+
+    private BaseLogger<CashDeskLogDto> cashDeskLogger;
 
 
     public ThreadServiceImpl(
             ClientCreatorService clientCreatorService,
             ClientCashDeskService clientCashDeskService,
-            BaseTrainStation trainStation) {
+            BaseTrainStation trainStation,
+            BaseLogger<CashDeskLogDto> cashDeskLogger) {
 
         this.clientCreatorService = clientCreatorService;
         this.clientCashDeskService = clientCashDeskService;
         this.trainStation = trainStation;
+        this.cashDeskLogger = cashDeskLogger;
     }
 
     @Override
-    public void startCashDesks(SendCashDeskResponse sendCashDeskResponse) {
+    public void startCashDesks(SendCashDeskResponse sendCashDeskResponse, long startSimulationTime) {
 
         var cashDesks = trainStation.getCashDesks();
 
@@ -63,21 +68,35 @@ public class ThreadServiceImpl implements ThreadService {
                     while (!Thread.currentThread().isInterrupted()) {
                         try {
                             if (!cashDesk.getQueue().isEmpty()) {
-
-                                if (currentClientsServed.incrementAndGet() % clientsToBreakCashDesk == 0) {
+                                if (currentClientsServed.incrementAndGet() % clientsToBreakCashDesk == 0 && !isThereABrokenCashDesk) {
 
                                     clientCashDeskService.setDeskOutOfOrder(cashDesk);
+                                    isThereABrokenCashDesk = true;
+
+                                    BaseClient clientToBeProcessed = cashDesk.getQueue().getFirst();
+
+                                    long startTime = Instant.now().toEpochMilli() - startSimulationTime;
                                     sendCashDeskResponse.execute(CashDeskMapper.baseCashDeskToCashDeskDto(cashDesk));
+                                    long endTime = Instant.now().toEpochMilli() - startSimulationTime;
+
+                                    cashDeskLogger.write(new CashDeskLogDto(clientToBeProcessed.getId(), cashDesk.getId(), clientToBeProcessed.getTicketNumber(), startTime, endTime));
 
                                     clientCashDeskService.moveClientsToBackupQueue(cashDesk);
 
                                     var scheduler = Executors.newScheduledThreadPool(1);
                                     scheduler.schedule(() -> {
                                         clientCashDeskService.setDeskWorking(cashDesk);
+                                        isThereABrokenCashDesk = false;
                                     }, restoreTimeMs, TimeUnit.MILLISECONDS);
 
                                 } else {
+                                    BaseClient clientToBeProcessed = cashDesk.getQueue().getFirst();
+
+                                    long startTime = Instant.now().toEpochMilli() - startSimulationTime;
                                     sendCashDeskResponse.execute(CashDeskMapper.baseCashDeskToCashDeskDto(clientCashDeskService.processOrder(cashDesk)));
+                                    long endTime = Instant.now().toEpochMilli()- startSimulationTime;
+
+                                    cashDeskLogger.write(new CashDeskLogDto(clientToBeProcessed.getId(), cashDesk.getId(), clientToBeProcessed.getTicketNumber(), startTime, endTime));
                                 }
                             }
 
@@ -99,6 +118,8 @@ public class ThreadServiceImpl implements ThreadService {
             });
         }
     }
+
+
 
     @Override
     public void stopCashDesks() {
