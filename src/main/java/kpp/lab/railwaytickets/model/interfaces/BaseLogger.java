@@ -1,6 +1,10 @@
 package kpp.lab.railwaytickets.model.interfaces;
 
-public interface BaseLogger {
+import java.util.List;
 
-    void log(String message);
+public interface BaseLogger<T> {
+
+    void write(T object);
+
+    List<T> readAll();
 }

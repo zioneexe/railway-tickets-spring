@@ -24,10 +24,8 @@ public class CashDeskSelectHelper {
         List<BaseCashDesk> minClientsCashDesks =
                 cashDesks.stream().filter(e -> e.getQueue().size() == (int)minClientsNumberInQueue).toList();
 
-        BaseCashDesk finalCashDesk = minClientsCashDesks.stream()
+        return minClientsCashDesks.stream()
                 .min(Comparator.comparing(cashDesk -> calcDistance(client, cashDesk)))
                 .orElse(null);
-
-        return finalCashDesk;
     }
 }
