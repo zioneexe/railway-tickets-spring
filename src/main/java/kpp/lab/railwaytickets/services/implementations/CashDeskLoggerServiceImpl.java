@@ -1,4 +1,4 @@
-package kpp.lab.railwaytickets.model;
+package kpp.lab.railwaytickets.services.implementations;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import kpp.lab.railwaytickets.dto.CashDeskLogDto;
@@ -18,13 +18,13 @@ import java.util.List;
 import static kpp.lab.railwaytickets.RailwayTicketsApplication.LOGGER;
 
 @Service
-public class CashDeskLogger implements BaseLogger<CashDeskLogDto> {
+public class CashDeskLoggerServiceImpl implements BaseLogger<CashDeskLogDto> {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final Path logFilePath;
 
     @Autowired
-    public CashDeskLogger(@Value("${log.filename}") String logFileName) {
+    public CashDeskLoggerServiceImpl(@Value("${log.filename}") String logFileName) {
         this.logFilePath = Paths.get(logFileName);
 
         if (Files.notExists(logFilePath)) {

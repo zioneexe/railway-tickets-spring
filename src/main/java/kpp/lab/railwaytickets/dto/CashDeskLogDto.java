@@ -14,6 +14,6 @@ public class CashDeskLogDto {
     private int clientId;
     private int cashDeskId;
     private int ticketsCount;
-    private int startTimeMs;
-    private int endTimeMs;
+    private long startTimeMs;
+    private long endTimeMs;
 }

@@ -1,7 +1,7 @@
 package kpp.lab.railwaytickets;
 
 import kpp.lab.railwaytickets.dto.CashDeskLogDto;
-import kpp.lab.railwaytickets.model.CashDeskLogger;
+import kpp.lab.railwaytickets.services.implementations.CashDeskLogger;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

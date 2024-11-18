@@ -1,11 +1,12 @@
 package kpp.lab.railwaytickets.services.implementations;
 
+import kpp.lab.railwaytickets.dto.CashDeskLogDto;
 import kpp.lab.railwaytickets.mappers.CashDeskMapper;
 import kpp.lab.railwaytickets.mappers.ClientMapper;
 import kpp.lab.railwaytickets.model.interfaces.BaseCashDesk;
-import kpp.lab.railwaytickets.model.generator.BaseClientGenerator;
 import kpp.lab.railwaytickets.model.interfaces.BaseClient;
 import kpp.lab.railwaytickets.model.interfaces.BaseTrainStation;
+import kpp.lab.railwaytickets.services.interfaces.CashDeskLoggerService;
 import kpp.lab.railwaytickets.services.interfaces.ClientCashDeskService;
 import kpp.lab.railwaytickets.services.interfaces.ClientCreatorService;
 import kpp.lab.railwaytickets.services.interfaces.ThreadService;
@@ -14,11 +15,9 @@ import kpp.lab.railwaytickets.socket.SendCreatedClientResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -39,6 +38,8 @@ public class ThreadServiceImpl implements ThreadService {
     private final int restoreTimeMs = 20000;
 
     private boolean isThereABrokenCashDesk = false;
+
+    private CashDeskLoggerService cashDeskLogger;
 
 
     public ThreadServiceImpl(
@@ -64,12 +65,18 @@ public class ThreadServiceImpl implements ThreadService {
                     while (!Thread.currentThread().isInterrupted()) {
                         try {
                             if (!cashDesk.getQueue().isEmpty()) {
-
                                 if (currentClientsServed.incrementAndGet() % clientsToBreakCashDesk == 0 && !isThereABrokenCashDesk) {
 
                                     clientCashDeskService.setDeskOutOfOrder(cashDesk);
                                     isThereABrokenCashDesk = true;
+
+                                    BaseClient clientToBeProcessed = cashDesk.getQueue().getFirst();
+
+                                    long startTime = System.nanoTime();
                                     sendCashDeskResponse.execute(CashDeskMapper.baseCashDeskToCashDeskDto(cashDesk));
+                                    long endTime = System.nanoTime();
+
+                                    cashDeskLogger.write(new CashDeskLogDto(clientToBeProcessed.getId(), cashDesk.getId(), clientToBeProcessed.getTicketNumber(),startTime, endTime));
 
                                     clientCashDeskService.moveClientsToBackupQueue(cashDesk);
 
