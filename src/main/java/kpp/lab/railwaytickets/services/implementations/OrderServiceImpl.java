@@ -1,5 +1,7 @@
 package kpp.lab.railwaytickets.services.implementations;
 
+import kpp.lab.railwaytickets.dto.CashDeskLogDto;
+import kpp.lab.railwaytickets.model.Order;
 import kpp.lab.railwaytickets.model.interfaces.BaseLogger;
 import kpp.lab.railwaytickets.model.interfaces.BaseOrder;
 import kpp.lab.railwaytickets.services.interfaces.OrderService;
@@ -18,12 +20,12 @@ import java.util.List;
 @Service
 public class OrderServiceImpl implements OrderService {
 
-    private final List<BaseLogger> orders;
+    private final List<Order> orders;
 
-    private final BaseLogger logger;
+    private final BaseLogger<CashDeskLogDto> logger;
 
     @Autowired
-    public OrderServiceImpl(BaseLogger logger) {
+    public OrderServiceImpl(BaseLogger<CashDeskLogDto> logger) {
         this.logger = logger;
         this.orders = new LinkedList<>();
     }
@@ -31,6 +33,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void processOrder(BaseOrder order) {
 
-        logger.write(order);
+
+        //logger.write(order);
     }
 }

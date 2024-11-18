@@ -1,7 +1,6 @@
 package kpp.lab.railwaytickets.model;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.annotation.PreDestroy;
 import kpp.lab.railwaytickets.dto.CashDeskLogDto;
 import kpp.lab.railwaytickets.model.interfaces.BaseLogger;
 import org.springframework.beans.factory.annotation.Autowired;
