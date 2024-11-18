@@ -4,6 +4,7 @@ import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.listener.ConnectListener;
 import com.corundumstudio.socketio.listener.DataListener;
 import com.corundumstudio.socketio.listener.DisconnectListener;
+import kpp.lab.railwaytickets.dto.CashDeskDto;
 import kpp.lab.railwaytickets.dto.ClientDto;
 import kpp.lab.railwaytickets.model.messages.*;
 import kpp.lab.railwaytickets.services.interfaces.ThreadService;
@@ -20,6 +21,7 @@ public class SocketIOSimulationRunner {
     private static final String START_SIMULATION_EVENT = "start_simulation";
     private static final String STOP_SIMULATION_EVENT = "stop_simulation";
     private static final String NEW_CLIENT_GENERATED_EVENT = "new_client";
+    private static final String CASH_DESK_EVENT = "cash_desk";
     private static final String SIMULATION_STOPPED_EVENT = "simulation_stopped";
 
     private ThreadService threadService;
@@ -62,7 +64,11 @@ public class SocketIOSimulationRunner {
                     }
                 });
 
-                // ТУТ ПОЧАТИ ПОТОКИ З РОБОТИ КАС  << threadService.startCashDesks >>
+                threadService.startCashDesks((CashDeskDto cashDeskResponse) -> {
+                    if(client.isChannelOpen()) {
+                        client.sendEvent(CASH_DESK_EVENT, cashDeskResponse);
+                    }
+                });
 
             } catch (Exception e) {
                 log.error("Error: {}", e.getMessage());

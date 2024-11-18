@@ -6,6 +6,7 @@ import kpp.lab.railwaytickets.model.generator.BaseClientGenerator;
 import kpp.lab.railwaytickets.model.interfaces.BaseClient;
 import kpp.lab.railwaytickets.services.interfaces.ClientCreatorService;
 import kpp.lab.railwaytickets.services.interfaces.ThreadService;
+import kpp.lab.railwaytickets.socket.SendCashDeskResponse;
 import kpp.lab.railwaytickets.socket.SendCreatedClientResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -29,14 +30,16 @@ public class ThreadServiceImpl implements ThreadService {
     }
 
     @Override
-    public void startCashDesks(List<BaseCashDesk> cashDesks) {
-
+    public void startCashDesks(SendCashDeskResponse sendCashDeskResponse) {
+/*
         cashDeskExecutorService = Executors.newFixedThreadPool(cashDesks.size());
         for (BaseCashDesk cashDesk : cashDesks) {
             cashDeskExecutorService.submit(() -> {
 
             });
         }
+
+ */
     }
 
     @Override
