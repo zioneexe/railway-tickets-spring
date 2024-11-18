@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ClientCashDeskService {
 
-    public BaseCashDesk processOrder(BaseCashDesk cashDesk);
+    public BaseCashDesk processOrder(BaseCashDesk cashDesk) throws Exception;
     public BaseCashDesk chooseCashDesk(BaseClient client) throws Exception;
     public void moveClientsToBackupQueue(BaseCashDesk baseCashDesk);
     public void setDeskOutOfOrder(BaseCashDesk cashDesk);

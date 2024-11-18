@@ -14,16 +14,16 @@ import org.springframework.stereotype.Service;
 public class SimulationServiceImpl implements SimulationService {
 
     private BaseStartupProperties startupProperties;
-
     private BaseTrainStation trainStation;
     private BaseBuilder builder;
     private BaseDirector director;
 
     @Autowired
-    public SimulationServiceImpl(BaseDirector director, BaseBuilder builder, BaseStartupProperties startupProperties) {
+    public SimulationServiceImpl(BaseDirector director, BaseBuilder builder, BaseStartupProperties startupProperties, BaseTrainStation trainStation) {
         this.startupProperties = startupProperties;
         this.builder = builder;
         this.director = director;
+        this.trainStation = trainStation;
     }
 
     @Override
@@ -44,7 +44,20 @@ public class SimulationServiceImpl implements SimulationService {
     @Override
     public BaseTrainStation createTrainStation() {
         director.createTrainStation(builder);
-        trainStation = builder.getResult();
+        var buildedTrainStation = builder.getResult();
+
+        var cashDesks = trainStation.getCashDesks();
+        for(var buildedTrainStationDesk :  buildedTrainStation.getCashDesks()) {
+            cashDesks.add(buildedTrainStationDesk);
+        }
+
+        var entrances = trainStation.getEntrances();
+        for(var buildedTrainStationEntrance : buildedTrainStation.getEntrances()) {
+            entrances.add(buildedTrainStationEntrance);
+        }
+
+        trainStation.addMap(buildedTrainStation.getMap().getSizeX(), buildedTrainStation.getMap().getSizeY());
+        trainStation.setMaxClientNumber(buildedTrainStation.getMaxPeopleCount());
 
         return trainStation;
     }

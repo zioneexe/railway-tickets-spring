@@ -108,7 +108,9 @@ public class ThreadServiceImpl implements ThreadService {
         clientGeneratorExecutorService.submit(() -> {
             try {
                 while (!Thread.currentThread().isInterrupted()) {
-                    sendCreatedClientResponse.execute(ClientMapper.baseClientToClientDto(clientCreatorService.createClient()));
+                    var createdClient = clientCreatorService.createClient();
+                    clientCashDeskService.chooseCashDesk(createdClient);
+                    sendCreatedClientResponse.execute(ClientMapper.baseClientToClientDto(createdClient));
                 }
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
