@@ -1,13 +1,12 @@
 package kpp.lab.railwaytickets.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+@AllArgsConstructor
+@Getter
+@Setter
 public class ClientGeneratorDto {
     private String generatorType;
-
-    public String getGeneratorType() {
-        return generatorType;
-    }
-
-    public void setGeneratorType(String generatorType) {
-        this.generatorType = generatorType;
-    }
 }

@@ -31,23 +31,6 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void processOrder(BaseOrder order) {
 
-        logOrder(order);
-    }
-
-    private void logOrder(BaseOrder order) {
-        logger.log("--order--");
-        logger.log("Client: " + order.getClient().getId());
-        logger.log("Tickets count: " + order.getTicketsCount());
-        logger.log("Cash desk: " + order.getCashDesk().getId());
-        logger.log("Start time:" + order.getStartTime());
-        logger.log("End time:" + order.getEndTime());
-    }
-
-    /**
-     * Runs this operation.
-     */
-    @Override
-    public void run() {
-
+        logger.write(order);
     }
 }

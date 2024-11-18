@@ -30,8 +30,8 @@ public class OrderController {
     @GetMapping("/log")
     public ResponseEntity<TrainStationDto> createTrainStation() {
 
-        var trainStation = simulationService.createTrainStation();
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(TrainStationMapper.baseTrainStationToTrainStationDto(trainStation));
+        //var trainStation = simulationService.createTrainStation();
+        return null;
+        //return ResponseEntity.status(HttpStatus.CREATED).body(TrainStationMapper.baseTrainStationToTrainStationDto(trainStation));
     }
 }
