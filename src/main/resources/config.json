@@ -9,7 +9,7 @@
     },
     "increasing": {
       "startGenerationTimeMs": 2000,
-      "additionalGenerationTimeMs": 10
+      "incrementTimeMs": 10
     },
     "tickets": {
       "minClientTicketsNumber": 1,

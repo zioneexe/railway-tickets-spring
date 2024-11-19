@@ -6,7 +6,6 @@ import kpp.lab.railwaytickets.model.generator.EqualIntervalsClientGenerator;
 import kpp.lab.railwaytickets.model.generator.IncreasingClientGenerator;
 import kpp.lab.railwaytickets.model.generator.RandomIntervalsClientGenerator;
 import kpp.lab.railwaytickets.model.interfaces.BasePosition;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.util.List;
 import java.util.Objects;

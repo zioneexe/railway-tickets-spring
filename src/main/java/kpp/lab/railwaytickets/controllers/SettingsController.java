@@ -1,9 +1,11 @@
 package kpp.lab.railwaytickets.controllers;
 
+import kpp.lab.railwaytickets.dto.CashDeskLogDto;
 import kpp.lab.railwaytickets.dto.PositionDto;
 import kpp.lab.railwaytickets.dto.StartupPropertiesDto;
 import kpp.lab.railwaytickets.mappers.ClientGeneratorMapper;
 import kpp.lab.railwaytickets.mappers.PositionMapper;
+import kpp.lab.railwaytickets.model.interfaces.BaseLogger;
 import kpp.lab.railwaytickets.model.interfaces.BasePosition;
 import kpp.lab.railwaytickets.model.interfaces.BaseStartupProperties;
 import kpp.lab.railwaytickets.model.Position;
@@ -25,7 +27,7 @@ public class SettingsController {
     private final BaseStartupProperties startupProperties;
 
     @Autowired
-    public SettingsController(BaseStartupProperties startupProperties) {
+    public SettingsController(BaseStartupProperties startupProperties, BaseLogger<CashDeskLogDto> cashDeskLogger) {
         this.startupProperties = startupProperties;
     }
 

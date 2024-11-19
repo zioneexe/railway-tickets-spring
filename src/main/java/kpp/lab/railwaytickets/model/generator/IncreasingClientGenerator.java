@@ -9,7 +9,7 @@ import java.util.List;
 public class IncreasingClientGenerator implements BaseClientGenerator {
 
     private final int startGenerationTimeMs;
-    private final int additionalGenerationTimeMs ;
+    private final int incrementTimeMs ;
     private static int nextGenerationTimeMs = -1;
 
     private final BaseGeneratorHelper generatorHelper;
@@ -20,7 +20,7 @@ public class IncreasingClientGenerator implements BaseClientGenerator {
 
         this.generatorHelper = new GeneratorHelper();
         this.startGenerationTimeMs = ConfigFileGetter.get("clientGenerator.increasing.startGenerationTimeMs", int.class);
-        this.additionalGenerationTimeMs = ConfigFileGetter.get("clientGenerator.increasing.additionalGenerationTimeMs", int.class);
+        this.incrementTimeMs = ConfigFileGetter.get("clientGenerator.increasing.incrementTimeMs", int.class);
 
         nextGenerationTimeMs = nextGenerationTimeMs == -1 ? startGenerationTimeMs : nextGenerationTimeMs;
     }
@@ -28,7 +28,7 @@ public class IncreasingClientGenerator implements BaseClientGenerator {
     @Override
     public BaseClient generateClient() throws InterruptedException {
         generatorHelper.waitFor(nextGenerationTimeMs);
-        nextGenerationTimeMs += additionalGenerationTimeMs;
+        nextGenerationTimeMs += incrementTimeMs;
         return generatorHelper.createClient(entrancePositions);
     }
 }

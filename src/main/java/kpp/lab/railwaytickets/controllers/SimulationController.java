@@ -1,11 +1,7 @@
 package kpp.lab.railwaytickets.controllers;
 
 import kpp.lab.railwaytickets.dto.*;
-import kpp.lab.railwaytickets.mappers.ClientMapper;
-import kpp.lab.railwaytickets.mappers.ResultMapper;
 import kpp.lab.railwaytickets.mappers.TrainStationMapper;
-import kpp.lab.railwaytickets.model.interfaces.BaseClient;
-import kpp.lab.railwaytickets.model.interfaces.ClientCreatorSubscriber;
 import kpp.lab.railwaytickets.services.interfaces.ClientCashDeskService;
 import kpp.lab.railwaytickets.services.interfaces.SimulationService;
 import org.springframework.beans.factory.annotation.Autowired;

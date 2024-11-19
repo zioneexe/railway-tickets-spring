@@ -46,16 +46,20 @@ public class CashDesk implements BaseCashDesk {
 
     @Override
     public void addClientToQueue(BaseClient client) {
-
-        for (int i = clientsQueue.size() - 1; i >= 0; i--) {
+// 1
+        // 3, 4, 2, 2  - 5
+        for (int i = clientsQueue.size() - 1; i >= 1; i--) {
             if(client.calculatePriority() <= clientsQueue.get(i).calculatePriority())
             {
                 clientsQueue.add(i + 1, client);
                 return;
             }
         }
-
-        clientsQueue.add(0, client);
+        if (clientsQueue.isEmpty()) {
+            clientsQueue.add(0, client);
+        } else {
+            clientsQueue.add(1, client);
+        }
     }
 
     @Override

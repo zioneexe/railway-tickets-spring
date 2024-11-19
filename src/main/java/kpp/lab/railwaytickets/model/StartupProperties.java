@@ -4,9 +4,7 @@ import kpp.lab.railwaytickets.model.interfaces.BasePosition;
 import kpp.lab.railwaytickets.model.interfaces.BaseStartupProperties;
 import kpp.lab.railwaytickets.model.generator.BaseClientGenerator;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -25,10 +23,7 @@ public class StartupProperties implements BaseStartupProperties {
     private int stationWidth;
     private int stationHeight;
 
-    public StartupProperties() {
-        deskPositions = new ArrayList<>();
-        entrancePositions = new ArrayList<>();
-    }
+    public StartupProperties() {}
 
     @Override
     public int getStationWidth() {

@@ -1,7 +1,5 @@
 package kpp.lab.railwaytickets.services.implementations;
 
-import kpp.lab.railwaytickets.model.StartupProperties;
-import kpp.lab.railwaytickets.model.TrainStation;
 import kpp.lab.railwaytickets.model.interfaces.BaseCashDesk;
 import kpp.lab.railwaytickets.model.interfaces.BaseClient;
 import kpp.lab.railwaytickets.model.interfaces.BaseStartupProperties;
@@ -25,7 +23,7 @@ public class ClientCashDeskServiceImpl implements ClientCashDeskService {
     }
 
     @Override
-    public BaseCashDesk processOrder(BaseCashDesk cashDesk) {
+    public synchronized BaseCashDesk processOrder(BaseCashDesk cashDesk) {
 
         var clientQueue = cashDesk.getQueue();
         BaseClient client = clientQueue.getFirst();

@@ -5,7 +5,6 @@ import kpp.lab.railwaytickets.model.interfaces.BaseStartupProperties;
 import kpp.lab.railwaytickets.model.interfaces.BaseTrainStation;
 import kpp.lab.railwaytickets.model.builder.BaseBuilder;
 import kpp.lab.railwaytickets.model.builder.BaseDirector;
-import kpp.lab.railwaytickets.services.interfaces.ClientCreatorService;
 import kpp.lab.railwaytickets.services.interfaces.SimulationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,15 +42,24 @@ public class SimulationServiceImpl implements SimulationService {
 
     @Override
     public BaseTrainStation createTrainStation() {
+
+        // Build with builder
         director.createTrainStation(builder);
         var buildedTrainStation = builder.getResult();
 
+        // Get properties
         var cashDesks = trainStation.getCashDesks();
+        var entrances = trainStation.getEntrances();
+
+        // Clear old
+        cashDesks.clear();
+        entrances.clear();
+
+        // Set new
         for(var buildedTrainStationDesk :  buildedTrainStation.getCashDesks()) {
             cashDesks.add(buildedTrainStationDesk);
         }
 
-        var entrances = trainStation.getEntrances();
         for(var buildedTrainStationEntrance : buildedTrainStation.getEntrances()) {
             entrances.add(buildedTrainStationEntrance);
         }
