@@ -1,5 +1,6 @@
 package kpp.lab.railwaytickets.services.implementations;
 
+import kpp.lab.railwaytickets.config.ConfigFileGetter;
 import kpp.lab.railwaytickets.dto.CashDeskLogDto;
 import kpp.lab.railwaytickets.mappers.CashDeskMapper;
 import kpp.lab.railwaytickets.mappers.ClientMapper;
@@ -28,20 +29,17 @@ public class ThreadServiceImpl implements ThreadService {
 
     private ClientCreatorService clientCreatorService;
     private ClientCashDeskService clientCashDeskService;
+    private BaseLogger<CashDeskLogDto> cashDeskLogger;
     private BaseTrainStation trainStation;
 
     private ExecutorService cashDeskExecutorService;
     private ExecutorService clientGeneratorExecutorService;
 
+    private final int clientsToBreakCashDesk;
+    private final int restoreTimeMs;
+
     private AtomicInteger currentClientsServed = new AtomicInteger(1);
-
-    private final int clientsToBreakCashDesk = 10;
-    private final int restoreTimeMs = 20000;
-
     private boolean isThereABrokenCashDesk = false;
-
-    private BaseLogger<CashDeskLogDto> cashDeskLogger;
-
 
     public ThreadServiceImpl(
             ClientCreatorService clientCreatorService,
@@ -53,6 +51,9 @@ public class ThreadServiceImpl implements ThreadService {
         this.clientCashDeskService = clientCashDeskService;
         this.trainStation = trainStation;
         this.cashDeskLogger = cashDeskLogger;
+
+        this.clientsToBreakCashDesk = ConfigFileGetter.get("cashDesk.clientsToBreakCashDesk", int.class);
+        this.restoreTimeMs = ConfigFileGetter.get("cashDesk.restoreTimeMs", int.class);
     }
 
     @Override

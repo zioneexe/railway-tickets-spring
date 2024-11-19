@@ -1,5 +1,6 @@
 package kpp.lab.railwaytickets.model.generator;
 
+import kpp.lab.railwaytickets.config.ConfigFileGetter;
 import kpp.lab.railwaytickets.model.Client;
 import kpp.lab.railwaytickets.model.decorator.ClientSoldierDecorator;
 import kpp.lab.railwaytickets.model.decorator.ClientStudentDecorator;
@@ -13,20 +14,28 @@ import java.util.Random;
 
 import static kpp.lab.railwaytickets.RailwayTicketsApplication.LOGGER;
 
+
 public class GeneratorHelper implements BaseGeneratorHelper {
 
-    private final int minClientTicketsNumber = 1;
-    private final int maxClientTicketsNumber = 4;
+    private final int minClientTicketsNumber;
+    private final int maxClientTicketsNumber;
 
-    private final double soldierDecoratorChance = 0.1;
-    private final double disabledDecoratorChance = 0.2;
-    private final double studentDecoratorChance = 0.3;
-    private final double withChildDecoratorChance = 0.4;
+    private final double soldierDecoratorChance;
+    private final double disabledDecoratorChance;
+    private final double studentDecoratorChance;
+    private final double withChildDecoratorChance;
 
     private static Random random;
 
     public GeneratorHelper() {
         random = new Random();
+
+        this.minClientTicketsNumber = ConfigFileGetter.get("clientGenerator.tickets.minClientTicketsNumber", int.class);
+        this.maxClientTicketsNumber = ConfigFileGetter.get("clientGenerator.tickets.maxClientTicketsNumber", int.class);
+        this.soldierDecoratorChance = ConfigFileGetter.get("clientGenerator.decorator.soldierDecoratorChance", double.class);
+        this.disabledDecoratorChance = ConfigFileGetter.get("clientGenerator.decorator.disabledDecoratorChance", double.class);
+        this.studentDecoratorChance = ConfigFileGetter.get("clientGenerator.decorator.studentDecoratorChance", double.class);
+        this.withChildDecoratorChance = ConfigFileGetter.get("clientGenerator.decorator.withChildDecoratorChance", double.class);
     }
 
     public BaseClient decorateClient(BaseClient client) {

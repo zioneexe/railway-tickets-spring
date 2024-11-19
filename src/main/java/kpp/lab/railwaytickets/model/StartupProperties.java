@@ -12,8 +12,8 @@ import java.util.List;
 @Component
 public class StartupProperties implements BaseStartupProperties {
 
-    private List<BasePosition> deskPositions = new ArrayList<>();
-    private List<BasePosition> entrancePositions = new ArrayList<>();
+    private List<BasePosition> deskPositions;
+    private List<BasePosition> entrancePositions;
     private BasePosition reserveDeskPosition;
 
     private int minServiceTime;
@@ -25,20 +25,10 @@ public class StartupProperties implements BaseStartupProperties {
     private int stationWidth;
     private int stationHeight;
 
-    // Шось придумаєм і юсіді
-    private static StartupProperties instance;
-
-    private StartupProperties() {
+    public StartupProperties() {
+        deskPositions = new ArrayList<>();
+        entrancePositions = new ArrayList<>();
     }
-
-    // TODO: багатопотоковий
-    public static StartupProperties getInstance() {
-        if (instance == null) {
-            instance = new StartupProperties();
-        }
-        return instance;
-    }
-    // Шось придумаєм і юсіді
 
     @Override
     public int getStationWidth() {

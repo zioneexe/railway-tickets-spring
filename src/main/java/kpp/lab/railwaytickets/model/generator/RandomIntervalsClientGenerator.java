@@ -1,27 +1,25 @@
 package kpp.lab.railwaytickets.model.generator;
 
+import kpp.lab.railwaytickets.config.ConfigFileGetter;
 import kpp.lab.railwaytickets.model.interfaces.BaseClient;
 import kpp.lab.railwaytickets.model.interfaces.BasePosition;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
 public class RandomIntervalsClientGenerator implements BaseClientGenerator {
 
-    private int minGenerationTimeMs = 1000;
-    private int maxGenerationTimeMs = 5000;
+    private final int minGenerationTimeMs;
+    private final int maxGenerationTimeMs;
 
     private BaseGeneratorHelper generatorHelper;
     private List<BasePosition> entrancePositions;
 
     public RandomIntervalsClientGenerator(List<BasePosition> entrancePositions) {
-        this.generatorHelper = new GeneratorHelper();
         this.entrancePositions = entrancePositions;
+
+        this.generatorHelper = new GeneratorHelper();
+        this.minGenerationTimeMs = ConfigFileGetter.get("clientGenerator.random.minGenerationTimeMs", int.class);
+        this.maxGenerationTimeMs = ConfigFileGetter.get("clientGenerator.random.maxGenerationTimeMs", int.class);
     }
 
     @Override

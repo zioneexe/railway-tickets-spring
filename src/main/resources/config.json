@@ -1,0 +1,29 @@
+{
+  "clientGenerator": {
+    "equal": {
+      "generationTimeMs": 3000
+    },
+    "random": {
+      "minGenerationTimeMs": 1000,
+      "maxGenerationTimeMs": 5000
+    },
+    "increasing": {
+      "startGenerationTimeMs": 2000,
+      "additionalGenerationTimeMs": 10
+    },
+    "tickets": {
+      "minClientTicketsNumber": 1,
+      "maxClientTicketsNumber": 5
+    },
+    "decorator": {
+      "soldierDecoratorChance": 0.1,
+      "disabledDecoratorChance": 0.2,
+      "studentDecoratorChance": 0.3,
+      "withChildDecoratorChance": 0.4
+    }
+  },
+  "cashDesk" : {
+    "clientsToBreakCashDesk": 50,
+    "restoreTimeMs": 60000
+  }
+}
