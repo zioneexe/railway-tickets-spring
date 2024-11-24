@@ -12,10 +12,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class SimulationServiceImpl implements SimulationService {
 
-    private BaseStartupProperties startupProperties;
-    private BaseTrainStation trainStation;
-    private BaseBuilder builder;
-    private BaseDirector director;
+    private final BaseStartupProperties startupProperties;
+    private final BaseTrainStation trainStation;
+    private final BaseBuilder builder;
+    private final BaseDirector director;
 
     @Autowired
     public SimulationServiceImpl(BaseDirector director, BaseBuilder builder, BaseStartupProperties startupProperties, BaseTrainStation trainStation) {
@@ -29,9 +29,7 @@ public class SimulationServiceImpl implements SimulationService {
     public Result getResult() {
         return new Result(
                 startupProperties.getStationWidth(),
-                startupProperties.getStationHeight(),
-                0,
-                0
+                startupProperties.getStationHeight()
         );
     }
 
@@ -45,7 +43,7 @@ public class SimulationServiceImpl implements SimulationService {
 
         // Build with builder
         director.createTrainStation(builder);
-        var buildedTrainStation = builder.getResult();
+        var builtTrainStation = builder.getResult();
 
         // Get properties
         var cashDesks = trainStation.getCashDesks();
@@ -56,16 +54,12 @@ public class SimulationServiceImpl implements SimulationService {
         entrances.clear();
 
         // Set new
-        for(var buildedTrainStationDesk :  buildedTrainStation.getCashDesks()) {
-            cashDesks.add(buildedTrainStationDesk);
-        }
+        cashDesks.addAll(builtTrainStation.getCashDesks());
 
-        for(var buildedTrainStationEntrance : buildedTrainStation.getEntrances()) {
-            entrances.add(buildedTrainStationEntrance);
-        }
+        entrances.addAll(builtTrainStation.getEntrances());
 
-        trainStation.addMap(buildedTrainStation.getMap().getSizeX(), buildedTrainStation.getMap().getSizeY());
-        trainStation.setMaxClientNumber(buildedTrainStation.getMaxPeopleCount());
+        trainStation.addMap(builtTrainStation.getMap().getSizeX(), builtTrainStation.getMap().getSizeY());
+        trainStation.setMaxClientNumber(builtTrainStation.getMaxPeopleCount());
 
         return trainStation;
     }

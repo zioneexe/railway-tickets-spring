@@ -1,20 +1,15 @@
 package kpp.lab.railwaytickets.model;
 
+import lombok.Getter;
+
+@Getter
 public class Result {
 
-    private int TotalClients;
-    private int TotalTickets;
+    private int totalClients;
+    private int totalTickets;
 
-    public Result(int TotalClients, int TotalTickets) {
-        this.TotalClients = TotalClients;
-        this.TotalTickets = TotalTickets;
-    }
-
-    public int getTotalClients() {
-        return TotalClients;
-    }
-
-    public int getTotalTickets() {
-        return TotalTickets;
+    public Result(int totalClients, int totalTickets) {
+        this.totalClients = totalClients;
+        this.totalTickets = totalTickets;
     }
 }

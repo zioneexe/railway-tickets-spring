@@ -27,7 +27,7 @@ public class SocketIOSimulationRunner {
     private static final String SIMULATION_STOPPED_EVENT = "simulation_stopped";
 
     private long startSimulationTime;
-    private ThreadService threadService;
+    private final ThreadService threadService;
 
     @Autowired
     public SocketIOSimulationRunner(SocketIOServer socketServer, ThreadService threadService) {
@@ -76,7 +76,7 @@ public class SocketIOSimulationRunner {
                 }, startSimulationTime);
 
             } catch (Exception e) {
-                log.error("Error: {}", e.getMessage());
+                log.error("Error when starting simulation: {}", e.getMessage());
             }
         };
     }
@@ -93,7 +93,7 @@ public class SocketIOSimulationRunner {
                 }
 
             } catch (Exception e) {
-                log.error("Error: {}", e.getMessage());
+                log.error("Error when stopping simulation: {}", e.getMessage());
             }
         };
     }

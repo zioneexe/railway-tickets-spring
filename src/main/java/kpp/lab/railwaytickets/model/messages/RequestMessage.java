@@ -4,12 +4,8 @@ import lombok.*;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class RequestMessage {
     private String message;
-
-    public RequestMessage() {}
-
-    public RequestMessage(String message) {
-        this.message = message;
-    }
 }

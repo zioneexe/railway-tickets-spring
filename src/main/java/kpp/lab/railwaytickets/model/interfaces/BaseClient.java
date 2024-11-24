@@ -6,10 +6,11 @@ public interface BaseClient {
 
     int getTicketNumber();
 
+    String getType();
+
     BasePosition getPosition();
+
     void setPosition(BasePosition position);
 
     int calculatePriority();
-
-    String getType();
 }

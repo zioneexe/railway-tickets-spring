@@ -5,5 +5,5 @@ import kpp.lab.railwaytickets.model.interfaces.BaseClient;
 
 public interface ClientCreatorService {
 
-     BaseClient createClient() throws InterruptedException;
+    BaseClient createClient() throws InterruptedException;
 }

@@ -27,13 +27,6 @@ public class CashDesk implements BaseCashDesk {
         this.id = nextId++;
     }
 
-    public CashDesk(int id, BasePosition position, boolean isBackup) {
-        this.position = position;
-        this.clientsQueue = new ArrayList<>();
-        this.isBackup = isBackup;
-        this.id = id;
-    }
-
     @Override
     public int getId() {
         return id;
@@ -46,8 +39,6 @@ public class CashDesk implements BaseCashDesk {
 
     @Override
     public void addClientToQueue(BaseClient client) {
-// 1
-        // 3, 4, 2, 2  - 5
         for (int i = clientsQueue.size() - 1; i >= 1; i--) {
             if(client.calculatePriority() <= clientsQueue.get(i).calculatePriority())
             {
@@ -56,15 +47,10 @@ public class CashDesk implements BaseCashDesk {
             }
         }
         if (clientsQueue.isEmpty()) {
-            clientsQueue.add(0, client);
+            clientsQueue.addFirst(client);
         } else {
             clientsQueue.add(1, client);
         }
-    }
-
-    @Override
-    public void removeClientFromQueue(BaseClient client) {
-        clientsQueue.removeLast();
     }
 
     @Override

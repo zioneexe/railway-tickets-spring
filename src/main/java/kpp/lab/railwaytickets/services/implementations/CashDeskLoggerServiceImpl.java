@@ -24,13 +24,19 @@ public class CashDeskLoggerServiceImpl implements BaseLogger<CashDeskLogDto> {
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final Path logFilePath;
 
+    public static final int EMPTY_ARR_LENGTH = 2;
+    public static final String BRACKETS = "[]";
+    public static final String SEPARATOR = ",";
+    public static final String CLOSING_BRACKET = "]";
+    public static final String FILE_ACCESS_MODE = "rw";
+
     @Autowired
     public CashDeskLoggerServiceImpl(@Value("${log.filename}") String logFileName) {
         this.logFilePath = Paths.get(logFileName);
 
         if (Files.notExists(logFilePath)) {
             try {
-                Files.write(logFilePath, "[]".getBytes());
+                Files.write(logFilePath, BRACKETS.getBytes());
             } catch (IOException e) {
                 LOGGER.error("Error when opening file: {}", e.getMessage());
             }
@@ -39,19 +45,21 @@ public class CashDeskLoggerServiceImpl implements BaseLogger<CashDeskLogDto> {
 
     @Override
     public synchronized void write(CashDeskLogDto order) {
-        try (RandomAccessFile file = new RandomAccessFile(logFilePath.toFile(), "rw")) {
+        try (RandomAccessFile file = new RandomAccessFile(logFilePath.toFile(), FILE_ACCESS_MODE)) {
             long fileLength = file.length();
-            if (fileLength <= 2) {
+
+            if (fileLength <= EMPTY_ARR_LENGTH) {
                 file.seek(fileLength - 1);
                 String json = objectMapper.writeValueAsString(order);
                 file.write(json.getBytes());
             } else {
                 file.seek(fileLength - 1);
-                file.write(",".getBytes());
+                file.write(SEPARATOR.getBytes());
                 String json = objectMapper.writeValueAsString(order);
                 file.write(json.getBytes());
             }
-            file.write("]".getBytes());
+
+            file.write(CLOSING_BRACKET.getBytes());
         } catch (IOException e) {
             LOGGER.error("Error when logging message: {}", e.getMessage());
         }
@@ -73,9 +81,9 @@ public class CashDeskLoggerServiceImpl implements BaseLogger<CashDeskLogDto> {
     @PreDestroy
     public synchronized void clear() {
         try {
-            Files.write(logFilePath, "[]".getBytes());
+            Files.write(logFilePath, BRACKETS.getBytes());
         } catch (IOException e) {
-            LOGGER.error("Error when opening file: {}", e.getMessage());
+            LOGGER.error("Error when clearing file: {}", e.getMessage());
         }
     }
 }

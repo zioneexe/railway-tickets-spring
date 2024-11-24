@@ -38,8 +38,10 @@ public class ThreadServiceImpl implements ThreadService {
     private final int clientsToBreakCashDesk;
     private final int restoreTimeMs;
 
-    private AtomicInteger currentClientsServed = new AtomicInteger(1);
+    private final AtomicInteger currentClientsServed = new AtomicInteger(1);
     private boolean isThereABrokenCashDesk = false;
+
+    public static final int SLEEP_TIME = 100;
 
     public ThreadServiceImpl(
             ClientCreatorService clientCreatorService,
@@ -57,7 +59,7 @@ public class ThreadServiceImpl implements ThreadService {
     }
 
     @Override
-    public void startCashDesks(SendCashDeskResponse sendCashDeskResponse, long startSimulationTime) {
+    public void startCashDesks(SendCashDeskResponse sendCashDeskResponse, long applicationStartTime) {
 
         var cashDesks = trainStation.getCashDesks();
 
@@ -76,9 +78,9 @@ public class ThreadServiceImpl implements ThreadService {
 
                                     BaseClient clientToBeProcessed = cashDesk.getQueue().getFirst();
 
-                                    long startTime = Instant.now().toEpochMilli() - startSimulationTime;
+                                    long startTime = Instant.now().toEpochMilli() - applicationStartTime;
                                     sendCashDeskResponse.execute(CashDeskMapper.baseCashDeskToCashDeskDto(cashDesk));
-                                    long endTime = Instant.now().toEpochMilli() - startSimulationTime;
+                                    long endTime = Instant.now().toEpochMilli() - applicationStartTime;
 
                                     cashDeskLogger.write(new CashDeskLogDto(clientToBeProcessed.getId(), cashDesk.getId(), clientToBeProcessed.getTicketNumber(), startTime, endTime));
 
@@ -93,15 +95,15 @@ public class ThreadServiceImpl implements ThreadService {
                                 } else {
                                     BaseClient clientToBeProcessed = cashDesk.getQueue().getFirst();
 
-                                    long startTime = Instant.now().toEpochMilli() - startSimulationTime;
+                                    long startTime = Instant.now().toEpochMilli() - applicationStartTime;
                                     sendCashDeskResponse.execute(CashDeskMapper.baseCashDeskToCashDeskDto(clientCashDeskService.processOrder(cashDesk)));
-                                    long endTime = Instant.now().toEpochMilli()- startSimulationTime;
+                                    long endTime = Instant.now().toEpochMilli() - applicationStartTime;
 
                                     cashDeskLogger.write(new CashDeskLogDto(clientToBeProcessed.getId(), cashDesk.getId(), clientToBeProcessed.getTicketNumber(), startTime, endTime));
                                 }
                             }
 
-                            Thread.sleep(100);
+                            Thread.sleep(SLEEP_TIME);
 
                         } catch (InterruptedException e) {
                             Thread.currentThread().interrupt();
@@ -120,8 +122,6 @@ public class ThreadServiceImpl implements ThreadService {
         }
     }
 
-
-
     @Override
     public void stopCashDesks() {
         if (cashDeskExecutorService != null && !cashDeskExecutorService.isShutdown()) {
@@ -139,14 +139,14 @@ public class ThreadServiceImpl implements ThreadService {
     }
 
     @Override
-    public void startClientGeneration(SendCreatedClientResponse sendCreatedClientResponse) {
+    public void startClientGeneration(SendCreatedClientResponse responseFunction) {
         clientGeneratorExecutorService = Executors.newSingleThreadExecutor();
         clientGeneratorExecutorService.submit(() -> {
             try {
                 while (!Thread.currentThread().isInterrupted()) {
                     var createdClient = clientCreatorService.createClient();
                     clientCashDeskService.chooseCashDesk(createdClient);
-                    sendCreatedClientResponse.execute(ClientMapper.baseClientToClientDto(createdClient));
+                    responseFunction.execute(ClientMapper.baseClientToClientDto(createdClient));
                 }
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -173,11 +173,5 @@ public class ThreadServiceImpl implements ThreadService {
                 Thread.currentThread().interrupt();
             }
         }
-    }
-
-    @Override
-    public void shutdownAll() {
-        stopCashDesks();
-        stopClientGeneration();
     }
 }

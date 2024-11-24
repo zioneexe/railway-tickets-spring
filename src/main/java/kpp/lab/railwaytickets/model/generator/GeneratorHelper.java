@@ -25,11 +25,9 @@ public class GeneratorHelper implements BaseGeneratorHelper {
     private final double studentDecoratorChance;
     private final double withChildDecoratorChance;
 
-    private static Random random;
+    private final Random random = new Random();
 
     public GeneratorHelper() {
-        random = new Random();
-
         this.minClientTicketsNumber = ConfigFileGetter.get("clientGenerator.tickets.minClientTicketsNumber", int.class);
         this.maxClientTicketsNumber = ConfigFileGetter.get("clientGenerator.tickets.maxClientTicketsNumber", int.class);
         this.soldierDecoratorChance = ConfigFileGetter.get("clientGenerator.decorator.soldierDecoratorChance", double.class);

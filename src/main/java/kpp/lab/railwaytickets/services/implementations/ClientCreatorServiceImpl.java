@@ -11,6 +11,7 @@ public class ClientCreatorServiceImpl implements ClientCreatorService {
 
     private BaseStartupProperties startupProperties;
     private BaseTrainStation trainStation;
+
     public ClientCreatorServiceImpl(BaseStartupProperties startupProperties, BaseTrainStation trainStation) {
         this.startupProperties = startupProperties;
         this.trainStation = trainStation;
@@ -19,10 +20,7 @@ public class ClientCreatorServiceImpl implements ClientCreatorService {
     @Override
     public BaseClient createClient() throws InterruptedException {
         if (trainStation.getMaxPeopleCount() < trainStation.getCurrentClientNumber()) {
-            while(true) {
-                if (trainStation.getCurrentClientNumber() < trainStation.getMaxPeopleCount() * 0.7) {
-                    break;
-                }
+            while (trainStation.getCurrentClientNumber() >= trainStation.getMaxPeopleCount() * 0.7) {
                 Thread.sleep(100);
             }
         }

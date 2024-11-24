@@ -10,8 +10,6 @@ public interface BaseCashDesk {
 
     void addClientToQueue(BaseClient client);
 
-    void removeClientFromQueue(BaseClient client);
-
     List<BaseClient> getQueue();
 
     boolean getIsBackup();

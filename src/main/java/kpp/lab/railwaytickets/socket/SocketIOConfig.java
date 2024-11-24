@@ -17,16 +17,16 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public class SocketIOConfig {
 
     @Value("${socket.host}")
-    private String SOCKETHOST;
+    private String socketHost;
     @Value("${socket.port}")
-    private int SOCKETPORT;
+    private int socketPort;
     private SocketIOServer server;
 
     @Bean
     public SocketIOServer socketIOServer() {
         Configuration config = new Configuration();
-        config.setHostname(SOCKETHOST);
-        config.setPort(SOCKETPORT);
+        config.setHostname(socketHost);
+        config.setPort(socketPort);
         config.setOrigin("*");
 
         config.setJsonSupport(new JacksonJsonSupport());

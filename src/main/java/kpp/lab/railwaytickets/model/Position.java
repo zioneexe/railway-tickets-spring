@@ -4,24 +4,22 @@ import kpp.lab.railwaytickets.model.interfaces.BasePosition;
 
 public class Position implements BasePosition {
 
-    // TODO: на UML конструктор
+    private int x;
 
-    private int X;
-
-    private int Y;
+    private int y;
 
     public Position(int X, int Y) {
-        this.X = X;
-        this.Y = Y;
+        this.x = X;
+        this.y = Y;
     }
 
     @Override
     public int getX() {
-        return X;
+        return x;
     }
 
     @Override
     public int getY() {
-        return Y;
+        return y;
     }
 }

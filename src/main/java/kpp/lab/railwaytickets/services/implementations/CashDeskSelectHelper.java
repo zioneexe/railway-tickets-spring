@@ -21,6 +21,7 @@ public class CashDeskSelectHelper {
                 .mapToInt(cashDesk -> cashDesk.getQueue().size())
                 .min()
                 .orElse(0);
+
         List<BaseCashDesk> minClientsCashDesks =
                 cashDesks.stream().filter(e -> e.getQueue().size() == (int)minClientsNumberInQueue).toList();
 

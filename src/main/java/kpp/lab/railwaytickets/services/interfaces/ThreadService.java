@@ -5,14 +5,12 @@ import kpp.lab.railwaytickets.socket.SendCreatedClientResponse;
 
 public interface ThreadService {
 
-    void startClientGeneration(SendCreatedClientResponse responseLambda);
+    void startClientGeneration(SendCreatedClientResponse responseFunction);
 
     void stopClientGeneration();
 
-    void startCashDesks(SendCashDeskResponse sendCashDeskResponse, long ApplicationStartTime);
+    void startCashDesks(SendCashDeskResponse sendCashDeskResponse, long applicationStartTime);
 
     void stopCashDesks();
-
-    void shutdownAll();
 
 }

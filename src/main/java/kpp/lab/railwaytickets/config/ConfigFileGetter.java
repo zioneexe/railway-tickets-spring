@@ -6,7 +6,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
 
+import static kpp.lab.railwaytickets.RailwayTicketsApplication.LOGGER;
+
 public class ConfigFileGetter {
+
+    private ConfigFileGetter() {}
 
     private static JsonNode rootNode;
 
@@ -16,7 +20,7 @@ public class ConfigFileGetter {
             File configFile = new File("src/main/resources/config.json");
             rootNode = objectMapper.readTree(configFile);
         } catch (IOException e) {
-            System.err.println("Error reading configuration file: " + e.getMessage());
+            LOGGER.error("Error reading configuration file: {}", e.getMessage());
         }
     }
 
