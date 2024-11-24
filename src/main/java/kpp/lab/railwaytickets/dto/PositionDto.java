@@ -9,5 +9,6 @@ import lombok.Setter;
 @Setter
 public class PositionDto {
     private final int x;
+
     private final int y;
 }

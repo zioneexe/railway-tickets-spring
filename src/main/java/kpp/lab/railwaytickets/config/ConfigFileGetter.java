@@ -26,6 +26,7 @@ public class ConfigFileGetter {
 
     public static <T> T get(String key, Class<T> type) {
         if (rootNode == null) {
+            LOGGER.error("Configuration file loading issue.");
             throw new IllegalStateException("Configuration file not loaded.");
         }
 
@@ -35,6 +36,7 @@ public class ConfigFileGetter {
         for (String k : keys) {
             node = node.get(k);
             if (node == null) {
+                LOGGER.error("Configuration key not found in the configuration {}.", key);
                 throw new IllegalArgumentException("Key '" + key + "' not found in configuration.");
             }
         }
@@ -43,7 +45,8 @@ public class ConfigFileGetter {
         try {
             return objectMapper.treeToValue(node, type);
         } catch (Exception e) {
-            throw new IllegalArgumentException("Failed to convert value for key '" + key + "' to " + type.getSimpleName(), e);
+            throw new IllegalArgumentException("Failed to convert value for key '" + key + "' to "
+                    + type.getSimpleName(), e);
         }
     }
 }

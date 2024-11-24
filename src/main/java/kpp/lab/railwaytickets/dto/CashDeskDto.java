@@ -11,9 +11,13 @@ import java.util.List;
 @Setter
 public class CashDeskDto {
     private final int id;
+
     private final PositionDto position;
+
     private final List<ClientDto> clientsQueue;
+
     private final boolean isBackup;
+
     private final boolean isBroken;
 }
 

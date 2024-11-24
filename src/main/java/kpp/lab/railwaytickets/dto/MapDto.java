@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class MapDto {
-
     private final int sizeX;
+
     private final int sizeY;
 }

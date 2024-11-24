@@ -8,6 +8,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class EntranceDto {
-
     private final PositionDto position;
 }

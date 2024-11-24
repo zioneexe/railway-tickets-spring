@@ -26,7 +26,7 @@ public class SocketIOSimulationRunner {
     private static final String CASH_DESK_EVENT = "cash_desk";
     private static final String SIMULATION_STOPPED_EVENT = "simulation_stopped";
 
-    private long startSimulationTime;
+    private final long startSimulationTime;
     private final ThreadService threadService;
 
     @Autowired
@@ -35,7 +35,7 @@ public class SocketIOSimulationRunner {
         initializeEventListeners();
         this.threadService = threadService;
 
-        startSimulationTime = Instant.now().toEpochMilli();        startSimulationTime = Instant.now().toEpochMilli();
+        startSimulationTime = Instant.now().toEpochMilli();
     }
 
     private void initializeEventListeners() {
@@ -45,32 +45,27 @@ public class SocketIOSimulationRunner {
         socketServer.addEventListener(STOP_SIMULATION_EVENT, RequestMessage.class, onStopSimulationEventReceived());
     }
 
-
     private ConnectListener onUserConnect() {
-        return client -> {
-            log.info("Client connected - ID: {}", client.getSessionId().toString());
-        };
+        return client -> log.info("Client connected - ID: {}", client.getSessionId().toString());
     }
 
     private DisconnectListener onUserDisconnect() {
-        return client -> {
-            log.info("Client disconnected - ID: {}", client.getSessionId().toString());
-        };
+        return client -> log.info("Client disconnected - ID: {}", client.getSessionId().toString());
     }
 
     private DataListener<RequestMessage> onStartSimulationEventReceived() {
-        return (client, message, ackRequest) -> {
+        return (client, _, _) -> {
             try {
                 log.info("Received << " + START_SIMULATION_EVENT + " >> from client: {}", client.getSessionId());
 
                 threadService.startClientGeneration((ClientDto generatedClient) -> {
-                    if(client.isChannelOpen()) {
+                    if (client.isChannelOpen()) {
                         client.sendEvent(NEW_CLIENT_GENERATED_EVENT, generatedClient);
                     }
                 });
 
                 threadService.startCashDesks((CashDeskDto cashDeskResponse) -> {
-                    if(client.isChannelOpen()) {
+                    if (client.isChannelOpen()) {
                         client.sendEvent(CASH_DESK_EVENT, cashDeskResponse);
                     }
                 }, startSimulationTime);
@@ -82,13 +77,13 @@ public class SocketIOSimulationRunner {
     }
 
     private DataListener<RequestMessage> onStopSimulationEventReceived() {
-        return (client, message, ackRequest) -> {
+        return (client, _, _) -> {
             try {
                 log.info("Received << " + STOP_SIMULATION_EVENT + " >> from client: {}", client.getSessionId());
 
                 threadService.stopClientGeneration();
                 threadService.stopCashDesks();
-                if(client.isChannelOpen()) {
+                if (client.isChannelOpen()) {
                     client.sendEvent(SIMULATION_STOPPED_EVENT);
                 }
 

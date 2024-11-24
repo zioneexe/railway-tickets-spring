@@ -12,8 +12,12 @@ import lombok.Setter;
 @Setter
 public class CashDeskLogDto {
     private int clientId;
+
     private int cashDeskId;
+
     private int ticketsCount;
+
     private long startTimeMs;
+
     private long endTimeMs;
 }
