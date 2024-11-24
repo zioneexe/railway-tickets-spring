@@ -14,15 +14,18 @@ import kpp.lab.railwaytickets.dto.ResultDto;
 import kpp.lab.railwaytickets.mappers.ResultMapper;
 import kpp.lab.railwaytickets.model.Result;
 import kpp.lab.railwaytickets.model.interfaces.BaseLogger;
+import kpp.lab.railwaytickets.services.interfaces.SimulationService;
 
 @RestController
 @RequestMapping("/order")
 public class OrderController {
 
     private BaseLogger<CashDeskLogDto> cashDeskLogger;
+    private SimulationService simulationService;
 
     @Autowired
-    public OrderController(BaseLogger<CashDeskLogDto> cashDeskLogger) {
+    public OrderController(BaseLogger<CashDeskLogDto> cashDeskLogger, SimulationService simulationService) {
+        this.simulationService = simulationService;
         this.cashDeskLogger = cashDeskLogger;
     }
 
@@ -35,18 +38,10 @@ public class OrderController {
 
     @GetMapping("/result")
     public ResponseEntity<ResultDto> getLogsForResult() {
+
         var logs = cashDeskLogger.readAll(); 
 
-        int totalTickets = logs.stream()
-            .mapToInt(CashDeskLogDto::getTicketsCount)
-            .sum();
-            
-        int totalPassengers = (int) logs.stream()
-            .map(CashDeskLogDto::getClientId)
-            .distinct()
-            .count();
-
-        Result result = new Result(totalPassengers, totalTickets);
+        Result result = simulationService.getResult(logs);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(ResultMapper.resultToDto(result));
     }
