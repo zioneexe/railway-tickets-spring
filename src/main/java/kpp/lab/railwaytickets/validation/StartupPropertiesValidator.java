@@ -73,13 +73,13 @@ public class StartupPropertiesValidator {
 
     private static void validatePositions(int width, int height,
                                           List<BasePosition> deskPositions, List<BasePosition> entrancePositions) {
-        if (deskPositions.stream().anyMatch(d -> d.getX() < 0 || d.getX() > width
-                || d.getY() < 0 || d.getY() > height)) {
+        if (deskPositions.stream().anyMatch(d -> d.getX() < 1 || d.getX() > width
+                || d.getY() < 1 || d.getY() > height)) {
             violations.add("Invalid desk position found");
         }
 
-        if (entrancePositions.stream().anyMatch(e -> e.getX() < 0 ||
-                e.getX() > width || e.getY() < 0 || e.getY() > height)) {
+        if (entrancePositions.stream().anyMatch(e -> e.getX() < 1 ||
+                e.getX() > width || e.getY() < 1 || e.getY() > height)) {
             violations.add("Invalid entrance position found");
         }
     }

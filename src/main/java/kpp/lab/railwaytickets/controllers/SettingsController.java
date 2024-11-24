@@ -75,7 +75,7 @@ public class SettingsController {
         Set<String> violations = StartupPropertiesValidator.validate(startupProperties);
         if (!violations.isEmpty()) {
             LOGGER.error("Validation violations: {}", violations);
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(startupPropertiesDto);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
 
         return ResponseEntity.status(HttpStatus.CREATED).body(startupPropertiesDto);

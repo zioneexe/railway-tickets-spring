@@ -63,7 +63,6 @@ public class SimulationServiceImpl implements SimulationService {
         entrances.clear();
 
         cashDesks.addAll(builtTrainStation.getCashDesks());
-
         entrances.addAll(builtTrainStation.getEntrances());
 
         trainStation.addMap(builtTrainStation.getMap().getSizeX(), builtTrainStation.getMap().getSizeY());
