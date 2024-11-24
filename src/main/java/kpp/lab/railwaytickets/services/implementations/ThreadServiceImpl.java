@@ -75,7 +75,8 @@ public class ThreadServiceImpl implements ThreadService {
                     try {
                         if (!cashDesk.getQueue().isEmpty()) {
                             if (currentClientsServed.incrementAndGet() % clientsToBreakCashDesk == 0
-                                    && isThereABrokenCashDesk.compareAndSet(false, true)) {
+                                    && isThereABrokenCashDesk.compareAndSet(false, true)
+                                    && !cashDesk.getIsBackup()) {
                                 handleBrokenCashDesk(cashDesk, sendCashDeskResponse, applicationStartTime);
                             } else {
                                 processClient(cashDesk, sendCashDeskResponse, applicationStartTime);
