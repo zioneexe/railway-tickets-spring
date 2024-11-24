@@ -1,0 +1,16 @@
+23:08:24.400 [restartedMain] INFO  k.l.r.RailwayTicketsApplication - Starting RailwayTicketsApplication using Java 23.0.1 with PID 25400 (D:\repos\KPP\Lab6\railwaytickets\target\classes started by w3stn in D:\repos\KPP\Lab6\railwaytickets)
+23:08:24.403 [restartedMain] INFO  k.l.r.RailwayTicketsApplication - No active profile set, falling back to 1 default profile: "default"
+23:08:24.468 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+23:08:24.468 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+23:08:25.987 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+23:08:26.006 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+23:08:26.012 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+23:08:26.012 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.30]
+23:08:26.102 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+23:08:26.103 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1626 ms
+23:08:26.424 [restartedMain] INFO  c.c.socketio.SocketIOServer - Session store / pubsub factory used: MemoryStoreFactory (local session store only)
+23:08:26.643 [nioEventLoopGroup-2-1] INFO  c.c.socketio.SocketIOServer - SocketIO server started at port: 8082
+23:08:27.143 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+23:08:27.159 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+23:08:27.170 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+23:08:27.178 [restartedMain] INFO  k.l.r.RailwayTicketsApplication - Started RailwayTicketsApplication in 3.198 seconds (process running for 4.305)
