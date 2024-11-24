@@ -8,8 +8,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ResultDto {
-    private final int N;
-    private final int M;
 
     private final int totalClients;
     private final int totalTickets;
