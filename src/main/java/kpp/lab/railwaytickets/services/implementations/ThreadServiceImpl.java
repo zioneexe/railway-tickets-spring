@@ -19,6 +19,7 @@ import java.time.Instant;
 import java.util.NoSuchElementException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -35,6 +36,7 @@ public class ThreadServiceImpl implements ThreadService {
 
     private ExecutorService cashDeskExecutorService;
     private ExecutorService clientGeneratorExecutorService;
+    private final ScheduledExecutorService scheduler;
 
     private final int clientsToBreakCashDesk;
     private final int restoreTimeMs;
@@ -54,9 +56,10 @@ public class ThreadServiceImpl implements ThreadService {
         this.clientCashDeskService = clientCashDeskService;
         this.trainStation = trainStation;
         this.cashDeskLogger = cashDeskLogger;
-
         this.clientsToBreakCashDesk = ConfigFileGetter.get("cashDesk.clientsToBreakCashDesk", int.class);
         this.restoreTimeMs = ConfigFileGetter.get("cashDesk.restoreTimeMs", int.class);
+
+        this.scheduler = Executors.newSingleThreadScheduledExecutor();
     }
 
     @Override
@@ -75,7 +78,7 @@ public class ThreadServiceImpl implements ThreadService {
                                     && isThereABrokenCashDesk.compareAndSet(false, true)) {
                                 handleBrokenCashDesk(cashDesk, sendCashDeskResponse, applicationStartTime);
                             } else {
-                               processClient(cashDesk, sendCashDeskResponse, applicationStartTime);
+                                processClient(cashDesk, sendCashDeskResponse, applicationStartTime);
                             }
                         }
 
@@ -113,7 +116,7 @@ public class ThreadServiceImpl implements ThreadService {
         }
     }
 
-        @Override
+    @Override
     public void startClientGeneration(SendCreatedClientResponse responseFunction) {
         clientGeneratorExecutorService = Executors.newSingleThreadExecutor();
         clientGeneratorExecutorService.submit(() -> {
@@ -136,18 +139,8 @@ public class ThreadServiceImpl implements ThreadService {
 
     @Override
     public void stopClientGeneration() {
-        if (clientGeneratorExecutorService != null && !clientGeneratorExecutorService.isShutdown()) {
-            LOGGER.info("Shutting down client generation thread...");
-            clientGeneratorExecutorService.shutdownNow();
-            try {
-                if (!clientGeneratorExecutorService.awaitTermination(5, TimeUnit.SECONDS)) {
-                    LOGGER.warn("(stopClientGeneration) Client generation thread did not terminate in the specified time.");
-                }
-            } catch (InterruptedException e) {
-                LOGGER.error("Interrupted while waiting for client generation thread to terminate.");
-                Thread.currentThread().interrupt();
-            }
-        }
+        shutdownExecutorService(cashDeskExecutorService, "cash desk processing thread pool");
+        shutdownExecutorService(scheduler, "scheduler");
     }
 
     private void handleBrokenCashDesk(BaseCashDesk cashDesk, SendCashDeskResponse sendCashDeskResponse,
@@ -172,7 +165,7 @@ public class ThreadServiceImpl implements ThreadService {
     }
 
     private void processClient(BaseCashDesk cashDesk, SendCashDeskResponse sendCashDeskResponse,
-                               long applicationStartTime) throws Exception{
+                               long applicationStartTime) throws Exception {
         BaseClient clientToBeProcessed = cashDesk.getQueue().getFirst();
 
         long startTime = Instant.now().toEpochMilli() - applicationStartTime;
@@ -185,7 +178,6 @@ public class ThreadServiceImpl implements ThreadService {
     }
 
     private void scheduleBrokenCashDeskRepairment(BaseCashDesk cashDesk) {
-        var scheduler = Executors.newSingleThreadScheduledExecutor();
         scheduler.schedule(() -> {
             clientCashDeskService.setDeskWorking(cashDesk);
             isThereABrokenCashDesk.set(false);
@@ -199,5 +191,20 @@ public class ThreadServiceImpl implements ThreadService {
                 clientToBeProcessed.getTicketNumber(),
                 startTime, endTime
         ));
+    }
+
+    private void shutdownExecutorService(ExecutorService executorService, String serviceName) {
+        if (executorService != null && !executorService.isShutdown()) {
+            LOGGER.info("Shutting down {}...", serviceName);
+            executorService.shutdownNow();
+            try {
+                if (!executorService.awaitTermination(5, TimeUnit.SECONDS)) {
+                    LOGGER.warn("({}) did not terminate in the specified time.", serviceName);
+                }
+            } catch (InterruptedException e) {
+                LOGGER.error("Interrupted while stopping {}.", serviceName);
+                Thread.currentThread().interrupt();
+            }
+        }
     }
 }
