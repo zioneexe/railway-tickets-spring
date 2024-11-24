@@ -10,13 +10,13 @@ import java.util.List;
 public class CashDesk implements BaseCashDesk {
 
     private static int nextId = 1;
-    private int id;
+    private final int id;
 
-    private BasePosition position;
+    private final BasePosition position;
 
-    private List<BaseClient> clientsQueue;
+    private final List<BaseClient> clientsQueue;
 
-    private boolean isBackup;
+    private final boolean isBackup;
 
     private boolean isBroken = false;
 
@@ -40,8 +40,7 @@ public class CashDesk implements BaseCashDesk {
     @Override
     public void addClientToQueue(BaseClient client) {
         for (int i = clientsQueue.size() - 1; i >= 1; i--) {
-            if(client.calculatePriority() <= clientsQueue.get(i).calculatePriority())
-            {
+            if (client.calculatePriority() <= clientsQueue.get(i).calculatePriority()) {
                 clientsQueue.add(i + 1, client);
                 return;
             }
@@ -54,7 +53,9 @@ public class CashDesk implements BaseCashDesk {
     }
 
     @Override
-    public List<BaseClient> getQueue() { return clientsQueue; }
+    public List<BaseClient> getQueue() {
+        return clientsQueue;
+    }
 
     @Override
     public boolean getIsBackup() {
@@ -67,5 +68,7 @@ public class CashDesk implements BaseCashDesk {
     }
 
     @Override
-    public void setIsBroken(boolean isBroken) { this.isBroken = isBroken; }
+    public void setIsBroken(boolean isBroken) {
+        this.isBroken = isBroken;
+    }
 }

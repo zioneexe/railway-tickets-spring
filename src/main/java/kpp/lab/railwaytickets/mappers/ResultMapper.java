@@ -4,6 +4,9 @@ import kpp.lab.railwaytickets.dto.ResultDto;
 import kpp.lab.railwaytickets.model.Result;
 
 public class ResultMapper {
+
+    private ResultMapper() {}
+
     public static ResultDto resultToDto(Result result) {
         return new ResultDto(
                 result.getTotalClients(),

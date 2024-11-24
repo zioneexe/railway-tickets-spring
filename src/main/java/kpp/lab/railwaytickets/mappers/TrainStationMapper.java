@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TrainStationMapper {
+
+    private TrainStationMapper() {}
+
     public static TrainStationDto baseTrainStationToTrainStationDto(BaseTrainStation trainStation) {
         List<BaseCashDesk> cashDeskList = trainStation.getCashDesks();
         List<CashDeskDto> cashDeskDtoList = new ArrayList<>();

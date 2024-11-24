@@ -20,8 +20,8 @@ import kpp.lab.railwaytickets.services.interfaces.SimulationService;
 @RequestMapping("/order")
 public class OrderController {
 
-    private BaseLogger<CashDeskLogDto> cashDeskLogger;
-    private SimulationService simulationService;
+    private final BaseLogger<CashDeskLogDto> cashDeskLogger;
+    private final SimulationService simulationService;
 
     @Autowired
     public OrderController(BaseLogger<CashDeskLogDto> cashDeskLogger, SimulationService simulationService) {

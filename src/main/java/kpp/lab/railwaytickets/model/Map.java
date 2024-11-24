@@ -4,8 +4,6 @@ import kpp.lab.railwaytickets.model.interfaces.BaseMap;
 
 public class Map implements BaseMap {
 
-    // TODO: на UML конструктор
-
     private int sizeX;
     private int sizeY;
 

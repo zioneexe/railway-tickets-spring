@@ -4,13 +4,13 @@ import kpp.lab.railwaytickets.model.interfaces.BasePosition;
 
 public class Position implements BasePosition {
 
-    private int x;
+    private final int x;
 
-    private int y;
+    private final int y;
 
-    public Position(int X, int Y) {
-        this.x = X;
-        this.y = Y;
+    public Position(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 
     @Override

@@ -12,7 +12,10 @@ import java.util.Objects;
 
 public class ClientGeneratorMapper {
 
-    public static BaseClientGenerator clientGeneratorDtoToBaseClientGenerator(ClientGeneratorDto generatorDto, List<BasePosition> entrancePositions) {
+    private ClientGeneratorMapper() {}
+
+    public static BaseClientGenerator clientGeneratorDtoToBaseClientGenerator(ClientGeneratorDto generatorDto,
+                                                                              List<BasePosition> entrancePositions) {
 
         if (Objects.equals(generatorDto.getGeneratorType(), "equal"))
         {

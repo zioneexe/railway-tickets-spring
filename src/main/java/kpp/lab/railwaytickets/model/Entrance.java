@@ -5,7 +5,7 @@ import kpp.lab.railwaytickets.model.interfaces.BasePosition;
 
 public class Entrance implements BaseEntrance {
 
-    private BasePosition position;
+    private final BasePosition position;
 
     public Entrance(BasePosition position) {
         this.position = position;

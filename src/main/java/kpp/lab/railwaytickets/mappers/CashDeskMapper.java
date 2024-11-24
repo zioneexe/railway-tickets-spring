@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CashDeskMapper {
+
+    private CashDeskMapper() {}
+
     public static CashDeskDto baseCashDeskToCashDeskDto(BaseCashDesk cashDesk) {
         List<ClientDto> clientsDtoQueue = new ArrayList<>();
         for (var client : cashDesk.getQueue()) {

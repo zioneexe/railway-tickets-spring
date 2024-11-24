@@ -4,6 +4,9 @@ import kpp.lab.railwaytickets.dto.ClientDto;
 import kpp.lab.railwaytickets.model.interfaces.BaseClient;
 
 public class ClientMapper {
+
+    private ClientMapper() {}
+
     public static ClientDto baseClientToClientDto(BaseClient client) {
         return new ClientDto(
                 client.getId(),

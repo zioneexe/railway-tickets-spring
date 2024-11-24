@@ -22,7 +22,8 @@ public class SimulationServiceImpl implements SimulationService {
     private final BaseDirector director;
 
     @Autowired
-    public SimulationServiceImpl(BaseDirector director, BaseBuilder builder, BaseStartupProperties startupProperties, BaseTrainStation trainStation) {
+    public SimulationServiceImpl(BaseDirector director, BaseBuilder builder,
+                                 BaseStartupProperties startupProperties, BaseTrainStation trainStation) {
         this.startupProperties = startupProperties;
         this.builder = builder;
         this.director = director;
@@ -41,9 +42,7 @@ public class SimulationServiceImpl implements SimulationService {
             .distinct()
             .count();
 
-            Result result = new Result(totalPassengers, totalTickets);
-            
-            return result;
+        return new Result(totalPassengers, totalTickets);
     }
 
     @Override

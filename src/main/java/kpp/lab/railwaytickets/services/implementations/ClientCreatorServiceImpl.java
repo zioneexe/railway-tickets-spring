@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class ClientCreatorServiceImpl implements ClientCreatorService {
 
-    private BaseStartupProperties startupProperties;
-    private BaseTrainStation trainStation;
+    private final BaseStartupProperties startupProperties;
+    private final BaseTrainStation trainStation;
 
     public ClientCreatorServiceImpl(BaseStartupProperties startupProperties, BaseTrainStation trainStation) {
         this.startupProperties = startupProperties;

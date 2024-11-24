@@ -31,8 +31,10 @@ public class ClientCashDeskServiceImpl implements ClientCashDeskService {
         BaseClient client = clientQueue.getFirst();
 
         try {
-            Thread.sleep((long) getRandomBetween(startupProperties.getMinServiceTime(), startupProperties.getMaxServiceTime())
-                    * client.getTicketNumber());
+            Thread.sleep((long) getRandomBetween(
+                    startupProperties.getMinServiceTime(),
+                    startupProperties.getMaxServiceTime()
+            ) * client.getTicketNumber());
         } catch (InterruptedException e) {
             LOGGER.error("Interrupted while processing the order.");
             Thread.currentThread().interrupt();
@@ -74,7 +76,11 @@ public class ClientCashDeskServiceImpl implements ClientCashDeskService {
 
     @Override
     public void moveClientsToBackupQueue(BaseCashDesk baseCashDesk) {
-        BaseCashDesk backupCashDesk = trainStation.getCashDesks().stream().filter(BaseCashDesk::getIsBackup).toList().getFirst();
+        BaseCashDesk backupCashDesk = trainStation.getCashDesks().stream()
+                .filter(BaseCashDesk::getIsBackup)
+                .toList()
+                .getFirst();
+
         backupCashDesk.getQueue().clear();
         backupCashDesk.getQueue().forEach(e -> baseCashDesk.getQueue().add(e));
         baseCashDesk.getQueue().clear();

@@ -11,7 +11,7 @@ public class TrainStation implements BaseTrainStation {
 
     private final List<BaseCashDesk> cashDesks;
     private final List<BaseEntrance> entrances;
-    private BaseMap buildingMap;
+    private final BaseMap buildingMap;
     private int maxPeopleCount;
 
     public TrainStation() {

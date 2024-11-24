@@ -6,16 +6,16 @@ import com.corundumstudio.socketio.listener.DataListener;
 import com.corundumstudio.socketio.listener.DisconnectListener;
 import kpp.lab.railwaytickets.dto.CashDeskDto;
 import kpp.lab.railwaytickets.dto.ClientDto;
-import kpp.lab.railwaytickets.model.messages.*;
+import kpp.lab.railwaytickets.model.messages.RequestMessage;
 import kpp.lab.railwaytickets.services.interfaces.ThreadService;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 
+import static kpp.lab.railwaytickets.RailwayTicketsApplication.LOGGER;
+
 @Service
-@Log4j2
 public class SocketIOSimulationRunner {
 
     private final SocketIOServer socketServer;
@@ -46,17 +46,17 @@ public class SocketIOSimulationRunner {
     }
 
     private ConnectListener onUserConnect() {
-        return client -> log.info("Client connected - ID: {}", client.getSessionId().toString());
+        return client -> LOGGER.info("Client connected - ID: {}", client.getSessionId());
     }
 
     private DisconnectListener onUserDisconnect() {
-        return client -> log.info("Client disconnected - ID: {}", client.getSessionId().toString());
+        return client -> LOGGER.info("Client disconnected - ID: {}", client.getSessionId());
     }
 
     private DataListener<RequestMessage> onStartSimulationEventReceived() {
         return (client, _, _) -> {
             try {
-                log.info("Received << " + START_SIMULATION_EVENT + " >> from client: {}", client.getSessionId());
+                LOGGER.info("Received << " + START_SIMULATION_EVENT + " >> from client: {}", client.getSessionId());
 
                 threadService.startClientGeneration((ClientDto generatedClient) -> {
                     if (client.isChannelOpen()) {
@@ -71,7 +71,7 @@ public class SocketIOSimulationRunner {
                 }, startSimulationTime);
 
             } catch (Exception e) {
-                log.error("Error when starting simulation: {}", e.getMessage());
+                LOGGER.error("Error when starting simulation: {}", e.getMessage());
             }
         };
     }
@@ -79,7 +79,7 @@ public class SocketIOSimulationRunner {
     private DataListener<RequestMessage> onStopSimulationEventReceived() {
         return (client, _, _) -> {
             try {
-                log.info("Received << " + STOP_SIMULATION_EVENT + " >> from client: {}", client.getSessionId());
+                LOGGER.info("Received << " + STOP_SIMULATION_EVENT + " >> from client: {}", client.getSessionId());
 
                 threadService.stopClientGeneration();
                 threadService.stopCashDesks();
@@ -88,7 +88,7 @@ public class SocketIOSimulationRunner {
                 }
 
             } catch (Exception e) {
-                log.error("Error when stopping simulation: {}", e.getMessage());
+                LOGGER.error("Error when stopping simulation: {}", e.getMessage());
             }
         };
     }
