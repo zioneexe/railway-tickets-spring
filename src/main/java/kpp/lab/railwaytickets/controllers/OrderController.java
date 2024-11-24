@@ -35,7 +35,7 @@ public class OrderController {
 
     @GetMapping("/result")
     public ResponseEntity<ResultDto> getLogsForResult() {
-        var logs = cashDeskLogger.readAll();
+        var logs = cashDeskLogger.readAll(); 
 
         int totalTickets = logs.stream()
             .mapToInt(CashDeskLogDto::getTicketsCount)
