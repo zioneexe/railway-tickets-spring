@@ -1,13 +1,17 @@
 package kpp.lab.railwaytickets.services.implementations;
 
-import kpp.lab.railwaytickets.model.Result;
-import kpp.lab.railwaytickets.model.interfaces.BaseStartupProperties;
-import kpp.lab.railwaytickets.model.interfaces.BaseTrainStation;
-import kpp.lab.railwaytickets.model.builder.BaseBuilder;
-import kpp.lab.railwaytickets.model.builder.BaseDirector;
-import kpp.lab.railwaytickets.services.interfaces.SimulationService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import kpp.lab.railwaytickets.dto.CashDeskLogDto;
+import kpp.lab.railwaytickets.model.Result;
+import kpp.lab.railwaytickets.model.builder.BaseBuilder;
+import kpp.lab.railwaytickets.model.builder.BaseDirector;
+import kpp.lab.railwaytickets.model.interfaces.BaseStartupProperties;
+import kpp.lab.railwaytickets.model.interfaces.BaseTrainStation;
+import kpp.lab.railwaytickets.services.interfaces.SimulationService;
 
 @Service
 public class SimulationServiceImpl implements SimulationService {
@@ -26,11 +30,20 @@ public class SimulationServiceImpl implements SimulationService {
     }
 
     @Override
-    public Result getResult() {
-        return new Result(
-                startupProperties.getStationWidth(),
-                startupProperties.getStationHeight()
-        );
+    public Result getResult(List<CashDeskLogDto> logs) {
+        
+        int totalTickets = logs.stream()
+            .mapToInt(CashDeskLogDto::getTicketsCount)
+            .sum();
+            
+        int totalPassengers = (int) logs.stream()
+            .map(CashDeskLogDto::getClientId)
+            .distinct()
+            .count();
+
+            Result result = new Result(totalPassengers, totalTickets);
+            
+            return result;
     }
 
     @Override
@@ -41,19 +54,15 @@ public class SimulationServiceImpl implements SimulationService {
     @Override
     public BaseTrainStation createTrainStation() {
 
-        // Build with builder
         director.createTrainStation(builder);
         var builtTrainStation = builder.getResult();
 
-        // Get properties
         var cashDesks = trainStation.getCashDesks();
         var entrances = trainStation.getEntrances();
 
-        // Clear old
         cashDesks.clear();
         entrances.clear();
 
-        // Set new
         cashDesks.addAll(builtTrainStation.getCashDesks());
 
         entrances.addAll(builtTrainStation.getEntrances());
