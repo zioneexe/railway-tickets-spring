@@ -14,18 +14,24 @@ public class ClientGeneratorMapper {
 
     private ClientGeneratorMapper() {}
 
+    public static final String EQUAL = "equal";
+    public static final String INCREASING = "increasing";
+    public static final String RANDOM = "random";
+
     public static BaseClientGenerator clientGeneratorDtoToBaseClientGenerator(ClientGeneratorDto generatorDto,
                                                                               List<BasePosition> entrancePositions) {
 
-        if (Objects.equals(generatorDto.getGeneratorType(), "equal"))
+        if (Objects.equals(generatorDto.getGeneratorType(), EQUAL))
         {
             return new EqualIntervalsClientGenerator(entrancePositions);
         }
-        if (Objects.equals(generatorDto.getGeneratorType(), "increasing"))
+
+        if (Objects.equals(generatorDto.getGeneratorType(), INCREASING))
         {
             return new IncreasingClientGenerator(entrancePositions);
         }
-        if (Objects.equals(generatorDto.getGeneratorType(), "random"))
+
+        if (Objects.equals(generatorDto.getGeneratorType(), RANDOM))
         {
             return new RandomIntervalsClientGenerator(entrancePositions);
         }

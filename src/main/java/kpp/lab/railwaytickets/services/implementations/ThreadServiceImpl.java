@@ -20,6 +20,7 @@ import java.util.NoSuchElementException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static kpp.lab.railwaytickets.RailwayTicketsApplication.LOGGER;
@@ -27,10 +28,10 @@ import static kpp.lab.railwaytickets.RailwayTicketsApplication.LOGGER;
 @Service
 public class ThreadServiceImpl implements ThreadService {
 
-    private ClientCreatorService clientCreatorService;
-    private ClientCashDeskService clientCashDeskService;
-    private BaseLogger<CashDeskLogDto> cashDeskLogger;
-    private BaseTrainStation trainStation;
+    private final ClientCreatorService clientCreatorService;
+    private final ClientCashDeskService clientCashDeskService;
+    private final BaseLogger<CashDeskLogDto> cashDeskLogger;
+    private final BaseTrainStation trainStation;
 
     private ExecutorService cashDeskExecutorService;
     private ExecutorService clientGeneratorExecutorService;
@@ -39,7 +40,7 @@ public class ThreadServiceImpl implements ThreadService {
     private final int restoreTimeMs;
 
     private final AtomicInteger currentClientsServed = new AtomicInteger(1);
-    private boolean isThereABrokenCashDesk = false;
+    private final AtomicBoolean isThereABrokenCashDesk = new AtomicBoolean(false);
 
     public static final int SLEEP_TIME = 100;
 
@@ -67,57 +68,31 @@ public class ThreadServiceImpl implements ThreadService {
 
         for (BaseCashDesk cashDesk : cashDesks) {
             cashDeskExecutorService.submit(() -> {
-                try {
-                    while (!Thread.currentThread().isInterrupted()) {
-                        try {
-                            if (!cashDesk.getQueue().isEmpty()) {
-                                if (currentClientsServed.incrementAndGet() % clientsToBreakCashDesk == 0 && !isThereABrokenCashDesk) {
-
-                                    clientCashDeskService.setDeskOutOfOrder(cashDesk);
-                                    isThereABrokenCashDesk = true;
-
-                                    BaseClient clientToBeProcessed = cashDesk.getQueue().getFirst();
-
-                                    long startTime = Instant.now().toEpochMilli() - applicationStartTime;
-                                    sendCashDeskResponse.execute(CashDeskMapper.baseCashDeskToCashDeskDto(cashDesk));
-                                    long endTime = Instant.now().toEpochMilli() - applicationStartTime;
-
-                                    cashDeskLogger.write(new CashDeskLogDto(clientToBeProcessed.getId(), cashDesk.getId(), clientToBeProcessed.getTicketNumber(), startTime, endTime));
-
-                                    clientCashDeskService.moveClientsToBackupQueue(cashDesk);
-
-                                    var scheduler = Executors.newScheduledThreadPool(1);
-                                    scheduler.schedule(() -> {
-                                        clientCashDeskService.setDeskWorking(cashDesk);
-                                        isThereABrokenCashDesk = false;
-                                    }, restoreTimeMs, TimeUnit.MILLISECONDS);
-
-                                } else {
-                                    BaseClient clientToBeProcessed = cashDesk.getQueue().getFirst();
-
-                                    long startTime = Instant.now().toEpochMilli() - applicationStartTime;
-                                    sendCashDeskResponse.execute(CashDeskMapper.baseCashDeskToCashDeskDto(clientCashDeskService.processOrder(cashDesk)));
-                                    long endTime = Instant.now().toEpochMilli() - applicationStartTime;
-
-                                    cashDeskLogger.write(new CashDeskLogDto(clientToBeProcessed.getId(), cashDesk.getId(), clientToBeProcessed.getTicketNumber(), startTime, endTime));
-                                }
+                while (!Thread.currentThread().isInterrupted()) {
+                    try {
+                        if (!cashDesk.getQueue().isEmpty()) {
+                            if (currentClientsServed.incrementAndGet() % clientsToBreakCashDesk == 0
+                                    && isThereABrokenCashDesk.compareAndSet(false, true)) {
+                                handleBrokenCashDesk(cashDesk, sendCashDeskResponse, applicationStartTime);
+                            } else {
+                               processClient(cashDesk, sendCashDeskResponse, applicationStartTime);
                             }
-
-                            Thread.sleep(SLEEP_TIME);
-
-                        } catch (InterruptedException e) {
-                            Thread.currentThread().interrupt();
-                            LOGGER.info("Cash desk processing thread was interrupted for cash desk: {}", cashDesk.getId());
-                            break;
-                        } catch (NoSuchElementException e) {
-                            LOGGER.warn("Queue is empty for cash desk: {}", cashDesk.getId());
-                        } catch (Exception e) {
-                            LOGGER.error("Error while processing order client: {}", e.getMessage());
                         }
+
+                        Thread.sleep(SLEEP_TIME);
+
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                        LOGGER.info("Cash desk processing thread was interrupted for cash desk: {}", cashDesk.getId());
+                        break;
+                    } catch (NoSuchElementException e) {
+                        LOGGER.warn("Queue is empty for cash desk: {}", cashDesk.getId());
+                    } catch (Exception e) {
+                        LOGGER.error("Error while processing order client: {}", e.getMessage());
                     }
-                } finally {
-                    LOGGER.info("Cash desk processing thread stopped for cash desk: {}", cashDesk.getId());
                 }
+
+                LOGGER.info("Cash desk processing thread stopped for cash desk: {}", cashDesk.getId());
             });
         }
     }
@@ -129,16 +104,16 @@ public class ThreadServiceImpl implements ThreadService {
             cashDeskExecutorService.shutdownNow();
             try {
                 if (!cashDeskExecutorService.awaitTermination(5, TimeUnit.SECONDS)) {
-                    LOGGER.warn("Client generation thread did not terminate in the specified time.");
+                    LOGGER.warn("(stopCashDesks) Client generation thread did not terminate in the specified time.");
                 }
             } catch (InterruptedException e) {
-                LOGGER.error("Interrupted while waiting for client generation thread to terminate.");
+                LOGGER.error("Interrupted while stopping cash desks.");
                 Thread.currentThread().interrupt();
             }
         }
     }
 
-    @Override
+        @Override
     public void startClientGeneration(SendCreatedClientResponse responseFunction) {
         clientGeneratorExecutorService = Executors.newSingleThreadExecutor();
         clientGeneratorExecutorService.submit(() -> {
@@ -166,12 +141,63 @@ public class ThreadServiceImpl implements ThreadService {
             clientGeneratorExecutorService.shutdownNow();
             try {
                 if (!clientGeneratorExecutorService.awaitTermination(5, TimeUnit.SECONDS)) {
-                    LOGGER.warn("Client generation thread did not terminate in the specified time.");
+                    LOGGER.warn("(stopClientGeneration) Client generation thread did not terminate in the specified time.");
                 }
             } catch (InterruptedException e) {
                 LOGGER.error("Interrupted while waiting for client generation thread to terminate.");
                 Thread.currentThread().interrupt();
             }
         }
+    }
+
+    private void handleBrokenCashDesk(BaseCashDesk cashDesk, SendCashDeskResponse sendCashDeskResponse,
+                                      long applicationStartTime) {
+
+        clientCashDeskService.setDeskOutOfOrder(cashDesk);
+
+        BaseClient clientToBeProcessed = cashDesk.getQueue().getFirst();
+
+        long startTime = Instant.now().toEpochMilli() - applicationStartTime;
+        sendCashDeskResponse.execute(CashDeskMapper.baseCashDeskToCashDeskDto(cashDesk));
+        long endTime = Instant.now().toEpochMilli() - applicationStartTime;
+
+        cashDeskLogger.write(new CashDeskLogDto(clientToBeProcessed.getId(),
+                cashDesk.getId(),
+                clientToBeProcessed.getTicketNumber(),
+                startTime, endTime));
+
+        clientCashDeskService.moveClientsToBackupQueue(cashDesk);
+
+        scheduleBrokenCashDeskRepairment(cashDesk);
+    }
+
+    private void processClient(BaseCashDesk cashDesk, SendCashDeskResponse sendCashDeskResponse,
+                               long applicationStartTime) throws Exception{
+        BaseClient clientToBeProcessed = cashDesk.getQueue().getFirst();
+
+        long startTime = Instant.now().toEpochMilli() - applicationStartTime;
+        sendCashDeskResponse.execute(CashDeskMapper.baseCashDeskToCashDeskDto(
+                clientCashDeskService.processOrder(cashDesk)
+        ));
+        long endTime = Instant.now().toEpochMilli() - applicationStartTime;
+
+        logCashDesk(clientToBeProcessed, cashDesk, startTime, endTime);
+    }
+
+    private void scheduleBrokenCashDeskRepairment(BaseCashDesk cashDesk) {
+        var scheduler = Executors.newSingleThreadScheduledExecutor();
+        scheduler.schedule(() -> {
+            clientCashDeskService.setDeskWorking(cashDesk);
+            isThereABrokenCashDesk.set(false);
+        }, restoreTimeMs, TimeUnit.MILLISECONDS);
+    }
+
+    private void logCashDesk(BaseClient clientToBeProcessed, BaseCashDesk cashDesk, long startTime, long endTime) {
+        cashDeskLogger.write(new CashDeskLogDto(
+                clientToBeProcessed.getId(),
+                cashDesk.getId(),
+                clientToBeProcessed.getTicketNumber(),
+                startTime, endTime
+        ));
     }
 }
