@@ -11,25 +11,25 @@ public class ConfigurationPropertiesValidator {
     public static Set<String> validate() {
 
         // Client generator settings
-        int clientGeneratorTimeMs = ConfigFileGetter.get("clientGenerator\\equal\\generationTimeMs", int.class);
-        int randomGeneratorMinTimeMs = ConfigFileGetter.get("clientGenerator\\random\\minGenerationTimeMs", int.class);
-        int randomGeneratorMaxTimeMs = ConfigFileGetter.get("clientGenerator\\random\\maxGenerationTimeMs", int.class);
-        int increasingGeneratorStartTimeMs = ConfigFileGetter.get("clientGenerator\\increasing\\startGenerationTimeMs", int.class);
-        int increasingGeneratorIncrementTimeMs = ConfigFileGetter.get("clientGenerator\\increasing\\incrementTimeMs", int.class);
+        int clientGeneratorTimeMs = ConfigFileGetter.get("clientGenerator.equal.generationTimeMs", int.class);
+        int randomGeneratorMinTimeMs = ConfigFileGetter.get("clientGenerator.random.minGenerationTimeMs", int.class);
+        int randomGeneratorMaxTimeMs = ConfigFileGetter.get("clientGenerator.random.maxGenerationTimeMs", int.class);
+        int increasingGeneratorStartTimeMs = ConfigFileGetter.get("clientGenerator.increasing.startGenerationTimeMs", int.class);
+        int increasingGeneratorIncrementTimeMs = ConfigFileGetter.get("clientGenerator.increasing.incrementTimeMs", int.class);
 
         // Ticket settings
-        int minClientTicketsNumber = ConfigFileGetter.get("tickets\\minClientTicketsNumber", int.class);
-        int maxClientTicketsNumber = ConfigFileGetter.get("tickets\\maxClientTicketsNumber", int.class);
+        int minClientTicketsNumber = ConfigFileGetter.get("clientGenerator.tickets.minClientTicketsNumber", int.class);
+        int maxClientTicketsNumber = ConfigFileGetter.get("clientGenerator.tickets.maxClientTicketsNumber", int.class);
 
         // Decorator settings
-        double soldierDecoratorChance = ConfigFileGetter.get("decorator\\soldierDecoratorChance", double.class);
-        double disabledDecoratorChance = ConfigFileGetter.get("decorator\\disabledDecoratorChance", double.class);
-        double studentDecoratorChance = ConfigFileGetter.get("decorator\\studentDecoratorChance", double.class);
-        double withChildDecoratorChance = ConfigFileGetter.get("decorator\\withChildDecoratorChance", double.class);
+        double soldierDecoratorChance = ConfigFileGetter.get("clientGenerator.decorator.soldierDecoratorChance", double.class);
+        double disabledDecoratorChance = ConfigFileGetter.get("clientGenerator.decorator.disabledDecoratorChance", double.class);
+        double studentDecoratorChance = ConfigFileGetter.get("clientGenerator.decorator.studentDecoratorChance", double.class);
+        double withChildDecoratorChance = ConfigFileGetter.get("clientGenerator.decorator.withChildDecoratorChance", double.class);
 
         // Cash desk settings
-        int clientsToBreakCashDesk = ConfigFileGetter.get("cashDesk\\clientsToBreakCashDesk", int.class);
-        int restoreTimeMs = ConfigFileGetter.get("cashDesk\\restoreTimeMs", int.class);
+        int clientsToBreakCashDesk = ConfigFileGetter.get("cashDesk.clientsToBreakCashDesk", int.class);
+        int restoreTimeMs = ConfigFileGetter.get("cashDesk.restoreTimeMs", int.class);
 
         // Validation logic for violations (if any)
 

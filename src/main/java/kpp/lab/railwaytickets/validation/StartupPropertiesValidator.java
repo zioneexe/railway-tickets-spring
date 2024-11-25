@@ -29,7 +29,7 @@ public class StartupPropertiesValidator {
         validateServiceTime(minServiceTime, maxServiceTime);
         validateDesks(deskPositions);
         validatePositions(entrancePositions);
-        validateMapLoad(width, height, deskPositions, entrancePositions, maxClientsNumber);
+        validateMapLoad(width, height, deskPositions, entrancePositions);
         validatePositions(width, height, deskPositions, entrancePositions);
 
         return violations;
@@ -65,26 +65,12 @@ public class StartupPropertiesValidator {
 
     private static void validateMapLoad(int width, int height,
                                         List<BasePosition> deskPositions,
-                                        List<BasePosition> entrancePositions,
-                                        int maxClientsNumber) {
+                                        List<BasePosition> entrancePositions) {
         int occupiedPositionsCount = deskPositions.size() + entrancePositions.size();
         int positionsCount = width * height;
 
         if (occupiedPositionsCount > positionsCount) {
             violations.add("No free positions. Consider changing map size, or change desk count");
-        }
-
-        Optional<Integer> maxYCashDeskOpt = deskPositions.stream()
-                .max(Comparator.comparingInt(BasePosition::getY))
-                .map(BasePosition::getY);
-
-        if (maxYCashDeskOpt.isEmpty()) return;
-
-        var maxYCashDesk = maxYCashDeskOpt.get();
-        int maxClientNumberCorrect = (maxYCashDesk - 1) * deskPositions.size();
-
-        if (maxClientsNumber > maxClientNumberCorrect) {
-            violations.add("Invalid max clients number (too great)");
         }
     }
 
