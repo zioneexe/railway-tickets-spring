@@ -2,17 +2,14 @@ package kpp.lab.railwaytickets.validation;
 
 import kpp.lab.railwaytickets.model.interfaces.BasePosition;
 import kpp.lab.railwaytickets.model.interfaces.BaseStartupProperties;
-import org.springframework.boot.web.reactive.context.GenericReactiveWebApplicationContext;
 
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class StartupPropertiesValidator {
 
-    private StartupPropertiesValidator() {}
+    private StartupPropertiesValidator() {
+    }
 
     private static final Set<String> violations = new HashSet<>();
 
@@ -67,12 +64,27 @@ public class StartupPropertiesValidator {
     }
 
     private static void validateMapLoad(int width, int height,
-                                        List<BasePosition> deskPositions, List<BasePosition> entrancePositions, int maxClientsNumber) {
+                                        List<BasePosition> deskPositions,
+                                        List<BasePosition> entrancePositions,
+                                        int maxClientsNumber) {
         int occupiedPositionsCount = deskPositions.size() + entrancePositions.size();
         int positionsCount = width * height;
 
         if (occupiedPositionsCount > positionsCount) {
             violations.add("No free positions. Consider changing map size, or change desk count");
+        }
+
+        Optional<Integer> maxYCashDeskOpt = deskPositions.stream()
+                .max(Comparator.comparingInt(BasePosition::getY))
+                .map(BasePosition::getY);
+
+        if (maxYCashDeskOpt.isEmpty()) return;
+
+        var maxYCashDesk = maxYCashDeskOpt.get();
+        int maxClientNumberCorrect = (maxYCashDesk - 1) * deskPositions.size();
+
+        if (maxClientsNumber > maxClientNumberCorrect) {
+            violations.add("Invalid max clients number (too great)");
         }
     }
 
@@ -88,18 +100,18 @@ public class StartupPropertiesValidator {
             violations.add("Invalid entrance position found");
         }
 
-        if (AreAtLeastTwoObjectsInTheSameRow(entrancePositions)) {
+        if (areAtLeastTwoObjectsInTheSameRow(entrancePositions)) {
             violations.add("Entrance positions can't be in on column");
-        };
+        }
 
-        if (AreAtLeastTwoObjectsInTheSameRow(deskPositions)) {
+        if (areAtLeastTwoObjectsInTheSameRow(deskPositions)) {
             violations.add("CashDesks can't be in one column");
         }
 
     }
 
-    private static boolean AreAtLeastTwoObjectsInTheSameRow(List<BasePosition> Positions) {
-        return Positions.stream()
+    private static boolean areAtLeastTwoObjectsInTheSameRow(List<BasePosition> positions) {
+        return positions.stream()
                 .map(BasePosition::getX)
                 .collect(Collectors.groupingBy(x -> x, Collectors.counting()))
                 .values()

@@ -11,8 +11,8 @@ public class RandomIntervalsClientGenerator implements BaseClientGenerator {
     private final int minGenerationTimeMs;
     private final int maxGenerationTimeMs;
 
-    private BaseGeneratorHelper generatorHelper;
-    private List<BasePosition> entrancePositions;
+    private final BaseGeneratorHelper generatorHelper;
+    private final List<BasePosition> entrancePositions;
 
     public RandomIntervalsClientGenerator(List<BasePosition> entrancePositions) {
         this.entrancePositions = entrancePositions;
