@@ -23,7 +23,7 @@
     }
   },
   "cashDesk" : {
-    "clientsToBreakCashDesk": 50,
+    "clientsToBreakCashDesk": 5,
     "restoreTimeMs": 60000
   }
 }

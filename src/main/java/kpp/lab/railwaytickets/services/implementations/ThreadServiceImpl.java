@@ -41,7 +41,7 @@ public class ThreadServiceImpl implements ThreadService {
     private final int clientsToBreakCashDesk;
     private final int restoreTimeMs;
 
-    private final AtomicInteger currentClientsServed = new AtomicInteger(1);
+    private final AtomicInteger currentClientsServed = new AtomicInteger(0);
     private final AtomicBoolean isThereABrokenCashDesk = new AtomicBoolean(false);
 
     public static final int SLEEP_TIME = 100;
@@ -74,16 +74,14 @@ public class ThreadServiceImpl implements ThreadService {
                 while (!Thread.currentThread().isInterrupted()) {
                     try {
                         if (!cashDesk.getQueue().isEmpty()) {
-                            if (currentClientsServed.incrementAndGet() % clientsToBreakCashDesk == 0
-                                    && isThereABrokenCashDesk.compareAndSet(false, true)
-                                    && !cashDesk.getIsBackup()) {
+                            if (currentClientsServed.get() != 0 && currentClientsServed.get() % clientsToBreakCashDesk == 0
+                                    && isThereABrokenCashDesk.compareAndSet(false, true) && !cashDesk.getIsBackup()) {
                                 handleBrokenCashDesk(cashDesk, sendCashDeskResponse, applicationStartTime);
                             } else {
                                 processClient(cashDesk, sendCashDeskResponse, applicationStartTime);
+                                currentClientsServed.incrementAndGet();
                             }
                         }
-
-                        Thread.sleep(SLEEP_TIME);
 
                     } catch (InterruptedException e) {
                         Thread.currentThread().interrupt();

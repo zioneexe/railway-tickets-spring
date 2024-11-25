@@ -398,3 +398,505 @@ java.lang.IllegalArgumentException: Key 'decorator.soldierDecoratorChance' not f
 02:39:08.270 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2150 milliseconds.
 02:39:10.422 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2160 milliseconds.
 02:40:01.296 [nioEventLoopGroup-3-1] INFO  k.l.r.RailwayTicketsApplication - Client disconnected - ID: 378f4407-de10-41db-a2e1-10e57904d8df
+02:42:30.858 [restartedMain] INFO  k.l.r.RailwayTicketsApplication - Starting RailwayTicketsApplication using Java 23.0.1 with PID 18500 (D:\repos\KPP\Lab6\railwaytickets\target\classes started by w3stn in D:\repos\KPP\Lab6\railwaytickets)
+02:42:30.860 [restartedMain] INFO  k.l.r.RailwayTicketsApplication - No active profile set, falling back to 1 default profile: "default"
+02:42:30.926 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+02:42:30.926 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+02:42:32.331 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+02:42:32.344 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+02:42:32.348 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+02:42:32.348 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.30]
+02:42:32.408 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+02:42:32.410 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1484 ms
+02:42:32.648 [restartedMain] INFO  c.c.socketio.SocketIOServer - Session store / pubsub factory used: MemoryStoreFactory (local session store only)
+02:42:32.858 [nioEventLoopGroup-2-1] INFO  c.c.socketio.SocketIOServer - SocketIO server started at port: 8082
+02:42:33.551 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+02:42:33.570 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+02:42:33.581 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+02:42:33.591 [restartedMain] INFO  k.l.r.RailwayTicketsApplication - Started RailwayTicketsApplication in 3.267 seconds (process running for 4.308)
+02:43:02.823 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+02:43:02.823 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+02:43:02.824 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+02:43:10.090 [nioEventLoopGroup-3-1] INFO  k.l.r.RailwayTicketsApplication - Client connected - ID: 56da5ce5-4dce-4d67-824c-515e2a9526b6
+02:43:19.396 [nioEventLoopGroup-3-1] INFO  k.l.r.RailwayTicketsApplication - Received << start_simulation >> from client: 56da5ce5-4dce-4d67-824c-515e2a9526b6
+02:43:19.399 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2000 milliseconds.
+02:43:21.409 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2010 milliseconds.
+02:43:23.424 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2020 milliseconds.
+02:43:25.458 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2030 milliseconds.
+02:43:27.495 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2040 milliseconds.
+02:43:29.540 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2050 milliseconds.
+02:43:31.602 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2060 milliseconds.
+02:43:33.672 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2070 milliseconds.
+02:43:35.758 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2080 milliseconds.
+02:43:37.852 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2090 milliseconds.
+02:43:39.958 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2100 milliseconds.
+02:43:42.068 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2110 milliseconds.
+02:43:44.193 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2120 milliseconds.
+02:44:38.204 [nioEventLoopGroup-3-1] INFO  k.l.r.RailwayTicketsApplication - Client disconnected - ID: 56da5ce5-4dce-4d67-824c-515e2a9526b6
+02:44:40.221 [SpringApplicationShutdownHook] INFO  c.c.socketio.SocketIOServer - SocketIO server stopped
+02:45:00.242 [restartedMain] INFO  k.l.r.RailwayTicketsApplication - Starting RailwayTicketsApplication using Java 23.0.1 with PID 12844 (D:\repos\KPP\Lab6\railwaytickets\target\classes started by w3stn in D:\repos\KPP\Lab6\railwaytickets)
+02:45:00.245 [restartedMain] INFO  k.l.r.RailwayTicketsApplication - No active profile set, falling back to 1 default profile: "default"
+02:45:00.364 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+02:45:00.366 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+02:45:01.866 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+02:45:01.876 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+02:45:01.882 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+02:45:01.883 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.30]
+02:45:01.936 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+02:45:01.937 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1570 ms
+02:45:02.174 [restartedMain] INFO  c.c.socketio.SocketIOServer - Session store / pubsub factory used: MemoryStoreFactory (local session store only)
+02:45:02.384 [nioEventLoopGroup-2-1] INFO  c.c.socketio.SocketIOServer - SocketIO server started at port: 8082
+02:45:02.958 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+02:45:02.973 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+02:45:02.985 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+02:45:02.993 [restartedMain] INFO  k.l.r.RailwayTicketsApplication - Started RailwayTicketsApplication in 3.266 seconds (process running for 4.497)
+02:45:22.125 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+02:45:22.125 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+02:45:22.126 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+02:45:26.447 [nioEventLoopGroup-3-1] INFO  k.l.r.RailwayTicketsApplication - Client connected - ID: 5dad671f-d538-43b8-a2c0-d8a3019ff330
+02:45:27.824 [nioEventLoopGroup-3-1] INFO  k.l.r.RailwayTicketsApplication - Received << start_simulation >> from client: 5dad671f-d538-43b8-a2c0-d8a3019ff330
+02:45:27.828 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2000 milliseconds.
+02:45:29.842 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2010 milliseconds.
+02:45:31.854 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2020 milliseconds.
+02:45:33.878 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2030 milliseconds.
+02:45:35.910 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2040 milliseconds.
+02:45:37.952 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2050 milliseconds.
+02:45:40.003 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2060 milliseconds.
+02:45:42.065 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2070 milliseconds.
+02:45:44.136 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2080 milliseconds.
+02:45:46.217 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2090 milliseconds.
+02:45:48.309 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2100 milliseconds.
+02:45:50.411 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2110 milliseconds.
+02:45:52.522 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2120 milliseconds.
+02:45:54.643 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2130 milliseconds.
+02:45:56.774 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2140 milliseconds.
+02:47:02.181 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2150 milliseconds.
+02:47:04.345 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2160 milliseconds.
+02:47:06.520 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2170 milliseconds.
+02:47:08.695 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2180 milliseconds.
+02:47:10.886 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2190 milliseconds.
+02:47:54.644 [nioEventLoopGroup-3-1] INFO  k.l.r.RailwayTicketsApplication - Received << stop_simulation >> from client: 5dad671f-d538-43b8-a2c0-d8a3019ff330
+02:47:54.645 [nioEventLoopGroup-3-1] INFO  k.l.r.RailwayTicketsApplication - Shutting down cash desk processing thread pool...
+02:47:54.645 [pool-4-thread-4] ERROR k.l.r.RailwayTicketsApplication - Interrupted while processing the order.
+02:47:54.645 [pool-4-thread-3] ERROR k.l.r.RailwayTicketsApplication - Interrupted while processing the order.
+02:47:54.645 [pool-4-thread-2] ERROR k.l.r.RailwayTicketsApplication - Interrupted while processing the order.
+02:47:54.645 [pool-4-thread-1] ERROR k.l.r.RailwayTicketsApplication - Interrupted while processing the order.
+02:47:54.645 [pool-4-thread-4] INFO  k.l.r.RailwayTicketsApplication - Cash desk processing thread was interrupted for cash desk: 4
+02:47:54.646 [pool-4-thread-4] INFO  k.l.r.RailwayTicketsApplication - Cash desk processing thread stopped for cash desk: 4
+02:47:54.653 [pool-4-thread-1] INFO  k.l.r.RailwayTicketsApplication - Cash desk processing thread was interrupted for cash desk: 1
+02:47:54.654 [pool-4-thread-1] INFO  k.l.r.RailwayTicketsApplication - Cash desk processing thread stopped for cash desk: 1
+02:47:54.657 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2200 milliseconds.
+02:47:54.660 [pool-4-thread-2] INFO  k.l.r.RailwayTicketsApplication - Cash desk processing thread was interrupted for cash desk: 2
+02:47:54.661 [pool-4-thread-2] INFO  k.l.r.RailwayTicketsApplication - Cash desk processing thread stopped for cash desk: 2
+02:47:54.668 [pool-4-thread-3] INFO  k.l.r.RailwayTicketsApplication - Cash desk processing thread was interrupted for cash desk: 3
+02:47:54.668 [pool-4-thread-3] INFO  k.l.r.RailwayTicketsApplication - Cash desk processing thread stopped for cash desk: 3
+02:47:54.668 [nioEventLoopGroup-3-1] INFO  k.l.r.RailwayTicketsApplication - Shutting down scheduler...
+02:47:56.866 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2210 milliseconds.
+02:47:59.078 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2220 milliseconds.
+02:48:01.300 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2230 milliseconds.
+02:48:03.537 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2240 milliseconds.
+02:48:05.785 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2250 milliseconds.
+02:48:08.040 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2260 milliseconds.
+02:48:10.310 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2270 milliseconds.
+02:49:14.831 [nioEventLoopGroup-3-1] INFO  k.l.r.RailwayTicketsApplication - Client disconnected - ID: 5dad671f-d538-43b8-a2c0-d8a3019ff330
+02:49:16.889 [SpringApplicationShutdownHook] INFO  c.c.socketio.SocketIOServer - SocketIO server stopped
+02:57:32.923 [restartedMain] INFO  k.l.r.RailwayTicketsApplication - Starting RailwayTicketsApplication using Java 23.0.1 with PID 26080 (D:\repos\KPP\Lab6\railwaytickets\target\classes started by w3stn in D:\repos\KPP\Lab6\railwaytickets)
+02:57:32.924 [restartedMain] INFO  k.l.r.RailwayTicketsApplication - No active profile set, falling back to 1 default profile: "default"
+02:57:32.994 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+02:57:32.994 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+02:57:34.143 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+02:57:34.153 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+02:57:34.157 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+02:57:34.157 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.30]
+02:57:34.207 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+02:57:34.207 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1212 ms
+02:57:34.384 [restartedMain] INFO  c.c.socketio.SocketIOServer - Session store / pubsub factory used: MemoryStoreFactory (local session store only)
+02:57:34.584 [nioEventLoopGroup-2-1] INFO  c.c.socketio.SocketIOServer - SocketIO server started at port: 8082
+02:57:35.100 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+02:57:35.117 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+02:57:35.127 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+02:57:35.135 [restartedMain] INFO  k.l.r.RailwayTicketsApplication - Started RailwayTicketsApplication in 2.647 seconds (process running for 3.621)
+02:57:50.078 [http-nio-8080-exec-3] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+02:57:50.078 [http-nio-8080-exec-3] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+02:57:50.079 [http-nio-8080-exec-3] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+02:57:55.735 [nioEventLoopGroup-3-1] INFO  k.l.r.RailwayTicketsApplication - Client connected - ID: 1395f414-5380-4461-892a-e8a5b09885e7
+02:57:57.687 [nioEventLoopGroup-3-1] INFO  k.l.r.RailwayTicketsApplication - Received << stop_simulation >> from client: 1395f414-5380-4461-892a-e8a5b09885e7
+02:57:57.688 [nioEventLoopGroup-3-1] INFO  k.l.r.RailwayTicketsApplication - Shutting down scheduler...
+02:58:03.178 [nioEventLoopGroup-3-1] INFO  k.l.r.RailwayTicketsApplication - Received << start_simulation >> from client: 1395f414-5380-4461-892a-e8a5b09885e7
+02:58:03.182 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2000 milliseconds.
+02:58:05.194 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2010 milliseconds.
+02:58:07.215 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2020 milliseconds.
+02:58:09.248 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2030 milliseconds.
+02:58:11.290 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2040 milliseconds.
+02:58:13.332 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2050 milliseconds.
+02:58:15.392 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2060 milliseconds.
+02:58:17.454 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2070 milliseconds.
+02:58:19.528 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2080 milliseconds.
+02:58:21.617 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2090 milliseconds.
+02:58:23.718 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2100 milliseconds.
+02:58:25.819 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2110 milliseconds.
+02:58:28.577 [pool-4-thread-2] ERROR k.l.r.RailwayTicketsApplication - Error while processing order client: Task java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask@14687acd[Not completed, task = java.util.concurrent.Executors$RunnableAdapter@6c826f97[Wrapped task = kpp.lab.railwaytickets.services.implementations.ThreadServiceImpl$$Lambda/0x000001c2a15f7bf8@7b6ec4d1]] rejected from java.util.concurrent.ScheduledThreadPoolExecutor@78eee42f[Terminated, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0]
+02:58:57.730 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2120 milliseconds.
+02:58:59.855 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2130 milliseconds.
+02:59:01.986 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2140 milliseconds.
+02:59:04.128 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2150 milliseconds.
+02:59:06.282 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2160 milliseconds.
+02:59:10.328 [nioEventLoopGroup-3-1] INFO  k.l.r.RailwayTicketsApplication - Client disconnected - ID: 1395f414-5380-4461-892a-e8a5b09885e7
+02:59:12.382 [SpringApplicationShutdownHook] INFO  c.c.socketio.SocketIOServer - SocketIO server stopped
+02:59:53.990 [restartedMain] INFO  k.l.r.RailwayTicketsApplication - Starting RailwayTicketsApplication using Java 23.0.1 with PID 16508 (D:\repos\KPP\Lab6\railwaytickets\target\classes started by w3stn in D:\repos\KPP\Lab6\railwaytickets)
+02:59:53.993 [restartedMain] INFO  k.l.r.RailwayTicketsApplication - No active profile set, falling back to 1 default profile: "default"
+02:59:54.076 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+02:59:54.077 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+02:59:55.555 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+02:59:55.567 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+02:59:55.572 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+02:59:55.572 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.30]
+02:59:55.633 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+02:59:55.633 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1556 ms
+02:59:55.844 [restartedMain] INFO  c.c.socketio.SocketIOServer - Session store / pubsub factory used: MemoryStoreFactory (local session store only)
+02:59:56.110 [nioEventLoopGroup-2-1] INFO  c.c.socketio.SocketIOServer - SocketIO server started at port: 8082
+02:59:56.663 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+02:59:56.679 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+02:59:56.690 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+02:59:56.699 [restartedMain] INFO  k.l.r.RailwayTicketsApplication - Started RailwayTicketsApplication in 3.195 seconds (process running for 4.426)
+03:00:09.497 [http-nio-8080-exec-4] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+03:00:09.498 [http-nio-8080-exec-4] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+03:00:09.499 [http-nio-8080-exec-4] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+03:00:14.469 [nioEventLoopGroup-3-1] INFO  k.l.r.RailwayTicketsApplication - Client connected - ID: a7be6958-0d7b-4c80-ba3a-5d6c927c0de7
+03:00:16.329 [nioEventLoopGroup-3-1] INFO  k.l.r.RailwayTicketsApplication - Received << start_simulation >> from client: a7be6958-0d7b-4c80-ba3a-5d6c927c0de7
+03:00:16.333 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2000 milliseconds.
+03:00:18.348 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2010 milliseconds.
+03:00:20.361 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2020 milliseconds.
+03:00:22.395 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2030 milliseconds.
+03:00:24.427 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2040 milliseconds.
+03:00:26.471 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2050 milliseconds.
+03:00:28.527 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2060 milliseconds.
+03:00:30.601 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2070 milliseconds.
+03:00:32.680 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2080 milliseconds.
+03:00:34.514 [nioEventLoopGroup-3-1] INFO  k.l.r.RailwayTicketsApplication - Client disconnected - ID: a7be6958-0d7b-4c80-ba3a-5d6c927c0de7
+03:00:34.775 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2090 milliseconds.
+03:01:01.487 [restartedMain] INFO  k.l.r.RailwayTicketsApplication - Starting RailwayTicketsApplication using Java 23.0.1 with PID 26464 (D:\repos\KPP\Lab6\railwaytickets\target\classes started by w3stn in D:\repos\KPP\Lab6\railwaytickets)
+03:01:01.489 [restartedMain] INFO  k.l.r.RailwayTicketsApplication - No active profile set, falling back to 1 default profile: "default"
+03:01:01.564 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+03:01:01.564 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+03:01:02.770 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+03:01:02.785 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+03:01:02.789 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+03:01:02.789 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.30]
+03:01:02.844 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+03:01:02.845 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1281 ms
+03:01:03.025 [restartedMain] INFO  c.c.socketio.SocketIOServer - Session store / pubsub factory used: MemoryStoreFactory (local session store only)
+03:01:03.224 [nioEventLoopGroup-2-1] INFO  c.c.socketio.SocketIOServer - SocketIO server started at port: 8082
+03:01:03.753 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+03:01:03.769 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+03:01:03.780 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+03:01:03.790 [restartedMain] INFO  k.l.r.RailwayTicketsApplication - Started RailwayTicketsApplication in 2.725 seconds (process running for 3.792)
+03:01:15.588 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+03:01:15.589 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+03:01:15.591 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+03:01:19.928 [nioEventLoopGroup-3-1] INFO  k.l.r.RailwayTicketsApplication - Client connected - ID: 390f19f4-fef6-4618-bf71-29d6c1d65f8c
+03:01:20.684 [nioEventLoopGroup-3-1] INFO  k.l.r.RailwayTicketsApplication - Received << start_simulation >> from client: 390f19f4-fef6-4618-bf71-29d6c1d65f8c
+03:01:20.687 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2000 milliseconds.
+03:01:22.709 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2010 milliseconds.
+03:01:24.723 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2020 milliseconds.
+03:01:26.759 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2030 milliseconds.
+03:01:28.796 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2040 milliseconds.
+03:01:30.840 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2050 milliseconds.
+03:01:32.891 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2060 milliseconds.
+03:01:34.953 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2070 milliseconds.
+03:01:37.024 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2080 milliseconds.
+03:01:39.121 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2090 milliseconds.
+03:01:41.221 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2100 milliseconds.
+03:02:12.581 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2110 milliseconds.
+03:02:14.696 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2120 milliseconds.
+03:02:16.823 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2130 milliseconds.
+03:02:18.958 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2140 milliseconds.
+03:02:21.112 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2150 milliseconds.
+03:02:34.026 [nioEventLoopGroup-3-1] INFO  k.l.r.RailwayTicketsApplication - Client disconnected - ID: 390f19f4-fef6-4618-bf71-29d6c1d65f8c
+03:02:36.096 [SpringApplicationShutdownHook] INFO  c.c.socketio.SocketIOServer - SocketIO server stopped
+03:08:15.453 [restartedMain] INFO  k.l.r.RailwayTicketsApplication - Starting RailwayTicketsApplication using Java 23.0.1 with PID 31100 (D:\repos\KPP\Lab6\railwaytickets\target\classes started by w3stn in D:\repos\KPP\Lab6\railwaytickets)
+03:08:15.455 [restartedMain] INFO  k.l.r.RailwayTicketsApplication - No active profile set, falling back to 1 default profile: "default"
+03:08:15.526 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+03:08:15.526 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+03:08:16.795 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+03:08:16.806 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+03:08:16.810 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+03:08:16.811 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.30]
+03:08:16.862 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+03:08:16.863 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1336 ms
+03:08:17.040 [restartedMain] INFO  c.c.socketio.SocketIOServer - Session store / pubsub factory used: MemoryStoreFactory (local session store only)
+03:08:17.246 [nioEventLoopGroup-2-1] INFO  c.c.socketio.SocketIOServer - SocketIO server started at port: 8082
+03:08:17.771 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+03:08:17.786 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+03:08:17.797 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+03:08:17.807 [restartedMain] INFO  k.l.r.RailwayTicketsApplication - Started RailwayTicketsApplication in 2.771 seconds (process running for 3.775)
+03:08:58.920 [restartedMain] INFO  k.l.r.RailwayTicketsApplication - Starting RailwayTicketsApplication using Java 23.0.1 with PID 21108 (D:\repos\KPP\Lab6\railwaytickets\target\classes started by w3stn in D:\repos\KPP\Lab6\railwaytickets)
+03:08:58.923 [restartedMain] INFO  k.l.r.RailwayTicketsApplication - No active profile set, falling back to 1 default profile: "default"
+03:08:58.996 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+03:08:58.996 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+03:09:00.270 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+03:09:00.282 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+03:09:00.286 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+03:09:00.288 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.30]
+03:09:00.339 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+03:09:00.339 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1342 ms
+03:09:00.563 [restartedMain] INFO  c.c.socketio.SocketIOServer - Session store / pubsub factory used: MemoryStoreFactory (local session store only)
+03:09:00.785 [nioEventLoopGroup-2-1] INFO  c.c.socketio.SocketIOServer - SocketIO server started at port: 8082
+03:09:01.382 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+03:09:01.398 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+03:09:01.411 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+03:09:01.424 [restartedMain] INFO  k.l.r.RailwayTicketsApplication - Started RailwayTicketsApplication in 2.996 seconds (process running for 3.999)
+03:09:12.919 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+03:09:12.919 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+03:09:12.920 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+03:09:18.591 [nioEventLoopGroup-3-1] INFO  k.l.r.RailwayTicketsApplication - Client connected - ID: 69955df0-6852-455d-bd9a-50e4f9a64522
+03:09:19.548 [nioEventLoopGroup-3-1] INFO  k.l.r.RailwayTicketsApplication - Received << start_simulation >> from client: 69955df0-6852-455d-bd9a-50e4f9a64522
+03:09:19.551 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2000 milliseconds.
+03:09:21.566 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2010 milliseconds.
+03:09:23.583 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2020 milliseconds.
+03:09:25.615 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2030 milliseconds.
+03:09:27.653 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2040 milliseconds.
+03:09:29.707 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2050 milliseconds.
+03:09:31.767 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2060 milliseconds.
+03:09:33.830 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2070 milliseconds.
+03:09:34.268 [nioEventLoopGroup-3-1] INFO  k.l.r.RailwayTicketsApplication - Client disconnected - ID: 69955df0-6852-455d-bd9a-50e4f9a64522
+03:09:35.908 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2080 milliseconds.
+03:09:36.331 [SpringApplicationShutdownHook] INFO  c.c.socketio.SocketIOServer - SocketIO server stopped
+03:09:57.082 [restartedMain] INFO  k.l.r.RailwayTicketsApplication - Starting RailwayTicketsApplication using Java 23.0.1 with PID 23568 (D:\repos\KPP\Lab6\railwaytickets\target\classes started by w3stn in D:\repos\KPP\Lab6\railwaytickets)
+03:09:57.085 [restartedMain] INFO  k.l.r.RailwayTicketsApplication - No active profile set, falling back to 1 default profile: "default"
+03:09:57.153 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+03:09:57.153 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+03:09:58.382 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+03:09:58.393 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+03:09:58.398 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+03:09:58.398 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.30]
+03:09:58.449 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+03:09:58.450 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1296 ms
+03:09:58.631 [restartedMain] INFO  c.c.socketio.SocketIOServer - Session store / pubsub factory used: MemoryStoreFactory (local session store only)
+03:09:58.845 [nioEventLoopGroup-2-1] INFO  c.c.socketio.SocketIOServer - SocketIO server started at port: 8082
+03:09:59.354 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+03:09:59.369 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+03:09:59.381 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+03:09:59.389 [restartedMain] INFO  k.l.r.RailwayTicketsApplication - Started RailwayTicketsApplication in 2.726 seconds (process running for 3.715)
+03:10:07.071 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+03:10:07.071 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+03:10:07.072 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+03:10:12.622 [nioEventLoopGroup-3-1] INFO  k.l.r.RailwayTicketsApplication - Client connected - ID: 2a5b9ecb-89b9-4dd3-b4af-dc9e9e4decb3
+03:10:14.440 [nioEventLoopGroup-3-1] INFO  k.l.r.RailwayTicketsApplication - Received << start_simulation >> from client: 2a5b9ecb-89b9-4dd3-b4af-dc9e9e4decb3
+03:10:14.443 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2000 milliseconds.
+03:10:16.461 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2010 milliseconds.
+03:10:18.473 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2020 milliseconds.
+03:10:20.507 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2030 milliseconds.
+03:10:22.539 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2040 milliseconds.
+03:10:24.585 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2050 milliseconds.
+03:10:26.649 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2060 milliseconds.
+03:10:28.716 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2070 milliseconds.
+03:10:30.787 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2080 milliseconds.
+03:10:32.873 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2090 milliseconds.
+03:10:34.966 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2100 milliseconds.
+03:10:37.071 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2110 milliseconds.
+03:10:53.973 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2120 milliseconds.
+03:10:56.100 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2130 milliseconds.
+03:10:58.239 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2140 milliseconds.
+03:11:00.395 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2150 milliseconds.
+03:11:02.554 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2160 milliseconds.
+03:11:04.721 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2170 milliseconds.
+03:12:18.806 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2180 milliseconds.
+03:12:21.001 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2190 milliseconds.
+03:12:23.200 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2200 milliseconds.
+03:12:25.414 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2210 milliseconds.
+03:12:27.637 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2220 milliseconds.
+03:12:36.507 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2230 milliseconds.
+03:12:38.754 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2240 milliseconds.
+03:12:40.995 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2250 milliseconds.
+03:12:43.246 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2260 milliseconds.
+03:12:45.514 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2270 milliseconds.
+03:13:06.889 [nioEventLoopGroup-3-1] INFO  k.l.r.RailwayTicketsApplication - Client disconnected - ID: 2a5b9ecb-89b9-4dd3-b4af-dc9e9e4decb3
+03:13:26.838 [restartedMain] INFO  k.l.r.RailwayTicketsApplication - Starting RailwayTicketsApplication using Java 23.0.1 with PID 30244 (D:\repos\KPP\Lab6\railwaytickets\target\classes started by w3stn in D:\repos\KPP\Lab6\railwaytickets)
+03:13:26.840 [restartedMain] INFO  k.l.r.RailwayTicketsApplication - No active profile set, falling back to 1 default profile: "default"
+03:13:26.906 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+03:13:26.906 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+03:13:28.392 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+03:13:28.403 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+03:13:28.409 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+03:13:28.410 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.30]
+03:13:28.488 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+03:13:28.488 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1582 ms
+03:13:28.700 [restartedMain] INFO  c.c.socketio.SocketIOServer - Session store / pubsub factory used: MemoryStoreFactory (local session store only)
+03:13:28.963 [nioEventLoopGroup-2-1] INFO  c.c.socketio.SocketIOServer - SocketIO server started at port: 8082
+03:13:29.664 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+03:13:29.695 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+03:13:29.711 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+03:13:29.726 [restartedMain] INFO  k.l.r.RailwayTicketsApplication - Started RailwayTicketsApplication in 3.318 seconds (process running for 4.3)
+03:13:34.606 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+03:13:34.607 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+03:13:34.608 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+03:13:39.800 [nioEventLoopGroup-3-1] INFO  k.l.r.RailwayTicketsApplication - Client connected - ID: d8d83677-3414-42b5-b222-aa66cbdc976d
+03:13:40.855 [nioEventLoopGroup-3-1] INFO  k.l.r.RailwayTicketsApplication - Received << start_simulation >> from client: d8d83677-3414-42b5-b222-aa66cbdc976d
+03:13:40.858 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2000 milliseconds.
+03:13:42.873 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2010 milliseconds.
+03:13:44.900 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2020 milliseconds.
+03:13:46.927 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2030 milliseconds.
+03:13:48.972 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2040 milliseconds.
+03:13:51.018 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2050 milliseconds.
+03:13:53.071 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2060 milliseconds.
+03:13:55.147 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2070 milliseconds.
+03:13:57.220 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2080 milliseconds.
+03:13:59.306 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2090 milliseconds.
+03:14:01.411 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2100 milliseconds.
+03:14:03.523 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2110 milliseconds.
+03:14:49.465 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2120 milliseconds.
+03:14:51.598 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2130 milliseconds.
+03:14:53.735 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2140 milliseconds.
+03:14:55.881 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2150 milliseconds.
+03:14:58.043 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2160 milliseconds.
+03:15:00.215 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2170 milliseconds.
+03:15:05.434 [nioEventLoopGroup-3-1] INFO  k.l.r.RailwayTicketsApplication - Client disconnected - ID: d8d83677-3414-42b5-b222-aa66cbdc976d
+03:16:18.124 [restartedMain] INFO  k.l.r.RailwayTicketsApplication - Starting RailwayTicketsApplication using Java 23.0.1 with PID 5804 (D:\repos\KPP\Lab6\railwaytickets\target\classes started by w3stn in D:\repos\KPP\Lab6\railwaytickets)
+03:16:18.126 [restartedMain] INFO  k.l.r.RailwayTicketsApplication - No active profile set, falling back to 1 default profile: "default"
+03:16:18.197 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+03:16:18.197 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+03:16:19.564 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+03:16:19.575 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+03:16:19.578 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+03:16:19.580 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.30]
+03:16:19.630 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+03:16:19.632 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1432 ms
+03:16:19.812 [restartedMain] INFO  c.c.socketio.SocketIOServer - Session store / pubsub factory used: MemoryStoreFactory (local session store only)
+03:16:20.017 [nioEventLoopGroup-2-1] INFO  c.c.socketio.SocketIOServer - SocketIO server started at port: 8082
+03:16:20.545 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+03:16:20.561 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+03:16:20.572 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+03:16:20.583 [restartedMain] INFO  k.l.r.RailwayTicketsApplication - Started RailwayTicketsApplication in 2.892 seconds (process running for 4.083)
+03:16:53.834 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+03:16:53.834 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+03:16:53.835 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+03:16:58.433 [nioEventLoopGroup-3-1] INFO  k.l.r.RailwayTicketsApplication - Client connected - ID: 15e6c175-31ab-4a15-a5cf-94969e6e1601
+03:16:59.333 [nioEventLoopGroup-3-1] INFO  k.l.r.RailwayTicketsApplication - Received << start_simulation >> from client: 15e6c175-31ab-4a15-a5cf-94969e6e1601
+03:16:59.337 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2000 milliseconds.
+03:17:01.348 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2010 milliseconds.
+03:17:03.371 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2020 milliseconds.
+03:17:05.408 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2030 milliseconds.
+03:17:07.446 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2040 milliseconds.
+03:17:09.498 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2050 milliseconds.
+03:17:11.559 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2060 milliseconds.
+03:17:13.626 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2070 milliseconds.
+03:17:14.660 [nioEventLoopGroup-3-1] INFO  k.l.r.RailwayTicketsApplication - Received << start_simulation >> from client: 15e6c175-31ab-4a15-a5cf-94969e6e1601
+03:17:14.661 [pool-5-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2070 milliseconds.
+03:17:15.711 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2080 milliseconds.
+03:17:16.313 [nioEventLoopGroup-3-1] INFO  k.l.r.RailwayTicketsApplication - Client disconnected - ID: 15e6c175-31ab-4a15-a5cf-94969e6e1601
+03:17:16.746 [pool-5-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2090 milliseconds.
+03:17:17.802 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2100 milliseconds.
+03:17:18.843 [pool-5-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2110 milliseconds.
+03:17:25.011 [SpringApplicationShutdownHook] INFO  c.c.socketio.SocketIOServer - SocketIO server stopped
+03:18:05.504 [restartedMain] INFO  k.l.r.RailwayTicketsApplication - Starting RailwayTicketsApplication using Java 23.0.1 with PID 24108 (D:\repos\KPP\Lab6\railwaytickets\target\classes started by w3stn in D:\repos\KPP\Lab6\railwaytickets)
+03:18:05.506 [restartedMain] INFO  k.l.r.RailwayTicketsApplication - No active profile set, falling back to 1 default profile: "default"
+03:18:05.611 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+03:18:05.611 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+03:18:06.940 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+03:18:06.952 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+03:18:06.957 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+03:18:06.957 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.30]
+03:18:07.021 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+03:18:07.022 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1408 ms
+03:18:07.227 [restartedMain] INFO  c.c.socketio.SocketIOServer - Session store / pubsub factory used: MemoryStoreFactory (local session store only)
+03:18:07.470 [nioEventLoopGroup-2-1] INFO  c.c.socketio.SocketIOServer - SocketIO server started at port: 8082
+03:18:08.001 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+03:18:08.018 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+03:18:08.028 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+03:18:08.037 [restartedMain] INFO  k.l.r.RailwayTicketsApplication - Started RailwayTicketsApplication in 3.05 seconds (process running for 4.249)
+03:18:13.011 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+03:18:13.011 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+03:18:13.014 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+03:18:21.684 [nioEventLoopGroup-3-1] INFO  k.l.r.RailwayTicketsApplication - Client connected - ID: 4d910d1a-f0c2-4fee-a5c7-32e14c18e527
+03:18:22.479 [nioEventLoopGroup-3-1] INFO  k.l.r.RailwayTicketsApplication - Received << start_simulation >> from client: 4d910d1a-f0c2-4fee-a5c7-32e14c18e527
+03:18:22.482 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2000 milliseconds.
+03:18:24.504 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2010 milliseconds.
+03:18:26.528 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2020 milliseconds.
+03:18:28.559 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2030 milliseconds.
+03:18:30.605 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2040 milliseconds.
+03:18:32.649 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2050 milliseconds.
+03:18:34.710 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2060 milliseconds.
+03:18:36.779 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2070 milliseconds.
+03:18:38.851 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2080 milliseconds.
+03:18:40.944 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2090 milliseconds.
+03:18:43.041 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2100 milliseconds.
+03:19:31.134 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2110 milliseconds.
+03:19:33.249 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2120 milliseconds.
+03:19:35.376 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2130 milliseconds.
+03:19:37.515 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2140 milliseconds.
+03:19:39.661 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2150 milliseconds.
+03:19:41.825 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2160 milliseconds.
+03:19:43.992 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2170 milliseconds.
+03:20:55.241 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2180 milliseconds.
+03:20:57.423 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2190 milliseconds.
+03:20:59.614 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2200 milliseconds.
+03:21:01.817 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2210 milliseconds.
+03:21:04.035 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2220 milliseconds.
+03:21:06.260 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2230 milliseconds.
+03:21:08.491 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2240 milliseconds.
+03:21:10.744 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2250 milliseconds.
+03:22:23.462 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2260 milliseconds.
+03:22:25.722 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2270 milliseconds.
+03:22:27.993 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2280 milliseconds.
+03:22:30.274 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2290 milliseconds.
+03:22:32.565 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2300 milliseconds.
+03:22:34.866 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2310 milliseconds.
+03:22:37.177 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2320 milliseconds.
+03:22:39.498 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2330 milliseconds.
+03:22:41.829 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2340 milliseconds.
+03:22:44.170 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2350 milliseconds.
+03:23:44.891 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2360 milliseconds.
+03:23:47.252 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2370 milliseconds.
+03:23:49.622 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2380 milliseconds.
+03:23:52.004 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2390 milliseconds.
+03:23:54.395 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2400 milliseconds.
+03:23:56.810 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2410 milliseconds.
+03:23:59.228 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2420 milliseconds.
+03:24:01.653 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2430 milliseconds.
+03:24:04.086 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2440 milliseconds.
+03:24:06.531 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2450 milliseconds.
+03:24:36.227 [nioEventLoopGroup-3-1] INFO  k.l.r.RailwayTicketsApplication - Client disconnected - ID: 4d910d1a-f0c2-4fee-a5c7-32e14c18e527
+03:24:38.290 [SpringApplicationShutdownHook] INFO  c.c.socketio.SocketIOServer - SocketIO server stopped
+03:25:13.094 [restartedMain] INFO  k.l.r.RailwayTicketsApplication - Starting RailwayTicketsApplication using Java 23.0.1 with PID 30768 (D:\repos\KPP\Lab6\railwaytickets\target\classes started by w3stn in D:\repos\KPP\Lab6\railwaytickets)
+03:25:13.096 [restartedMain] INFO  k.l.r.RailwayTicketsApplication - No active profile set, falling back to 1 default profile: "default"
+03:25:13.165 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+03:25:13.165 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+03:25:14.362 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+03:25:14.373 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+03:25:14.377 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+03:25:14.377 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.30]
+03:25:14.430 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+03:25:14.430 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1263 ms
+03:25:14.607 [restartedMain] INFO  c.c.socketio.SocketIOServer - Session store / pubsub factory used: MemoryStoreFactory (local session store only)
+03:25:14.814 [nioEventLoopGroup-2-1] INFO  c.c.socketio.SocketIOServer - SocketIO server started at port: 8082
+03:25:15.328 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+03:25:15.344 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+03:25:15.359 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+03:25:15.368 [restartedMain] INFO  k.l.r.RailwayTicketsApplication - Started RailwayTicketsApplication in 2.71 seconds (process running for 3.676)
+03:25:51.540 [http-nio-8080-exec-5] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+03:25:51.540 [http-nio-8080-exec-5] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+03:25:51.541 [http-nio-8080-exec-5] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+03:25:56.378 [nioEventLoopGroup-3-1] INFO  k.l.r.RailwayTicketsApplication - Client connected - ID: e602acc5-7664-4368-b31b-fd5822cce3f4
+03:25:58.123 [nioEventLoopGroup-3-1] INFO  k.l.r.RailwayTicketsApplication - Received << start_simulation >> from client: e602acc5-7664-4368-b31b-fd5822cce3f4
+03:25:58.127 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2000 milliseconds.
+03:26:00.143 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2010 milliseconds.
+03:26:02.166 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2020 milliseconds.
+03:26:04.195 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2030 milliseconds.
+03:26:06.234 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2040 milliseconds.
+03:26:08.287 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2050 milliseconds.
+03:26:10.351 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2060 milliseconds.
+03:26:12.416 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2070 milliseconds.
+03:26:14.497 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2080 milliseconds.
+03:26:16.590 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2090 milliseconds.
+03:26:18.685 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2100 milliseconds.
+03:27:33.940 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2110 milliseconds.
+03:27:36.060 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2120 milliseconds.
+03:27:38.184 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2130 milliseconds.
+03:27:40.326 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2140 milliseconds.
+03:27:42.475 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2150 milliseconds.
+03:27:44.628 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2160 milliseconds.
+03:27:46.792 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2170 milliseconds.
+03:27:48.974 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2180 milliseconds.
+03:27:51.156 [pool-3-thread-1] INFO  k.l.r.RailwayTicketsApplication - Generating client. It takes around 2190 milliseconds.
+03:28:10.017 [nioEventLoopGroup-3-1] INFO  k.l.r.RailwayTicketsApplication - Client disconnected - ID: e602acc5-7664-4368-b31b-fd5822cce3f4
