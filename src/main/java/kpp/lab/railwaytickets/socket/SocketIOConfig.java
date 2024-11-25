@@ -25,7 +25,7 @@ public class SocketIOConfig {
         Configuration config = new Configuration();
         config.setHostname(socketHost);
         config.setPort(socketPort);
-        config.setOrigin("*");
+        config.setOrigin("http://localhost:5173");
 
         config.setJsonSupport(new JacksonJsonSupport());
 
