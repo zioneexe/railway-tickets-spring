@@ -50,39 +50,26 @@ public class ClientCashDeskServiceImpl implements ClientCashDeskService {
 
 
     @Override
-    public BaseCashDesk chooseCashDesk(BaseClient client) {
+    public BaseCashDesk chooseCashDesk(BaseClient client) throws Exception {
 
         var cashDesks = trainStation.getCashDesks();
 
-        boolean isBackupWorking = cashDesks.stream().anyMatch(BaseCashDesk::getIsBroken);
-
-        List<BaseCashDesk> workingCashDesks;
-
-        if (isBackupWorking) {
-            workingCashDesks = cashDesks.stream().filter(e -> !e.getIsBroken()).toList();
-        } else {
-            workingCashDesks = cashDesks.stream().filter(e -> !e.getIsBackup()).toList();
-        }
+        List<BaseCashDesk> workingCashDesks = cashDesks.stream().filter(e -> !e.getIsBackup() && !e.getIsBroken()).toList();
 
         BaseCashDesk chosenCashDesk = CashDeskSelectHelper.selectBestDesk(workingCashDesks, client);
         if (chosenCashDesk == null) {
-            LOGGER.warn("Cash desk is null.");
+            throw new Exception("Cash desk is null.");
         }
 
-        if (chosenCashDesk != null) chosenCashDesk.addClientToQueue(client);
-
+        chosenCashDesk.addClientToQueue(client);
         return chosenCashDesk;
     }
 
     @Override
     public void moveClientsToBackupQueue(BaseCashDesk baseCashDesk) {
-        BaseCashDesk backupCashDesk = trainStation.getCashDesks().stream()
-                .filter(BaseCashDesk::getIsBackup)
-                .toList()
-                .getFirst();
 
-        backupCashDesk.getQueue().clear();
-        backupCashDesk.getQueue().forEach(e -> baseCashDesk.getQueue().add(e));
+        BaseCashDesk backupCashDesk = trainStation.getCashDesks().stream().filter(e -> e.getIsBackup()).toList().get(0);
+        baseCashDesk.getQueue().forEach(backupCashDesk.getQueue()::add);
         baseCashDesk.getQueue().clear();
     }
 

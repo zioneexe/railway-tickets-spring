@@ -42,7 +42,9 @@ public class TrainStation implements BaseTrainStation {
 
     @Override
     public void addCashDesk(BasePosition position) {
-        cashDesks.add(new CashDesk(position, false));
+        if(!cashDesks.stream().anyMatch(e -> e.getPosition().equals(position))) {
+            cashDesks.add(new CashDesk(position, false));
+        }
     }
 
     @Override
